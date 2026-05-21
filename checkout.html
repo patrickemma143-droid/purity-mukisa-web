@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Checkout — Purity Mukisa</title>
 <link rel="stylesheet" href="styles.css"/>
+<script src="cart.js" defer></script>
 </head>
 <body>
 
@@ -17,7 +18,7 @@
       <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
-    <button class="cart-btn" type="button" onclick="CartUI.open()" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
+    <button class="cart-btn" type="button" data-cart-action="open" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
     <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -160,17 +161,17 @@
   </div>
 </section>
 
-<!-- Cart Drawer -->
-<div class="cart-overlay" id="cartOverlay" onclick="CartUI.close()"></div>
-<aside class="cart-drawer" id="cartDrawer">
+<!-- Cart Drawer (direct child of body) -->
+<div class="cart-overlay" id="cartOverlay" data-cart-action="close"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
   <div class="cart-drawer-header">
     <h3>Your Cart</h3>
-    <button class="cart-drawer-close" type="button" onclick="CartUI.close()" aria-label="Close cart">✕</button>
+    <button class="cart-drawer-close" type="button" data-cart-action="close" aria-label="Close cart">✕</button>
   </div>
   <div class="cart-drawer-body" id="cartDrawerBody"></div>
   <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
     <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
-    <button type="button" onclick="CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:14px;padding:12px;">Close</button>
+    <button type="button" data-cart-action="close" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:14px;padding:12px;">Close</button>
   </div>
 </aside>
 
@@ -187,7 +188,6 @@
 </footer>
 <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
 
-<script src="cart.js"></script>
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 
@@ -327,9 +327,12 @@ function submitOrder() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-renderSummary();
+if (window.Cart) {
+  renderSummary();
+} else {
+  document.addEventListener('DOMContentLoaded', renderSummary);
+}
 window.addEventListener('storage', renderSummary);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') CartUI.close(); });
 </script>
 
 </body>
