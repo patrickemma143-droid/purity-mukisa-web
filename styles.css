@@ -405,3 +405,81 @@ textarea.input-light, textarea.input-dark { resize: vertical; min-height: 130px;
 .mb-60 { margin-bottom: 60px; }
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   CART + CHECKOUT (added 2026-05-21)
+============================================================ */
+.cart-btn { position:relative; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:var(--transition); color:#fff; text-decoration:none; font-size:18px; flex-shrink:0; }
+.cart-btn:hover { background:var(--terra); border-color:var(--terra); }
+.cart-count-badge { position:absolute; top:-4px; right:-4px; background:var(--terra); color:#fff; border-radius:50%; min-width:20px; height:20px; padding:0 5px; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+.cart-count-badge.empty { display:none; }
+
+/* Drawer */
+.cart-overlay { position:fixed; inset:0; background:rgba(26,10,0,0.55); backdrop-filter:blur(4px); z-index:1100; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.cart-overlay.open { opacity:1; pointer-events:auto; }
+.cart-drawer { position:fixed; top:0; right:0; width:min(440px, 100vw); height:100vh; background:var(--cream); z-index:1200; transform:translateX(100%); transition:transform 0.35s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column; box-shadow:-10px 0 40px rgba(0,0,0,0.18); }
+.cart-drawer.open { transform:translateX(0); }
+.cart-drawer-header { padding:22px 28px; border-bottom:1px solid var(--cream-deep); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.cart-drawer-header h3 { font-size:22px; }
+.cart-drawer-close { width:36px; height:36px; border-radius:50%; background:var(--cream-dark); border:none; cursor:pointer; font-size:18px; color:var(--dark); display:flex; align-items:center; justify-content:center; }
+.cart-drawer-body { flex:1; overflow-y:auto; padding:20px 28px; }
+.cart-drawer-footer { padding:24px 28px; border-top:1px solid var(--cream-deep); background:var(--cream-dark); flex-shrink:0; }
+
+.cart-item { display:grid; grid-template-columns:60px 1fr auto; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--cream-deep); }
+.cart-item:last-child { border-bottom:none; }
+.cart-item-img { width:60px; height:60px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.cart-item-info { min-width:0; }
+.cart-item-name { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; color:var(--dark); margin-bottom:4px; line-height:1.3; }
+.cart-item-price { font-size:13px; color:var(--text-muted); font-family:'Space Grotesk',sans-serif; }
+.cart-qty-row { display:flex; align-items:center; gap:8px; margin-top:8px; }
+.cart-qty-btn { width:26px; height:26px; border-radius:50%; background:var(--cream-deep); border:none; cursor:pointer; font-weight:700; color:var(--dark); font-size:14px; display:flex; align-items:center; justify-content:center; transition:var(--transition); font-family:'Space Grotesk',sans-serif; }
+.cart-qty-btn:hover { background:var(--terra); color:#fff; }
+.cart-qty-display { min-width:24px; text-align:center; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; color:var(--dark); }
+.cart-item-remove { background:none; border:none; color:var(--text-light); cursor:pointer; font-size:18px; padding:4px 8px; align-self:flex-start; transition:var(--transition); }
+.cart-item-remove:hover { color:var(--terra); }
+
+.cart-empty { text-align:center; padding:60px 20px; color:var(--text-light); }
+.cart-empty-icon { font-size:48px; margin-bottom:16px; opacity:0.4; }
+
+.cart-summary-row { display:flex; justify-content:space-between; padding:10px 0; font-size:14px; color:var(--text-muted); font-family:'Space Grotesk',sans-serif; }
+.cart-summary-total { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--dark); border-top:2px solid var(--cream-deep); padding-top:16px; margin-top:8px; display:flex; justify-content:space-between; align-items:baseline; }
+
+/* Checkout page */
+.checkout-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:50px; align-items:start; }
+.checkout-section { background:var(--cream); border-radius:var(--radius-lg); padding:40px; border:1px solid var(--cream-deep); box-shadow:var(--shadow-sm); margin-bottom:24px; }
+.checkout-section h3 { font-size:22px; margin-bottom:6px; }
+.checkout-section .section-sub { font-size:13px; color:var(--text-light); margin-bottom:24px; font-family:'Space Grotesk',sans-serif; letter-spacing:1px; text-transform:uppercase; }
+
+.payment-method-card { display:flex; align-items:center; gap:16px; padding:18px 20px; border-radius:var(--radius-md); background:var(--cream); border:2px solid var(--cream-deep); cursor:pointer; transition:var(--transition); margin-bottom:12px; position:relative; }
+.payment-method-card:hover { border-color:var(--terra); background:var(--cream-dark); }
+.payment-method-card.selected { border-color:var(--terra); background:rgba(196,98,45,0.06); }
+.payment-method-card.disabled { opacity:0.55; cursor:not-allowed; }
+.payment-method-card.disabled:hover { border-color:var(--cream-deep); background:var(--cream); }
+.payment-method-icon { width:48px; height:48px; border-radius:50%; background:var(--cream-dark); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.payment-method-info { flex:1; min-width:0; }
+.payment-method-title { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; color:var(--dark); margin-bottom:3px; }
+.payment-method-desc { font-size:12px; color:var(--text-muted); line-height:1.5; }
+.payment-method-radio { width:22px; height:22px; border-radius:50%; border:2px solid var(--cream-deep); flex-shrink:0; position:relative; }
+.payment-method-card.selected .payment-method-radio { border-color:var(--terra); }
+.payment-method-card.selected .payment-method-radio::after { content:''; position:absolute; inset:3px; background:var(--terra); border-radius:50%; }
+.payment-method-card .coming-soon-tag { position:absolute; top:10px; right:14px; background:var(--cream-deep); color:var(--text-muted); font-size:10px; padding:3px 8px; border-radius:100px; font-family:'Space Grotesk',sans-serif; letter-spacing:1px; text-transform:uppercase; font-weight:600; }
+
+.payment-instructions { background:var(--cream-dark); border-radius:var(--radius-md); padding:20px 22px; margin-top:12px; border-left:3px solid var(--terra); display:none; }
+.payment-instructions.show { display:block; }
+.payment-instructions h5 { font-size:13px; color:var(--terra); margin-bottom:10px; letter-spacing:1px; text-transform:uppercase; font-family:'Space Grotesk',sans-serif; }
+.payment-instructions ol { padding-left:20px; margin:0; font-size:14px; line-height:1.85; color:var(--text-muted); }
+.payment-instructions ol code { background:var(--cream); padding:1px 7px; border-radius:4px; font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--dark); font-weight:700; }
+
+.order-summary { background:var(--cream); border-radius:var(--radius-lg); padding:32px; border:1px solid var(--cream-deep); box-shadow:var(--shadow-sm); position:sticky; top:100px; }
+.order-summary h4 { font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--text-muted); margin-bottom:20px; }
+.order-line { display:flex; justify-content:space-between; gap:10px; padding:10px 0; font-size:14px; color:var(--text-muted); border-bottom:1px solid var(--cream-deep); }
+.order-line:last-of-type { border-bottom:none; }
+.order-line-name { flex:1; }
+.order-line-qty { color:var(--text-light); }
+.order-line-price { font-family:'Space Grotesk',sans-serif; font-weight:600; color:var(--dark); white-space:nowrap; }
+
+@media(max-width:900px) {
+  .checkout-grid { grid-template-columns:1fr; }
+  .order-summary { position:static; }
+  .checkout-section { padding:28px 22px; }
+}

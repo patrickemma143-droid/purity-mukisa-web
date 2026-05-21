@@ -35,6 +35,7 @@
       <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <button class="cart-btn" type="button" onclick="if(window.CartUI){CartUI.open()}else{location.href='store.html'}" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
     <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -173,17 +174,36 @@
       <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
       <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256771492492" target="_blank">WhatsApp</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Ministry. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Mukisa. All rights reserved. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
   </div>
 </footer>
+
 <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
 <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(window.CartUI)CartUI.close()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart</h3>
+    <button class="cart-drawer-close" type="button" onclick="if(window.CartUI)CartUI.close()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
+    <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
+    <p style="font-size:12px;color:var(--text-light);margin:10px 0 16px;">Delivery and any taxes calculated at checkout.</p>
+    <a class="btn btn-primary" href="checkout.html" style="width:100%;justify-content:center;font-size:15px;padding:14px;">Proceed to Checkout →</a>
+    <button type="button" onclick="if(window.CartUI)CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:10px;padding:12px;">Continue Shopping</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.CartUI) CartUI.close(); });
 </script>
 </body>
 </html>
-                                                                                     

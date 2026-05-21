@@ -24,6 +24,7 @@
       <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <button class="cart-btn" type="button" onclick="CartUI.open()" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
     <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -59,52 +60,52 @@
     <!-- Products -->
     <div class="grid-4 fade-up">
       <div class="product-card">
-        <div class="product-img album-art-1"><div class="prod-badge badge-new">New</div>🌅</div>
-        <div class="product-body"><div class="product-name">Yenze — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Yenze CD')">Add</button></div></div>
+        <div class="product-img album-art-1"><div class="prod-badge badge-new">New</div>✨</div>
+        <div class="product-body"><div class="product-name">Yenze — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-cd','Yenze CD',35000,'UGX 35K','✨','linear-gradient(135deg,var(--terra),var(--amber))')">Add</button></div></div>
       </div>
       <div class="product-card">
-        <div class="product-img album-art-2"><div class="prod-badge badge-best">Bestseller</div>🌿</div>
-        <div class="product-body"><div class="product-name">Extravagant Love — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Extravagant Love CD')">Add</button></div></div>
+        <div class="product-img album-art-2"><div class="prod-badge badge-best">Bestseller</div>💛</div>
+        <div class="product-body"><div class="product-name">Extravagant Love — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-cd','Extravagant Love CD',30000,'UGX 30K','💛','linear-gradient(135deg,var(--sage),var(--gold))')">Add</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--terra),var(--dark));"><div class="prod-badge badge-new">New</div>👕</div>
-        <div class="product-body"><div class="product-name">Yenze Tour Tee</div><div class="product-type">Unisex · S / M / L / XL / XXL</div><div class="product-foot"><div class="product-price">UGX 45K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Yenze Tee')">Add</button></div></div>
+        <div class="product-body"><div class="product-name">Yenze Tour Tee</div><div class="product-type">Unisex · S / M / L / XL / XXL</div><div class="product-foot"><div class="product-price">UGX 45K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-tee','Yenze Tour Tee',45000,'UGX 45K','👕','linear-gradient(135deg,var(--terra),var(--dark))')">Add</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--dark-mid));"><div class="prod-badge badge-dig">Digital</div>🎵</div>
-        <div class="product-body"><div class="product-name">Yenze — Digital</div><div class="product-type">MP3 Download · Featured Single</div><div class="product-foot"><div class="product-price">UGX 20K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Yenze Digital')">Buy</button></div></div>
+        <div class="product-body"><div class="product-name">Yenze — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 20K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-digital','Yenze Digital Album',20000,'UGX 20K','🎵','linear-gradient(135deg,var(--amber),var(--dark-mid))')">Buy</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--sage),var(--dark));"><div class="prod-badge badge-best">Popular</div>🎒</div>
-        <div class="product-body"><div class="product-name">Purity Foundation Tote</div><div class="product-type">Canvas Tote · Branded & Printed</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Foundation Tote')">Add</button></div></div>
+        <div class="product-body"><div class="product-name">Purity Foundation Tote</div><div class="product-type">Canvas Tote · Branded & Printed</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'foundation-tote','Purity Foundation Tote',25000,'UGX 25K','🎒','linear-gradient(135deg,var(--sage),var(--dark))')">Add</button></div></div>
       </div>
       <div class="product-card">
-        <div class="product-img album-art-3"><div class="prod-badge badge-new">New</div>🔥</div>
-        <div class="product-body"><div class="product-name">Extravagant Love — Digital</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Extravagant Love Digital')">Add</button></div></div>
+        <div class="product-img album-art-3"><div class="prod-badge badge-dig">Digital</div>💛</div>
+        <div class="product-body"><div class="product-name">Extravagant Love — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-digital','Extravagant Love Digital',25000,'UGX 25K','💛','linear-gradient(135deg,var(--gold),var(--terra))')">Buy</button></div></div>
       </div>
       <div class="product-card">
-        <div class="product-img" style="background:linear-gradient(135deg,var(--gold),var(--dark));"><div class="prod-badge badge-dig">Digital</div>🎤</div>
-        <div class="product-body"><div class="product-name">Both Albums Bundle</div><div class="product-type">Digital Bundle · Yenze + Extravagant Love</div><div class="product-foot"><div class="product-price">UGX 50K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Both Albums Bundle')">Buy</button></div></div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--gold),var(--dark));"><div class="prod-badge badge-best">Best Deal</div>🎤</div>
+        <div class="product-body"><div class="product-name">Both Albums Bundle</div><div class="product-type">Digital Bundle · Yenze + Extravagant Love</div><div class="product-foot"><div class="product-price">UGX 40K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'both-albums','Both Albums Bundle',40000,'UGX 40K','🎤','linear-gradient(135deg,var(--gold),var(--dark))')">Buy</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--dark-mid),var(--amber));"><div class="prod-badge badge-best">Popular</div>🧢</div>
-        <div class="product-body"><div class="product-name">Branded Embroidered Cap</div><div class="product-type">Unisex Cap · One Size Fits All</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Branded Cap')">Add</button></div></div>
+        <div class="product-body"><div class="product-name">Branded Embroidered Cap</div><div class="product-type">Unisex Cap · One Size Fits All</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'branded-cap','Branded Cap',30000,'UGX 30K','🧢','linear-gradient(135deg,var(--dark-mid),var(--amber))')">Add</button></div></div>
       </div>
       <div class="product-card">
-        <div class="product-img album-art-4"><div class="prod-badge badge-dig">Digital</div>🌙</div>
-        <div class="product-body"><div class="product-name">Niwewe — Single</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 18K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Niwewe Single')">Buy</button></div></div>
+        <div class="product-img album-art-4"><div class="prod-badge badge-dig">Single</div>🌙</div>
+        <div class="product-body"><div class="product-name">Niwewe — Single</div><div class="product-type">MP3 Download · Featured Track</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'niwewe-single','Niwewe Single',8000,'UGX 8K','🌙','linear-gradient(135deg,var(--dark-mid),var(--terra))')">Buy</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--terra-dark),var(--sage));"><div class="prod-badge badge-new">New</div>🧣</div>
-        <div class="product-body"><div class="product-name">Purity Mukisa Branded Hoodie</div><div class="product-type">Pullover Hoodie · S / M / L / XL</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Purity Mukisa Hoodie')">Add</button></div></div>
+        <div class="product-body"><div class="product-name">Purity Mukisa Branded Hoodie</div><div class="product-type">Pullover Hoodie · S / M / L / XL</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'pm-hoodie','Purity Mukisa Hoodie',75000,'UGX 75K','🧣','linear-gradient(135deg,var(--terra-dark),var(--sage))')">Add</button></div></div>
       </div>
       <div class="product-card">
-        <div class="product-img album-art-5"><div class="prod-badge badge-best">Popular</div>🌈</div>
-        <div class="product-body"><div class="product-name">Yenze — Digital</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 28K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Yenze Digital Album')">Add</button></div></div>
+        <div class="product-img album-art-5"><div class="prod-badge badge-new">New</div>🎁</div>
+        <div class="product-body"><div class="product-name">CD + Tee Bundle</div><div class="product-type">Yenze CD + Tour Tee · Save UGX 5K</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'cd-tee-bundle','Yenze CD + Tee Bundle',75000,'UGX 75K','🎁','linear-gradient(135deg,var(--amber),var(--sage))')">Add</button></div></div>
       </div>
       <div class="product-card">
         <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--sage-light));"><div class="prod-badge badge-new">New</div>📿</div>
-        <div class="product-body"><div class="product-name">Scripture Wristband</div><div class="product-type">Silicone · "Niwewe" — Surrender</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Wristband')">Add</button></div></div>
+        <div class="product-body"><div class="product-name">Scripture Wristband</div><div class="product-type">Silicone · "Niwewe" — Surrender</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'wristband','Scripture Wristband',8000,'UGX 8K','📿','linear-gradient(135deg,var(--amber),var(--sage-light))')">Add</button></div></div>
       </div>
     </div>
 
@@ -119,11 +120,6 @@
   </div>
 </section>
 
-<!-- Cart bar -->
-<div class="cart-bar" id="cartBar" onclick="openWhatsApp()">
-  🛒 <span id="cartText">View Cart</span> <span class="cart-count" id="cartCount">0</span>
-</div>
-
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -132,31 +128,45 @@
       <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
       <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256771492492" target="_blank">WhatsApp</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Ministry. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Mukisa. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
   </div>
 </footer>
+
 <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
 <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="if(window.CartUI)CartUI.close()"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+  <div class="cart-drawer-header">
+    <h3>Your Cart</h3>
+    <button class="cart-drawer-close" type="button" onclick="if(window.CartUI)CartUI.close()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
+    <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
+    <p style="font-size:12px;color:var(--text-light);margin:10px 0 16px;">Delivery and any taxes calculated at checkout.</p>
+    <a class="btn btn-primary" href="checkout.html" style="width:100%;justify-content:center;font-size:15px;padding:14px;">Proceed to Checkout →</a>
+    <button type="button" onclick="if(window.CartUI)CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:10px;padding:12px;">Continue Shopping</button>
+  </div>
+</aside>
+
+<script src="cart.js"></script>
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-let cart=[],cartTotal=0;
-function addToCart(btn,name){
-  cart.push(name);cartTotal++;
-  btn.textContent='✓ Added';btn.style.background='var(--sage)';
-  setTimeout(()=>{btn.textContent='Add';btn.style.background='';},1500);
-  document.getElementById('cartCount').textContent=cartTotal;
-  document.getElementById('cartBar').classList.add('show');
-  document.getElementById('player').classList.add('up');
-}
-function openWhatsApp(){
-  const items=cart.join(', ');
-  window.open('https://wa.me/256771492492?text=Hi!%20I%20want%20to%20order:%20'+encodeURIComponent(items),'_blank');
+function quickAdd(btn, id, name, price, priceLabel, emoji, gradient) {
+  Cart.add({ id, name, price, priceLabel, emoji, gradient, qty: 1 });
+  const orig = btn.textContent;
+  btn.textContent = '✓ Added';
+  btn.style.background = 'var(--sage)';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1400);
 }
 document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){this.closest('.store-filter').querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');}));
-document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
+const fpBtn = document.getElementById('fpBtn');
+if (fpBtn) fpBtn.addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.CartUI) CartUI.close(); });
 </script>
 </body>
 </html>
-                                                                   

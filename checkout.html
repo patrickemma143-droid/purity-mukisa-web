@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Checkout — Purity Mukisa</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Purity Mukisa</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li>
+      <li><a href="ministry.html">Ministry</a></li><li><a href="charity.html">Charity</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <button class="cart-btn" type="button" onclick="CartUI.open()" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
+    <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html">Home</a><a href="music.html">Music</a><a href="ministry.html">Ministry</a>
+  <a href="charity.html">Charity</a><a href="events.html">Events</a><a href="store.html">Store</a>
+  <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+</div>
+
+<!-- Header strip (compact) -->
+<div style="padding:140px 0 30px;background:var(--cream-dark);">
+  <div class="container">
+    <div class="eyebrow">🛒 Checkout</div>
+    <h1 style="font-size:clamp(36px,5vw,56px);">Complete Your Order</h1>
+    <p style="max-width:560px;margin-top:10px;">Fill in your details, choose how you want to pay, and we'll confirm your order within 2 hours via WhatsApp.</p>
+  </div>
+</div>
+
+<!-- Main checkout grid -->
+<section class="section" style="background:var(--cream);padding:60px 0 100px;">
+  <div class="container">
+
+    <!-- Empty cart state (shown if cart has no items) -->
+    <div id="emptyCartView" style="display:none;text-align:center;padding:80px 20px;">
+      <div style="font-size:72px;margin-bottom:18px;opacity:0.3;">🛍️</div>
+      <h2>Your cart is empty</h2>
+      <p style="max-width:420px;margin:14px auto 32px;">Head to the store and add something before you can check out.</p>
+      <a class="btn btn-primary btn-lg" href="store.html">Browse the Store →</a>
+    </div>
+
+    <!-- Filled cart view -->
+    <div id="checkoutGridView" class="checkout-grid">
+
+      <!-- LEFT: Forms -->
+      <div>
+
+        <!-- Customer details -->
+        <div class="checkout-section">
+          <h3>Your Details</h3>
+          <div class="section-sub">Where should we deliver?</div>
+
+          <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div class="form-group" style="margin:0;"><label class="label-dark">First Name *</label><input class="input-light" id="cf_first" placeholder="e.g. Sarah"/></div>
+            <div class="form-group" style="margin:0;"><label class="label-dark">Last Name *</label><input class="input-light" id="cf_last" placeholder="e.g. Nakato"/></div>
+          </div>
+          <div class="form-group"><label class="label-dark">Phone / WhatsApp *</label><input class="input-light" id="cf_phone" placeholder="e.g. +256 7XX XXX XXX"/></div>
+          <div class="form-group"><label class="label-dark">Email (optional)</label><input class="input-light" id="cf_email" type="email" placeholder="you@example.com"/></div>
+          <div class="form-group"><label class="label-dark">Delivery Address *</label><textarea class="input-light" id="cf_address" style="min-height:90px;" placeholder="Street, area, district. Add a landmark if it helps the rider find you."></textarea></div>
+          <div class="form-group" style="margin-bottom:0;"><label class="label-dark">Notes for us (optional)</label><textarea class="input-light" id="cf_notes" style="min-height:60px;" placeholder="Anything else we should know — gift wrap, preferred delivery time, etc."></textarea></div>
+        </div>
+
+        <!-- Payment method -->
+        <div class="checkout-section">
+          <h3>Payment Method</h3>
+          <div class="section-sub">Pick how you'd like to pay</div>
+
+          <div class="payment-method-card" data-method="mtn" onclick="selectPayment('mtn')">
+            <div class="payment-method-icon" style="background:#FFCC00;">📱</div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">MTN Mobile Money</div>
+              <div class="payment-method-desc">Pay via MoMo Merchant Code · Fast, secure, no extra fees.</div>
+            </div>
+            <div class="payment-method-radio"></div>
+          </div>
+
+          <div class="payment-method-card" data-method="airtel" onclick="selectPayment('airtel')">
+            <div class="payment-method-icon" style="background:#ED1C24;color:#fff;">📱</div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Airtel Money</div>
+              <div class="payment-method-desc">Pay via Airtel Money Merchant Code.</div>
+            </div>
+            <div class="payment-method-radio"></div>
+          </div>
+
+          <div class="payment-method-card" data-method="bank" onclick="selectPayment('bank')">
+            <div class="payment-method-icon" style="background:var(--sage);color:#fff;">🏦</div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Bank Transfer</div>
+              <div class="payment-method-desc">Equity Bank · best for larger orders.</div>
+            </div>
+            <div class="payment-method-radio"></div>
+          </div>
+
+          <div class="payment-method-card disabled" data-method="card" title="Card payments will be enabled once Flutterwave/Pesapal is connected">
+            <div class="payment-method-icon" style="background:var(--terra);color:#fff;">💳</div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Card (Visa / Mastercard)</div>
+              <div class="payment-method-desc">Coming soon — pending Flutterwave or Pesapal account setup.</div>
+            </div>
+            <div class="payment-method-radio"></div>
+            <span class="coming-soon-tag">Coming Soon</span>
+          </div>
+
+          <div class="payment-method-card" data-method="whatsapp" onclick="selectPayment('whatsapp')">
+            <div class="payment-method-icon" style="background:#25D366;color:#fff;">💬</div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Confirm via WhatsApp</div>
+              <div class="payment-method-desc">Talk to us first — we'll send a payment link or pickup arrangement.</div>
+            </div>
+            <div class="payment-method-radio"></div>
+          </div>
+
+          <!-- Dynamic payment instructions (shown after method selected) -->
+          <div class="payment-instructions" id="payInstructions">
+            <h5 id="payInstrTitle">Instructions</h5>
+            <div id="payInstrBody"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Order summary -->
+      <div>
+        <div class="order-summary">
+          <h4>Order Summary</h4>
+          <div id="orderLines"></div>
+          <div class="cart-summary-total" style="margin-top:16px;border-top:2px solid var(--cream-deep);padding-top:16px;"><span>Total</span><span id="orderTotal">UGX 0</span></div>
+
+          <button type="button" class="btn btn-primary btn-lg" id="submitOrderBtn" onclick="submitOrder()" style="width:100%;justify-content:center;margin-top:24px;padding:16px;font-size:15px;">Complete Order via WhatsApp</button>
+
+          <p style="font-size:12px;color:var(--text-light);margin-top:14px;line-height:1.7;">By placing your order, you agree to be contacted on WhatsApp by the Purity Mukisa team to confirm payment and delivery details.</p>
+
+          <a href="store.html" style="display:block;text-align:center;margin-top:18px;font-size:13px;color:var(--text-muted);">← Continue shopping</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirmation view (hidden until order submitted) -->
+    <div id="confirmView" style="display:none;text-align:center;padding:80px 20px;max-width:540px;margin:0 auto;">
+      <div style="font-size:72px;margin-bottom:18px;">✅</div>
+      <div class="eyebrow center" style="color:var(--sage);">Order Sent</div>
+      <h2 id="confirmTitle">Thank You!</h2>
+      <p style="margin:14px 0 8px;">Your order reference:</p>
+      <div id="confirmOrderId" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;color:var(--terra);letter-spacing:2px;margin-bottom:24px;"></div>
+      <div id="confirmInstructions" style="background:var(--cream-dark);border-radius:var(--radius-md);padding:24px;text-align:left;font-size:14px;line-height:1.8;margin-bottom:28px;"></div>
+      <a href="store.html" class="btn btn-secondary" style="margin-right:10px;">Back to Store</a>
+      <a href="#" id="confirmWhatsapp" class="btn btn-green btn-lg" target="_blank">💬 Send via WhatsApp →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="CartUI.close()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart</h3>
+    <button class="cart-drawer-close" type="button" onclick="CartUI.close()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
+    <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
+    <button type="button" onclick="CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:14px;padding:12px;">Close</button>
+  </div>
+</aside>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Foundation.</p></div>
+      <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="store.html">All Products</a></li><li><a href="store.html">Albums</a></li><li><a href="store.html">Digital Downloads</a></li><li><a href="store.html">Merch</a></li></ul></div>
+      <div class="footer-col"><h5>Help</h5><ul class="footer-links"><li><a href="contact.html">Contact Us</a></li><li><a href="https://wa.me/256771492492" target="_blank">WhatsApp Support</a></li><li><a href="contact.html">FAQs</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="charity.html">The Foundation</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Mukisa. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+  </div>
+</footer>
+<a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+
+<script src="cart.js"></script>
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+let selectedMethod = null;
+
+function renderSummary() {
+  const items = Cart.items();
+  const linesEl = document.getElementById('orderLines');
+  const totalEl = document.getElementById('orderTotal');
+  if (!linesEl) return;
+
+  if (items.length === 0) {
+    document.getElementById('checkoutGridView').style.display = 'none';
+    document.getElementById('emptyCartView').style.display = 'block';
+    return;
+  }
+
+  linesEl.innerHTML = items.map(it => `
+    <div class="order-line">
+      <span class="order-line-name">${it.name} <span class="order-line-qty">× ${it.qty}</span></span>
+      <span class="order-line-price">${Cart.formatUGX(it.price * it.qty)}</span>
+    </div>
+  `).join('');
+  totalEl.textContent = Cart.formatUGX(Cart.total());
+}
+
+function selectPayment(method) {
+  selectedMethod = method;
+  document.querySelectorAll('.payment-method-card').forEach(c => {
+    c.classList.toggle('selected', c.dataset.method === method && !c.classList.contains('disabled'));
+  });
+
+  const instr = document.getElementById('payInstructions');
+  const title = document.getElementById('payInstrTitle');
+  const body  = document.getElementById('payInstrBody');
+
+  const total = Cart.formatUGX(Cart.total());
+
+  const flows = {
+    mtn: {
+      t: 'MTN Mobile Money — Payment Steps',
+      b: `<ol>
+        <li>On your phone dial <code>*165*3#</code></li>
+        <li>Select <b>Pay Bill</b> → <b>Merchant Code</b></li>
+        <li>Enter merchant code <code>060215</code></li>
+        <li>Enter amount: <code>${total}</code></li>
+        <li>Enter your MoMo PIN to confirm</li>
+        <li>Click <b>Complete Order</b> below — we'll WhatsApp you to confirm.</li>
+      </ol>`
+    },
+    airtel: {
+      t: 'Airtel Money — Payment Steps',
+      b: `<ol>
+        <li>On your phone dial <code>*185*9#</code></li>
+        <li>Select <b>Pay Merchant</b></li>
+        <li>Enter merchant code <code>1320567</code></li>
+        <li>Enter amount: <code>${total}</code></li>
+        <li>Enter your Airtel Money PIN to confirm</li>
+        <li>Click <b>Complete Order</b> below — we'll WhatsApp you to confirm.</li>
+      </ol>`
+    },
+    bank: {
+      t: 'Bank Transfer — Account Details',
+      b: `<ol>
+        <li>Bank: <code>Equity Bank Uganda</code></li>
+        <li>Account name: <code>Purity Mukisa Ministry</code></li>
+        <li>Account number: <code>1025203511681</code></li>
+        <li>Amount: <code>${total}</code></li>
+        <li>Use your phone number as the reference</li>
+        <li>Click <b>Complete Order</b> below and we'll match your payment.</li>
+      </ol>`
+    },
+    whatsapp: {
+      t: 'WhatsApp Confirm',
+      b: `<ol>
+        <li>Click <b>Complete Order</b> below — your full cart will be sent via WhatsApp.</li>
+        <li>Our team will reply with the best way to pay (MoMo / Airtel / Bank / Card link).</li>
+        <li>We confirm delivery details and dispatch.</li>
+      </ol>`
+    },
+  };
+
+  const f = flows[method];
+  if (f) {
+    title.textContent = f.t;
+    body.innerHTML = f.b;
+    instr.classList.add('show');
+  }
+}
+
+function submitOrder() {
+  // Validate
+  const first = document.getElementById('cf_first').value.trim();
+  const last  = document.getElementById('cf_last').value.trim();
+  const phone = document.getElementById('cf_phone').value.trim();
+  const email = document.getElementById('cf_email').value.trim();
+  const addr  = document.getElementById('cf_address').value.trim();
+  const notes = document.getElementById('cf_notes').value.trim();
+
+  if (!first || !last) { alert('Please enter your first and last name.'); return; }
+  if (!phone)          { alert('Please enter your phone or WhatsApp number.'); return; }
+  if (!addr)           { alert('Please enter a delivery address.'); return; }
+  if (!selectedMethod) { alert('Please choose a payment method.'); return; }
+  if (Cart.items().length === 0) { alert('Your cart is empty.'); return; }
+
+  const methodLabels = {
+    mtn: 'MTN Mobile Money (code 060215)',
+    airtel: 'Airtel Money (code 1320567)',
+    bank: 'Bank Transfer · Equity 1025203511681',
+    whatsapp: 'WhatsApp confirm (no payment chosen yet)',
+  };
+
+  const orderId = Cart.generateOrderId();
+  const customer = { name: first + ' ' + last, phone, email, address: addr, notes };
+  const message  = Cart.buildOrderMessage(customer, methodLabels[selectedMethod], orderId);
+  const url      = `https://wa.me/${Cart.whatsappNumber}?text=${message}`;
+
+  // Show confirmation
+  document.getElementById('checkoutGridView').style.display = 'none';
+  document.getElementById('confirmView').style.display = 'block';
+  document.getElementById('confirmOrderId').textContent = orderId;
+  document.getElementById('confirmWhatsapp').href = url;
+
+  const confirmHtml = {
+    mtn:    `<b>Next step:</b> Dial <code>*165*3#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>060215</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
+    airtel: `<b>Next step:</b> Dial <code>*185*9#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>1320567</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
+    bank:   `<b>Next step:</b> Transfer <code>${Cart.formatUGX(Cart.total())}</code> to Equity Bank account <code>1025203511681</code> using your phone as reference. Then click the WhatsApp button below to send us your order details and the bank slip.`,
+    whatsapp: `<b>Next step:</b> Click the WhatsApp button below. Your full cart and contact details will be sent automatically. We'll reply with the best way to pay.`,
+  };
+  document.getElementById('confirmInstructions').innerHTML = confirmHtml[selectedMethod];
+
+  // Auto-open WhatsApp in a new tab for convenience
+  window.open(url, '_blank');
+
+  // Clear cart so they don't reorder accidentally — but keep saved order ID
+  // Cart.clear();  // ← uncomment if you want cart cleared after submit
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderSummary();
+window.addEventListener('storage', renderSummary);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') CartUI.close(); });
+</script>
+
+</body>
+</html>
