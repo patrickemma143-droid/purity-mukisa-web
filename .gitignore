@@ -39,3 +39,19 @@ denzel-onepage-personal-html-template-2024-12-25-11-27-28-utc.zip
 # ── Claude session work-product (keep out of repo) ──
 .claude/
 CLAUDE.md
+
+# ── Heavy original photos in assets/ ────────────────
+# Originals stay on Hudson's computer for masters/print/social.
+# When we later create web-optimised versions in assets/web/, those WILL be tracked.
+assets/*.jpg
+assets/*.JPG
+assets/*.jpeg
+assets/*.JPEG
+assets/*.tif
+assets/*.tiff
+assets/*.psd
+assets/*.raw
+
+# ── Backup files Cowork created ─────────────────────
+index_previous.html
+purity_homepage.html
