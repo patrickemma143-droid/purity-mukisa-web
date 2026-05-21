@@ -26,7 +26,7 @@
       <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
-    <button class="cart-btn" type="button" onclick="CartUI.open()" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
+    <button class="cart-btn" type="button" onclick="if(window.CartUI){CartUI.open()}else{location.href='store.html'}" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
     <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>

@@ -12,11 +12,30 @@
   function loadCart() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : [];
-    } catch(e) { return []; }
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) {
+        console.warn("Cart data in localStorage is not an array, resetting.");
+        return [];
+      }
+      // Return only valid item objects to prevent runtime errors
+      return parsed.filter(item => {
+        return item && typeof item === 'object' && typeof item.id === 'string';
+      });
+    } catch(e) {
+      console.error("Error loading cart:", e);
+      return [];
+    }
   }
   function saveCart(cart) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch(e){}
+    try {
+      if (!Array.isArray(cart)) {
+        cart = [];
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch(e){
+      console.error("Error saving cart:", e);
+    }
     notifyChange();
   }
   function clearCart() { saveCart([]); }
@@ -24,48 +43,59 @@
   function getCart() { return loadCart(); }
 
   function addItem(item) {
+    if (!item || typeof item !== 'object' || typeof item.id !== 'string') return;
     const cart = loadCart();
     const existing = cart.find(i => i.id === item.id);
     if (existing) {
-      existing.qty += (item.qty || 1);
+      existing.qty = (existing.qty || 0) + (item.qty || 1);
     } else {
       cart.push({
         id: item.id,
-        name: item.name,
-        price: item.price,          // numeric, in UGX
-        priceLabel: item.priceLabel, // display string
+        name: item.name || 'Unnamed Product',
+        price: typeof item.price === 'number' ? item.price : 0,
+        priceLabel: item.priceLabel || '',
         emoji: item.emoji || '🎵',
         gradient: item.gradient || 'linear-gradient(135deg,var(--terra),var(--amber))',
-        qty: item.qty || 1,
+        qty: typeof item.qty === 'number' ? item.qty : 1,
       });
     }
     saveCart(cart);
   }
 
   function updateQty(id, qty) {
+    if (typeof id !== 'string') return;
     const cart = loadCart();
     const it = cart.find(i => i.id === id);
     if (!it) return;
-    it.qty = Math.max(1, qty);
+    it.qty = Math.max(1, typeof qty === 'number' && !isNaN(qty) ? qty : 1);
     saveCart(cart);
   }
 
   function removeItem(id) {
+    if (typeof id !== 'string') return;
     const cart = loadCart().filter(i => i.id !== id);
     saveCart(cart);
   }
 
   function getCount() {
-    return loadCart().reduce((sum, i) => sum + i.qty, 0);
+    return loadCart().reduce((sum, i) => {
+      const q = typeof i.qty === 'number' && !isNaN(i.qty) ? i.qty : 1;
+      return sum + q;
+    }, 0);
   }
 
   function getTotal() {
-    return loadCart().reduce((sum, i) => sum + (i.price * i.qty), 0);
+    return loadCart().reduce((sum, i) => {
+      const p = typeof i.price === 'number' && !isNaN(i.price) ? i.price : 0;
+      const q = typeof i.qty === 'number' && !isNaN(i.qty) ? i.qty : 1;
+      return sum + (p * q);
+    }, 0);
   }
 
   function formatUGX(n) {
-    if (n >= 1000) return 'UGX ' + (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
-    return 'UGX ' + n;
+    const val = typeof n === 'number' && !isNaN(n) ? n : 0;
+    if (val >= 1000) return 'UGX ' + (val / 1000).toFixed(val % 1000 === 0 ? 0 : 1) + 'K';
+    return 'UGX ' + val;
   }
 
   // ---- Cart count badge sync (any element with .cart-count-badge) ----
