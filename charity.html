@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Charity — The Purity Foundation</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.charity-hero { background: var(--sage); padding: 160px 0 80px; text-align: center; position: relative; overflow: hidden; }
+.charity-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.22),transparent 60%); }
+.charity-hero h1 { color: #fff; position: relative; z-index: 1; }
+.charity-hero h1 em { color: var(--gold-light); }
+.charity-hero p { color: rgba(255,255,255,0.6); max-width: 520px; margin: 16px auto 0; position: relative; z-index: 1; }
+.impact-row { background: var(--dark-mid); padding: 44px 0; }
+.impact-inner { max-width:1240px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px; }
+.impact-stat .num { font-family:'Playfair Display',serif;font-size:46px;font-weight:900;color:var(--gold-light);line-height:1; }
+.impact-stat .lbl { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(251,245,233,0.38);font-family:'Space Grotesk',sans-serif;margin-top:4px; }
+.amount-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px; }
+.amount-btn { padding:14px;text-align:center;border-radius:var(--radius-sm);border:2px solid var(--cream-deep);background:var(--cream);font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:var(--transition);color:var(--dark); }
+.amount-btn:hover,.amount-btn.active { border-color:var(--sage);background:var(--sage-pale);color:var(--sage); }
+.donate-form { background:var(--cream-dark);border-radius:var(--radius-lg);padding:50px; }
+.pay-method { background:var(--cream);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--cream-deep);font-size:14px;color:var(--dark);margin-bottom:10px; }
+.impact-story { background:var(--cream);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--cream-deep);display:grid;grid-template-columns:1fr 1fr;margin-bottom:24px; }
+.story-img { background:linear-gradient(135deg,var(--sage),var(--amber));display:flex;align-items:center;justify-content:center;font-size:80px;min-height:280px; }
+.story-body { padding:44px; }
+.story-body h3 { margin-bottom:14px; }
+.story-body p  { margin-bottom:20px; }
+.story-quote   { font-family:'Playfair Display',serif;font-size:18px;color:var(--dark);line-height:1.6;border-left:3px solid var(--terra);padding-left:20px; }
+.trust-strip { background:var(--cream-dark);padding:60px 0;text-align:center; }
+@media(max-width:700px){.amount-grid{grid-template-columns:1fr 1fr;}.donate-form{padding:28px 20px;}.impact-story{grid-template-columns:1fr;}.story-img{min-height:180px;}}
+</style>
+</head>
+<body>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Purity Mukisa</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li>
+      <li><a href="ministry.html">Ministry</a></li><li><a href="charity.html" class="active">Charity</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn-green btn-sm" href="#donate">Donate Now</a>
+    <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html">Home</a><a href="music.html">Music</a><a href="ministry.html">Ministry</a>
+  <a href="charity.html">Charity</a><a href="events.html">Events</a><a href="store.html">Store</a>
+  <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="charity-hero">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow" style="color:var(--gold-light);justify-content:center;">🌍 The Purity Foundation</div>
+    <h1>Music that Gives.<br/>Lives that Change.</h1>
+    <p>100% of all donations go directly to verified community projects. Real impact. Real people. Real transformation.</p>
+  </div>
+</div>
+
+<!-- IMPACT STATS -->
+<div class="impact-row">
+  <div class="impact-inner">
+    <div class="impact-stat"><div class="num">4,200+</div><div class="lbl">Children Reached</div></div>
+    <div class="impact-stat"><div class="num">UGX 47M</div><div class="lbl">Total Raised</div></div>
+    <div class="impact-stat"><div class="num">5</div><div class="lbl">Districts Served</div></div>
+    <div class="impact-stat"><div class="num">12</div><div class="lbl">Active Causes</div></div>
+    <div class="impact-stat"><div class="num">100%</div><div class="lbl">Goes to Cause</div></div>
+  </div>
+</div>
+
+<!-- CAUSES -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header center fade-up"><div class="eyebrow center">Active Campaigns</div><h2>Give to a Cause</h2><p>Every shilling reaches the people it was given for. Choose a cause and make your gift count today.</p></div>
+    <div class="grid-2 fade-up" style="gap:24px;align-items:start;">
+      <div class="cause-card"><div class="cause-img cause-img-1">🍽️</div><div class="cause-body"><div class="cause-title">School Feeding Programme</div><div class="cause-desc">Daily hot meals for 300 children in underserved schools across Mukono District. Many children attend school hungry — this programme changes that every day.</div><div class="prog-labels"><span class="prog-raised">UGX 3,900,000 raised</span><span class="prog-pct">78%</span></div><div class="prog-bar"><div class="prog-fill" style="width:78%;"></div></div><a class="btn btn-green btn-sm" href="#donate">Donate to This Cause</a></div></div>
+      <div class="cause-card"><div class="cause-img cause-img-2">📚</div><div class="cause-body"><div class="cause-title">School Supplies for 200</div><div class="cause-desc">Books, pens, bags, and uniforms for children who would otherwise miss school entirely. Education is the greatest gift we can give the next generation.</div><div class="prog-labels"><span class="prog-raised">UGX 1,100,000 raised</span><span class="prog-pct">55%</span></div><div class="prog-bar"><div class="prog-fill" style="width:55%;"></div></div><a class="btn btn-green btn-sm" href="#donate">Donate to This Cause</a></div></div>
+      <div class="cause-card"><div class="cause-img cause-img-3">💧</div><div class="cause-body"><div class="cause-title">Clean Water Borehole</div><div class="cause-desc">Installing a community borehole in Namugongo — clean water for 800 families who currently walk 4km+ to fetch water daily.</div><div class="prog-labels"><span class="prog-raised">UGX 4,800,000 raised</span><span class="prog-pct">32%</span></div><div class="prog-bar"><div class="prog-fill" style="width:32%;"></div></div><a class="btn btn-green btn-sm" href="#donate">Donate to This Cause</a></div></div>
+      <div class="cause-card"><div class="cause-img cause-img-4">🏥</div><div class="cause-body"><div class="cause-title">Medical Outreach Days</div><div class="cause-desc">Free health screening, medication and prayer for rural communities with no clinic access. 2,000+ patients served in the last 2 years.</div><div class="prog-labels"><span class="prog-raised" style="color:var(--sage);">UGX 9,100,000 raised ✓ Almost there!</span><span class="prog-pct">91%</span></div><div class="prog-bar"><div class="prog-fill" style="width:91%;"></div></div><a class="btn btn-green btn-sm" href="#donate">Help Us Finish This</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION FORM -->
+<section class="section-sm" id="donate" style="background:var(--cream-dark);">
+  <div class="container">
+    <div class="grid-2">
+      <div class="fade-up">
+        <div class="eyebrow">Give Today</div>
+        <h2>Make Your Donation</h2>
+        <p style="margin-bottom:28px;">Every amount matters. UGX 10,000 feeds a child for a week. UGX 50,000 buys a term's school supplies. UGX 500,000 helps fund a borehole.</p>
+        <div style="margin-bottom:8px;font-family:'Space Grotesk',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);">Payment Methods Accepted</div>
+        <div class="pay-method">📱 <b>MTN MoMo:</b> 060215</div>
+        <div class="pay-method">📱 <b>Airtel Money:</b> 1320567</div>
+        <div class="pay-method">🏦 <b>Equity Bank:</b> Acc. 1025203511681</div>
+        <div class="pay-method">💳 <b>FlexiPay:</b> 267071</div>
+        <p style="font-size:13px;color:var(--text-light);margin-top:14px;">After sending your donation, WhatsApp us your confirmation so we can send you a receipt and add your name to the donor wall.</p>
+      </div>
+      <div class="donate-form fade-up">
+        <div class="eyebrow">Choose Amount</div>
+        <div class="amount-grid">
+          <div class="amount-btn" onclick="selectAmt(this)">UGX 10K</div>
+          <div class="amount-btn active" onclick="selectAmt(this)">UGX 50K</div>
+          <div class="amount-btn" onclick="selectAmt(this)">UGX 100K</div>
+          <div class="amount-btn" onclick="selectAmt(this)">UGX 500K</div>
+        </div>
+        <div class="form-group"><label class="label-dark">Or Enter Custom Amount (UGX)</label><input class="input-light" placeholder="e.g. 75,000"/></div>
+        <div class="form-group"><label class="label-dark">Your Name</label><input class="input-light" placeholder="Full Name"/></div>
+        <div class="form-group"><label class="label-dark">Phone Number</label><input class="input-light" placeholder="+256 700 000 000"/></div>
+        <div class="form-group"><label class="label-dark">Donate To</label>
+          <select class="input-light"><option>School Feeding Programme</option><option>School Supplies</option><option>Clean Water Borehole</option><option>Medical Outreach</option><option>Where Most Needed</option></select>
+        </div>
+        <a class="btn btn-green" style="width:100%;justify-content:center;font-size:16px;padding:16px;" href="https://wa.me/256700000000?text=Hi!%20I%20would%20like%20to%20donate%20to%20the%20Purity%20Foundation." target="_blank">🌍 Donate Now via WhatsApp</a>
+        <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:14px;">You will be connected to our donation team on WhatsApp to confirm your gift and receive a receipt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STORY -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header fade-up"><div class="eyebrow">Impact Stories</div><h2>Real Lives. Real Change.</h2></div>
+    <div class="impact-story fade-up">
+      <div class="story-img">👧</div>
+      <div class="story-body">
+        <div class="eyebrow">Story from Mukono District</div>
+        <h3>Miriam's New Beginning</h3>
+        <p>Miriam, 9, had dropped out of Primary 3 because her family could not afford books or a school bag. When the Purity Foundation's school supplies programme reached her village, she was re-enrolled within a week.</p>
+        <p>Today she is top of her class and wants to be a doctor. Her mother says the change in her confidence has been miraculous.</p>
+        <div class="story-quote">"She cried when she got her school bag. I cried too. We never thought this day would come." — Miriam's mother</div>
+      </div>
+    </div>
+    <div class="impact-story fade-up" style="flex-direction:row-reverse;">
+      <div class="story-img" style="background:linear-gradient(135deg,var(--terra),var(--gold));">👨‍⚕️</div>
+      <div class="story-body">
+        <div class="eyebrow">Story from Nakaseke</div>
+        <h3>The Day the Doctors Came</h3>
+        <p>In March 2026, the Purity Foundation organised a medical outreach in Nakaseke — a sub-county with no functioning health centre. Over 3 days, 420 patients were screened and treated for malaria, hypertension, skin infections, and eye conditions.</p>
+        <p>Many of the elderly had never had their blood pressure checked. Some received their first pair of eyeglasses at age 70.</p>
+        <div class="story-quote">"I can see my grandchildren clearly for the first time in 10 years." — Community elder, Nakaseke</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="container">
+    <div class="eyebrow center">Our Commitment</div>
+    <h3 style="margin-bottom:16px;">We are Accountable to Every Donor</h3>
+    <p style="max-width:540px;margin:0 auto 32px;">The Purity Foundation publishes quarterly impact reports. Every donation is documented, every shilling accounted for. You can always ask for a report.</p>
+    <a class="btn btn-primary" href="contact.html">Request an Impact Report</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Foundation.</p><div class="social-row" style="margin-top:22px;"><a class="social-btn" href="#">📸</a><a class="social-btn" href="#">🎵</a><a class="social-btn" href="#">📘</a><a class="social-btn" href="#">🐦</a><a class="social-btn" href="#">▶</a></div></div>
+      <div class="footer-col"><h5>Navigate</h5><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li><li><a href="ministry.html">Ministry</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+      <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Active Causes</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256700000000" target="_blank">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Ministry. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+  </div>
+</footer>
+<div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Overflow</div><div class="fp-sub">Purity · Radiant</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+<a class="wa-float" href="https://wa.me/256700000000" target="_blank">💬</a>
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function selectAmt(el){document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

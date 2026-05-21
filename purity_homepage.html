@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Purity — Ugandan Gospel Artist & Minister</title>
+<meta name="description" content="Purity is Uganda's celebrated gospel music artist, minister and founder of the Purity Charity Bag (PCB)."/>
+<style>
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-content h1 { font-size: 2rem; }
+  .stats-bar-inner { flex-direction: column; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .song-card { flex-direction: column; }
+}
+</style>
+<style>
+/* ============================================================
+   PURITY — LIGHT ELEGANCE DESIGN SYSTEM
+   Direction: White/Light Grey Base · Dark Purple & Maroon Typography
+   Designed by Charis Creations Ltd
+============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet');
+
+:root {
+  /* ── Backgrounds ─────────────────────────────── */
+  --white:         #FFFFFF;
+  --grey-50:       #F8F8F9;
+  --grey-100:      #F1F1F4;
+  --grey-200:      #E4E4EA;
+  --grey-300:      #CCCCD6;
+
+  /* ── Dark Purple ─────────────────────────────── */
+  --purple:        #2D1B4E;
+  --purple-mid:    #3D2660;
+  --purple-soft:   #4E3272;
+  --purple-pale:   rgba(45,27,78,0.08);
+  --purple-glow:   rgba(45,27,78,0.14);
+
+  /* ── Maroon / Deep Rose ──────────────────────── */
+  --maroon:        #6B1A2E;
+  --maroon-mid:    #8B2240;
+  --maroon-bright: #A83050;
+  --maroon-pale:   rgba(107,26,46,0.09);
+
+  /* ── Gold Accent (kept for warmth) ──────────── */
+  --gold:          #B8943A;
+  --gold-bright:   #D4AC50;
+  --gold-pale:     rgba(184,148,58,0.12);
+
+  /* ── Typography ──────────────────────────────── */
+  --text-primary:   #2D1B4E;   /* dark purple — all headings  */
+  --text-body:      #3D2660;   /* purple-mid — body copy      */
+  --text-muted:     #7A6890;   /* muted purple — captions     */
+  --text-light:     #A99BB8;   /* light purple — placeholders */
+  --text-on-dark:   #F8F8F9;   /* light text on dark bg       */
+  --text-on-dark-dim: rgba(248,248,249,0.6);
+
+  /* ── Borders ─────────────────────────────────── */
+  --border:        rgba(45,27,78,0.12);
+  --border-mid:    rgba(45,27,78,0.22);
+  --border-accent: rgba(184,148,58,0.3);
+
+  /* ── Radii ───────────────────────────────────── */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   28px;
+  --radius-xl:   48px;
+  --radius-full: 100px;
+
+  /* ── Shadows ─────────────────────────────────── */
+  --shadow-sm:  0 2px 12px rgba(45,27,78,0.08);
+  --shadow-md:  0 8px 32px rgba(45,27,78,0.13);
+  --shadow-lg:  0 24px 64px rgba(45,27,78,0.18);
+  --shadow-xl:  0 40px 100px rgba(45,27,78,0.22);
+
+  /* ── Motion ──────────────────────────────────── */
+  --ease:       cubic-bezier(0.4,0,0.2,1);
+  --ease-out:   cubic-bezier(0,0,0.2,1);
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow: all 0.65s cubic-bezier(0,0,0.2,1);
+}
+
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--white) !important;
+  color: var(--text-body);
+  overflow-x: hidden;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; object-fit: cover; }
+button { font-family: inherit; }
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', serif;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #36454F;
+}
+h1 { font-size: clamp(48px, 7.5vw, 104px); font-weight: 300; font-style: ; }
+h2 { font-size: clamp(34px, 4.8vw, 64px);  font-weight: 300; font-style: ; }
+h3 { font-size: clamp(22px, 2.8vw, 36px);  font-weight: 600; }
+h4 { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.02em; color: #36454F; }
+p  { color: #36454F; line-height: 1.85; }
+
+/* Eyebrow labels */
+.eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #36454F;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.eyebrow::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--maroon);
+  display: inline-block;
+}
+.eyebrow.center { justify-content: center; }
+.eyebrow.center::before { display: none; }
+.eyebrow.light  { color: var(--gold-bright); }
+.eyebrow.light::before { background: var(--gold-bright); }
+.eyebrow.purple { color: var(--purple-soft); }
+.eyebrow.purple::before { background: var(--purple-soft); }
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.container  { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+.section    { padding: 120px 0; }
+.section-sm { padding: 72px 0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+
+.section-header { margin-bottom: 64px; }
+.section-header.center { text-align: center; }
+.section-header h2 { margin-bottom: 16px; }
+.section-header p  { max-width: 540px; }
+.section-header.center p { margin: 0 auto; }
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  border-radius: var(--radius-full);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+/* Primary — Maroon */
+.btn-primary { background: #36454F; color: #fff; }
+.btn-primary:hover { background: var(--maroon-mid); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(107,26,46,0.3); }
+
+/* Secondary — outline purple */
+.btn-secondary { background: transparent; color: var(--purple); border: 1.5px solid var(--purple); }
+.btn-secondary:hover { background: var(--purple); color: #fff; transform: translateY(-2px); }
+
+/* Dark — Purple fill */
+.btn-dark { background: var(--purple); color: #fff; }
+.btn-dark:hover { background: var(--purple-mid); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* Gold accent */
+.btn-gold { background: var(--gold); color: #fff; }
+.btn-gold:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,148,58,0.3); }
+
+/* White (for dark sections) */
+.btn-white { background: #fff; color:#36454F; }
+.btn-white:hover { background: var(--grey-50); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+/* Ghost white (for hero/dark bg) */
+.btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+.btn-sm  { padding: 10px 24px; font-size: 11px; }
+.btn-lg  { padding: 18px 48px; font-size: 14px; }
+.btn-xl  { padding: 22px 64px; font-size: 15px; letter-spacing: 0.12em; }
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: var(--transition);
+}
+/* Default — transparent (for photo hero pages) */
+.nav .nav-logo { color: #fff; }
+.nav .nav-links a { color: rgba(255,255,255,0.8); }
+.nav .nav-hamburger span { background: #fff; }
+
+/* Scrolled — white background */
+.nav.scrolled {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  box-shadow: var(--shadow-sm);
+}
+.nav.scrolled .nav-logo { color: var(--purple); }
+.nav.scrolled .nav-links a { color: var(--text-muted); }
+.nav.scrolled .nav-hamburger span { background: var(--purple); }
+
+/* Solid — inner pages that don't have photo hero */
+.nav.solid {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.nav.solid .nav-logo { color: var(--purple); }
+.nav.solid .nav-links a { color: var(--text-muted); }
+.nav.solid .nav-hamburger span { background: var(--purple); }
+
+.nav-inner {
+  max-width: 1280px; margin: 0 auto; padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300; font-style: italic;
+  letter-spacing: 0.02em; text-decoration: none; flex-shrink: 0; transition: var(--transition);
+}
+.nav-logo span { color: var(--maroon); font-weight: 700; font-style: normal; }
+.nav.scrolled .nav-logo span,
+.nav.solid .nav-logo span { color: var(--maroon); }
+
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+  text-decoration: none; padding: 8px 14px;
+  border-radius: var(--radius-full); transition: var(--transition);
+}
+.nav.scrolled .nav-links a:hover,
+.nav.scrolled .nav-links a.active,
+.nav.solid .nav-links a:hover,
+.nav.solid .nav-links a.active { background: var(--purple-pale); color: var(--purple); }
+.nav-links a:hover,
+.nav-links a.active { background: rgba(255,255,255,0.15); color: #fff; }
+
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+.nav-hamburger span { width: 24px; height: 1.5px; border-radius: 2px; transition: var(--transition); }
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+.mobile-menu {
+  display: none; position: fixed; inset: 0;
+  background: var(--purple); z-index: 999;
+  flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 300; font-style: italic;
+  color: #fff; transition: var(--transition);
+}
+.mobile-menu a:hover { color: var(--gold-bright); }
+.mobile-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff; font-size: 18px; transition: var(--transition);
+}
+.mobile-close:hover { background: var(--maroon); border-color: var(--maroon); }
+
+/* ============================================================
+   PAGE HERO (inner pages)
+============================================================ */
+.page-hero {
+  min-height: 52vh;
+  background: var(--purple);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end; padding-bottom: 72px;
+}
+.page-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center top;
+  opacity: 0.2; filter: grayscale(20%);
+}
+.page-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(45,27,78,0.55) 0%, rgba(45,27,78,0.92) 100%);
+}
+.page-hero-content {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 160px 48px 0; width: 100%;
+}
+.page-hero h1 { color: #fff; margin-bottom: 16px; }
+.page-hero h1 em { color: var(--gold-bright); }
+.page-hero p  { color: rgba(255,255,255,0.6); max-width: 500px; font-size: 17px; line-height: 1.8; }
+
+/* ============================================================
+   CARDS — ALBUM
+============================================================ */
+.album-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.album-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--border-mid); }
+.album-art { height: 220px; display: flex; align-items: center; justify-content: center; font-size: 60px; position: relative; overflow: hidden; }
+.album-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.album-card:hover .album-art img { transform: scale(1.05); }
+.album-art-1 { background: linear-gradient(135deg, var(--purple) 0%, var(--maroon) 100%); }
+.album-art-2 { background: linear-gradient(135deg, var(--maroon) 0%, #8B3A6B 100%); }
+.album-art-3 { background: linear-gradient(135deg, var(--purple-mid) 0%, var(--maroon-mid) 100%); }
+.album-art-4 { background: linear-gradient(135deg, #1A0A2E 0%, var(--purple) 100%); }
+.album-art-5 { background: linear-gradient(135deg, var(--maroon-mid) 0%, #6B2A5E 100%); }
+.album-art-6 { background: linear-gradient(135deg, var(--purple-soft) 0%, var(--maroon) 100%); }
+.album-meta  { padding: 22px; }
+.album-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; margin-bottom: 4px; color: var(--purple); }
+.album-year  { font-size: 12px; color: var(--text-muted); font-family: 'Outfit', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 16px; }
+.album-actions { display: flex; gap: 8px; }
+
+/* ============================================================
+   SONG LIST
+============================================================ */
+.song-list-item {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 24px; border-radius: var(--radius-md);
+  background: var(--white);
+  border: 1px solid var(--border);
+  margin-bottom: 10px; transition: var(--transition); cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.song-list-item:hover { border-color: var(--maroon); background: var(--grey-50); box-shadow: var(--shadow-md); }
+.song-num  { font-size: 13px; font-weight: 500; color: var(--text-light); width: 28px; text-align: center; flex-shrink: 0; }
+.song-art  { width: 50px; height: 50px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; overflow: hidden; }
+.song-info { flex: 1; min-width: 0; }
+.song-name { font-weight: 600; color: var(--purple); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song-album{ font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; }
+.song-dur  { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+.song-play {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--maroon); color: #fff; border: none; cursor: pointer;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; opacity: 0; transition: var(--transition);
+}
+.song-list-item:hover .song-play { opacity: 1; }
+
+/* ============================================================
+   FILTER BUTTONS
+============================================================ */
+.filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.filter-btn {
+  padding: 9px 22px; border-radius: var(--radius-full);
+  font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: var(--white); color: var(--text-muted); transition: var(--transition);
+}
+.filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+.filter-btn.active { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+/* ============================================================
+   CAUSE / CHARITY CARDS
+============================================================ */
+.cause-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  overflow: hidden; border: 1px solid var(--border);
+  transition: var(--transition); box-shadow: var(--shadow-sm);
+}
+.cause-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--border-mid); }
+.cause-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 60px; overflow: hidden; }
+.cause-img-1 { background: linear-gradient(135deg, var(--purple) 0%, var(--maroon) 100%); }
+.cause-img-2 { background: linear-gradient(135deg, var(--maroon) 0%, #8B3A6B 100%); }
+.cause-img-3 { background: linear-gradient(135deg, var(--purple-mid) 0%, var(--maroon-mid) 100%); }
+.cause-img-4 { background: linear-gradient(135deg, #1A0A2E 0%, var(--purple) 100%); }
+.cause-body  { padding: 28px; }
+.cause-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; margin-bottom: 8px; color: var(--purple); }
+.cause-desc  { font-size: 14px; margin-bottom: 20px; }
+.prog-labels { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px; font-family: 'Outfit', sans-serif; }
+.prog-raised { color: var(--maroon); font-weight: 600; }
+.prog-pct    { color: var(--text-muted); }
+.prog-bar    { height: 4px; background: var(--grey-200); border-radius: 2px; margin-bottom: 20px; }
+.prog-fill   { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--purple), var(--maroon)); }
+
+/* ============================================================
+   FORMS
+============================================================ */
+.form-group { margin-bottom: 22px; }
+.label-dark {
+  display: block; font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 8px;
+}
+.label-light {
+  display: block; font-family: 'Outfit', sans-serif;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 8px;
+}
+.input-light {
+  width: 100%; padding: 14px 18px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); color: var(--purple);
+  font-size: 15px; font-family: 'Outfit', sans-serif; outline: none; transition: var(--transition);
+}
+.input-light:focus { border-color: var(--maroon); box-shadow: 0 0 0 3px var(--maroon-pale); }
+.input-light::placeholder { color: var(--text-light); }
+.input-dark {
+  width: 100%; padding: 14px 18px;
+  background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm); color: #fff;
+  font-size: 15px; font-family: 'Outfit', sans-serif; outline: none; transition: var(--transition);
+}
+.input-dark:focus { border-color: var(--gold-bright); background: rgba(255,255,255,0.12); }
+.input-dark::placeholder { color: rgba(255,255,255,0.3); }
+.input-dark option { background: var(--purple); color: #fff; }
+textarea.input-light, textarea.input-dark { resize: vertical; min-height: 130px; }
+
+/* ============================================================
+   TESTIMONIAL CARDS
+============================================================ */
+.testimonial-card {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 36px; border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm); transition: var(--transition);
+}
+.testimonial-card:hover { border-color: var(--maroon); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.t-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-style: italic; font-weight: 400;
+  color: var(--purple); line-height: 1.7; margin-bottom: 24px;
+}
+.t-quote::before {
+  content: '\201C'; font-size: 52px; color: var(--maroon);
+  line-height: 0; vertical-align: -22px; margin-right: 6px; opacity: 0.45;
+}
+.t-author  { display: flex; align-items: center; gap: 14px; }
+.t-avatar  {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--maroon));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0; overflow: hidden;
+}
+.t-name    { font-weight: 600; font-size: 14px; color: var(--purple); margin-bottom: 2px; }
+.t-role    { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+/* ============================================================
+   EVENT CARDS
+============================================================ */
+.event-card {
+  display: grid; grid-template-columns: 90px 1fr auto;
+  gap: 24px; align-items: center;
+  padding: 28px 32px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-md); margin-bottom: 12px;
+  transition: var(--transition); box-shadow: var(--shadow-sm);
+}
+.event-card:hover { border-color: var(--maroon); box-shadow: var(--shadow-md); }
+.event-date  {
+  text-align: center; background: var(--purple-pale);
+  border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 10px;
+}
+.event-day   { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; line-height: 1; color: var(--maroon); }
+.event-month { font-family: 'Outfit', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+.event-info h4 { color: var(--purple); margin-bottom: 6px; font-size: 17px; }
+.event-loc   { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.04em; }
+
+/* ============================================================
+   PRODUCT CARDS
+============================================================ */
+.product-card {
+  background: var(--white); border-radius: var(--radius-md);
+  overflow: hidden; border: 1px solid var(--border);
+  transition: var(--transition); box-shadow: var(--shadow-sm);
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--border-mid); }
+.product-img  { height: 240px; display: flex; align-items: center; justify-content: center; font-size: 60px; position: relative; overflow: hidden; }
+.prod-badge   { position: absolute; top: 14px; left: 14px; padding: 5px 14px; border-radius: var(--radius-full); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Outfit', sans-serif; font-weight: 600; }
+.badge-new    { background: var(--maroon); color: #fff; }
+.badge-best   { background: var(--purple); color: #fff; }
+.badge-dig    { background: var(--gold); color: #fff; }
+.product-body { padding: 22px; }
+.product-name { font-weight: 600; color: var(--purple); margin-bottom: 4px; font-size: 15px; }
+.product-type { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; letter-spacing: 0.04em; }
+.product-foot { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--maroon); }
+
+/* ============================================================
+   GALLERY
+============================================================ */
+.gallery-grid { columns: 3; gap: 16px; }
+.gal-item {
+  width: 100%; margin-bottom: 16px; break-inside: avoid;
+  border-radius: var(--radius-md); overflow: hidden;
+  cursor: pointer; transition: var(--transition); position: relative;
+  display: block; background: var(--grey-100); box-shadow: var(--shadow-sm);
+}
+.gal-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+.gal-item:hover img { transform: scale(1.05); }
+.gal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(45,27,78,0); display: flex; align-items: center;
+  justify-content: center; transition: var(--transition);
+}
+.gal-overlay span { color: #fff; font-size: 22px; opacity: 0; transition: var(--transition); }
+.gal-item:hover .gal-overlay { background: rgba(45,27,78,0.45); }
+.gal-item:hover .gal-overlay span { opacity: 1; }
+.gal-placeholder { display: flex; align-items: center; justify-content: center; font-size: 42px; }
+
+/* Lightbox */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(45,27,78,0.96); z-index: 2000; align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lb-inner { max-width: 800px; width: 90%; position: relative; }
+.lb-img   { width: 100%; border-radius: var(--radius-lg); overflow: hidden; }
+.lb-img img { width: 100%; display: block; }
+.lb-close { position: absolute; top: -52px; right: 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.lb-close:hover { background: var(--maroon); border-color: var(--maroon); }
+.lb-caption { text-align: center; color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 16px; letter-spacing: 0.06em; }
+
+/* ============================================================
+   CONTACT METHODS
+============================================================ */
+.contact-method { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 28px; }
+.c-icon  { width: 52px; height: 52px; border-radius: var(--radius-sm); background: var(--purple-pale); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.c-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); font-family: 'Outfit', sans-serif; margin-bottom: 4px; }
+.c-value { font-weight: 600; color: var(--purple); font-size: 15px; }
+
+/* ============================================================
+   FLOATING MUSIC PLAYER
+============================================================ */
+.floating-player {
+  position: fixed; bottom: 28px; right: 28px;
+  background: #36454F;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg); padding: 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: var(--shadow-xl); z-index: 900; min-width: 280px;
+  transform: translateY(130px); opacity: 0; transition: var(--transition-slow);
+}
+.floating-player.up { transform: translateY(0); opacity: 1; }
+.fp-art  { width: 44px; height: 44px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--maroon), var(--maroon-mid)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; overflow: hidden; }
+.fp-art img { width: 100%; height: 100%; object-fit: cover; }
+.fp-info { flex: 1; min-width: 0; }
+.fp-title{ font-weight: 600; font-size: 13px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fp-sub  { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.fp-ctrl { display: flex; align-items: center; gap: 8px; }
+.fp-btn  { background: none; border: none; color: rgba(255,255,255,0.4); cursor: pointer; font-size: 14px; padding: 4px; transition: var(--transition); }
+.fp-btn:hover { color: var(--gold-bright); }
+.fp-play { width: 34px; height: 34px; border-radius: 50%; background: var(--maroon); color: #fff; border: none; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+.fp-play:hover { background: var(--maroon-mid); transform: scale(1.08); }
+
+/* ============================================================
+   WHATSAPP FLOAT
+============================================================ */
+.wa-float {
+  position: fixed; bottom: 28px; left: 28px; z-index: 900;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; box-shadow: 0 8px 28px rgba(37,211,102,0.4);
+  text-decoration: none; transition: var(--transition);
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,0.55); }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.footer {
+  background: #36454F;
+  padding: 88px 0 40px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 64px; }
+.footer-brand p { color: rgba(255,255,255,0.4); font-size: 14px; margin-top: 18px; max-width: 280px; line-height: 1.85; }
+.footer-col h5 { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 22px; }
+.footer-links  { list-style: none; }
+.footer-links li { margin-bottom: 13px; }
+.footer-links a { color: rgba(255,255,255,0.45); font-size: 14px; text-decoration: none; transition: var(--transition); }
+.footer-links a:hover { color: var(--gold-bright); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px; display: flex;
+  justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.22); letter-spacing: 0.03em; }
+.social-row  { display: flex; gap: 10px; }
+.social-btn  {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); font-size: 15px;
+  text-decoration: none; transition: var(--transition);
+}
+.social-btn:hover { background: var(--maroon); color: #fff; border-color: var(--maroon); }
+
+/* ============================================================
+   STAT ITEMS
+============================================================ */
+.stat-item { text-align: center; }
+.stat-num  { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: var(--maroon); line-height: 1; margin-bottom: 6px; }
+.stat-lbl  { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ============================================================
+   DIVIDERS
+============================================================ */
+.divider-line { width: 60px; height: 1px; background: linear-gradient(90deg, var(--maroon), transparent); margin: 24px 0; }
+.divider-line.center { margin: 24px auto; }
+
+/* ============================================================
+   SCROLL ANIMATIONS
+============================================================ */
+.fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+.text-center  { text-align: center; }
+.text-purple  { color: var(--purple); }
+.text-maroon  { color: var(--maroon); }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-40 { margin-top: 40px; }
+.mt-60 { margin-top: 60px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-40 { margin-bottom: 40px; }
+.mb-60 { margin-bottom: 60px; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 900px) {
+  .container  { padding: 0 28px; }
+  .section    { padding: 80px 0; }
+  .grid-2     { grid-template-columns: 1fr; gap: 44px; }
+  .grid-3     { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-4     { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .nav-links, .nav .btn { display: none; }
+  .nav-hamburger { display: flex; }
+  .event-card { grid-template-columns: 80px 1fr; }
+  .event-card .btn { display: none; }
+  .gallery-grid { columns: 2; }
+  .nav-inner  { padding: 0 28px; }
+  .page-hero-content { padding: 140px 28px 0; }
+}
+@media (max-width: 600px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .gallery-grid    { columns: 1; }
+  .footer-grid     { grid-template-columns: 1fr; }
+  .floating-player { min-width: 250px; right: 16px; bottom: 16px; }
+  .wa-float        { bottom: 16px; left: 16px; }
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero { position:relative; height:100vh; min-height:700px; overflow:hidden; display:flex; align-items:flex-end; }
+.hero-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.hero-overlay {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to right,  rgba(45,27,78,0.82) 0%, rgba(45,27,78,0.25) 55%, rgba(45,27,78,0.05) 100%),
+    linear-gradient(to top,    rgba(#36454F) 0%, rgba(45,27,78,0.4) 40%, transparent 7%);
+}
+.hero-grain { position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); opacity:0.35; pointer-events:none; }
+.hero-line { position:absolute; left:48px; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent 0%,rgba() 30%,rgba(184,148,58,0.4) 70%,transparent 100%); }
+.hero-content { position:relative; z-index:2; max-width:1280px; margin:0 auto; padding:0 48px 96px 80px; width:100%; }
+.hero-eyebrow { font-family:'Cinzel',serif; font-size:10px; letter-spacing:6px; text-transform:uppercase; color:var(--gold-bright); margin-bottom:24px; display:flex; align-items:left; gap:16px; opacity:0; animation:fadeSlideUp 1s ease 0.3s forwards; }
+.hero-eyebrow::before { content:''; width:40px; height:1px; background:var(--gold-bright); display:block;  left:100px; right:100px;}
+.hero h1 { color:#fff; max-width:620px; margin-bottom:24px; opacity:0; animation:fadeSlideUp 1s ease 0.5s forwards; font-size:clamp(52px,8vw,108px); line-height:0.95; }
+.hero h1 em { color:var(--gold-bright); display:block; }
+.hero-sub { color:rgba(255,255,255,0.65); font-size:16px; line-height:1.85; max-width:440px; margin-bottom:44px; opacity:0; animation:fadeSlideUp 1s ease 0.7s forwards; }
+.hero-ctas { display:flex; gap:14px; flex-wrap:wrap; opacity:0; animation:fadeSlideUp 1s ease 0.9s forwards; }
+.hero-scroll { position:absolute; bottom:40px; right:60px; display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2; opacity:0; animation:fadeIn 1.5s ease 1.4s forwards; }
+.hero-scroll-text { font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.3); writing-mode:vertical-rl; }
+.hero-scroll-line { width:1px; height:60px; background:linear-gradient(180deg,rgba(184,148,58,0.5),transparent); animation:scrollPulse 2s ease-in-out infinite; }
+.hero-frame-accent { position:absolute; bottom:0; right:0; width:280px; height:280px; border-top:1px solid rgba(); border-left:1px solid rgba(); pointer-events:none; z-index:2; }
+
+/* ── STATS BAR ──────────────────────────────────── */
+.stats-bar { background:var(--grey-50); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:44px 0; }
+.stats-bar-inner { max-width:1280px; margin:0 auto; padding:0 48px; display:flex; justify-content:space-around; flex-wrap:wrap; gap:28px; }
+.stats-divider { width:1px; background:var(--border); align-self:stretch; }
+
+/* ── MINI PLAYER ────────────────────────────────── */
+.song-card { background:var(--white); border-radius:var(--radius-lg); padding:36px; display:grid; grid-template-columns:auto 1fr auto; gap:28px; align-items:center; border:1px solid #36454F; transition:var(--transition); box-shadow:var(--shadow-sm); }
+.song-card:hover { border-color:#36454F; box-shadow:var(--shadow-md); }
+.song-card-art { width:100px; height:100px; background:#36454F; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:36px; flex-shrink:0; overflow:hidden; }
+.song-card-art img { width:100%; height:100%; object-fit:cover; }
+.song-card-info h3 { margin-bottom:4px; font-size:26px; color:#36454F; }
+.song-card-info p  { font-size:11px; color#36454F; margin-bottom:20px; letter-spacing:0.1em; text-transform:uppercase; }
+.song-bar  { height:3px; background:var(--grey-200); border-radius:2px; margin-bottom:8px; width:100%; cursor:pointer; }
+.song-fill { height:100%; width:38%; background:#36454F; border-radius:2px; }
+.song-times{ display:flex; justify-content:space-between; font-size:11px; color:#36454F; }
+.play-btn  { width:60px; height:60px; border-radius:50%; background:#36454F; color:#fff; border:none; cursor:pointer; font-size:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:var(--transition); }
+.play-btn:hover { background:var(--maroon-mid); transform:scale(1.08); }
+
+/* ── ABOUT STRIP ────────────────────────────────── */
+.about-strip { background:var(--white); padding:0; overflow:hidden; }
+.about-photo-col { position:relative; overflow:hidden; min-height:580px; }
+.about-photo-col img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
+.about-photo-col::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,transparent 70%,var(--white) 100%); }
+.about-text-col { padding:80px 64px 80px 40px; display:flex; flex-direction:column; justify-content:center; }
+
+/* ── CHARITY STRIP ──────────────────────────────── */
+.charity-strip { background:#36454F; padding:120px 0; position:relative; overflow:hidden; }
+.charity-strip::before { content:''; position:absolute; top:-200px; right:-200px; width:500px; height:500px; border-radius:50%; border:1px solid rgba(255,255,255,0.05); }
+.charity-strip::after  { content:''; position:absolute; bottom:-150px; left:-150px; width:380px; height:380px; border-radius:50%; border:1px solid rgba(255,255,255,0.04); }
+.charity-photo-box { position:relative; border-radius:var(--radius-lg); overflow:hidden; height:420px; border:1px solid rgba(255,255,255,0.1); }
+.charity-photo-box img { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+.charity-photo-box::after { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(45,27,78,0.4),transparent); }
+.c-stats { display:flex; gap:44px; flex-wrap:wrap; margin-bottom:40px; }
+.c-stat-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:700; color:var(--gold-bright); line-height:1; }
+.c-stat-lbl { font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:0.1em; font-family:'Outfit',sans-serif; text-transform:uppercase; margin-top:4px; }
+
+/* ── CTA BANNER ─────────────────────────────────── */
+.cta-banner { position:relative; padding:120px 0; text-align:center; overflow:hidden; }
+.cta-banner-bg { position:absolute; inset:0; background-size:cover; background-position:center 30%; filter:grayscale(30%) brightness(0.22); }
+.cta-banner-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(45,27,78,0.92) 0%,rgba(107,26,46,0.85) 100%); }
+.cta-banner-content { position:relative; z-index:1; }
+
+/* ── SECTION BACKGROUNDS ────────────────────────── */
+.bg-white   { background:var(--white) !important; }
+.bg-light   { background:var(--grey-50) !important; }
+.bg-grey    { background:var(--grey-100) !important; }
+.bg-purple  { background:var(--purple) !important; }
+.bg-maroon  { background:var(--maroon) !important; }
+
+@keyframes fadeSlideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes scrollPulse { 0%,100%{transform:scaleY(1);opacity:0.4} 50%{transform:scaleY(0.7);opacity:0.8} }
+
+@media(max-width:900px){
+  .hero-content{padding:0 28px 80px;}
+  .hero-line{left:28px;}
+  .hero-scroll{display:none;}
+  .song-card{grid-template-columns:auto 1fr;gap:20px;}
+  .song-card .play-btn{grid-column:1/-1;justify-self:center;}
+  .about-strip .grid-2{grid-template-columns:1fr;}
+  .about-photo-col{min-height:360px;}
+  .about-photo-col::after{display:none;}
+  .about-text-col{padding:48px 28px;}
+}
+
+/* ── SPLIT SCREEN HERO ─────────────────────────── */
+.hero-split {
+  display:flex; height:100vh; min-height:700px; width:100%;
+  background: #1a0a2e;
+}
+.hero-split-content {
+  width:45%; height:100%; display:flex; flex-direction:column;
+  justify-content:center; padding:120px 60px 80px 80px; position:relative; z-index:20;
+}
+.hero-split-content h1 { color:#fff; max-width:550px; }
+.hero-split-content h1 em { color:var(--gold-bright); }
+.hero-split-content .hero-sub { color:rgba(255,255,255,0.65); }
+.hero-split-content .hero-eyebrow { color:var(--gold-bright); }
+.hero-split-content .hero-eyebrow::before { background:var(--gold-bright); }
+.hero-split-slides {
+  width:55%; height:100%; position:relative; overflow:hidden;
+  background:#2A1040;
+}
+.slideshow-container { width:100%; height:100%; position:relative; }
+.slide {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  opacity:0; visibility:hidden;
+  transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+  transform: scale(1.05);
+}
+.slide.active { opacity:1; visibility:visible; transform: scale(1); }
+.slide img { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+.slide-overlay-left {
+  position:absolute; top:0; left:0; width:30%; height:100%;
+  background:linear-gradient(to left, transparent, #1a0a2e); z-index:10;
+}
+.slide-controls {
+  position:absolute; bottom:40px; right:60px;
+  display:flex; gap:12px; z-index:20;
+}
+.dot {
+  width:40px; height:3px; background:rgba(255,255,255,0.3);
+  cursor:pointer; transition:background 0.3s ease;
+}
+.dot.active { background:var(--gold-bright); }
+
+@media(max-width:900px) {
+  .hero-split { flex-direction:column; height:auto; min-height:auto; }
+  .hero-split-content { width:100%; padding:140px 28px 60px; text-align:center; align-items:center; }
+  .hero-split-content .hero-ctas { justify-content:center; }
+  .hero-split-slides { width:100%; height:50vh; }
+  .slide-overlay-left { width:100%; height:40%; top:auto; bottom:0; left:0;
+    background:linear-gradient(to top, #1a0a2e, transparent); }
+  .slide-controls { bottom:20px; left:50%; right:auto; transform:translateX(-50%); }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Pu<span>rity</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="ministry.html">Ministry</a></li>
+      
+      <li><a href="events.html">Events</a></li>
+      
+      <li><a href="gallery.html">Gallery</a></li>
+      
+          <li><a href="store.html">Store</a></li>
+      <li><a href="charity.html">Charity</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html">Home</a><a href="music.html">Music</a><a href="ministry.html">Ministry</a>
+  <a href="charity.html">Charity</a><a href="events.html">Events</a><a href="store.html">Store</a>
+  <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO — Split Screen Slideshow -->
+<section class="hero-split">
+  <div class="hero-split-content">
+    <div class="hero-eyebrow" data-cms="home-eyebrow" style="font-size:15px;">Gospel Artist &amp; Minister — Uganda</div>
+    <h1 data-cms="home-headline" style="font-size:clamp(48px,6vw,90px);">Creating<br/><em>Intimacy,</em>With God<br/>Through worship</h1>
+    <p class="hero-sub" data-cms="home-sub">Music born from surrender — every lyric a testimony, every melody a declaration that God is good.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary btn-lg" href="music.html">Listen Now</a>
+      <a class="btn btn-ghost btn-lg" href="ministry.html">Book for Ministry</a>
+    </div>
+  </div>
+  <div class="hero-split-slides">
+    <div class="slideshow-container">
+      <div class="slide active"><img src="wp-content/uploads/2026/04/Purity-Studio-Shoot-64-scaled.jpg" alt="Purity Mukisa"/></div>
+      <div class="slide"><img src="wp-content/uploads/2026/04/Purity-Studio-Shoot-47-scaled.jpg" alt="Purity Mukisa"/></div>
+      <div class="slide"><img src="wp-content/uploads/2026/04/Purity-Studio-Shoot-65-scaled.jpg" alt="Purity Mukisa"/></div>
+      <div class="slide"><img src="wp-content/uploads/2026/04/PURITYS-VIDEO-SHOOT-161-scaled.jpg" alt="Purity Mukisa"/></div>
+      <div class="slide"><img src="wp-content/uploads/2026/04/Purity-Studio-Shoot-31-scaled.jpg" alt="Purity Mukisa"/></div>
+    </div>
+    <div class="slide-overlay-left"></div>
+    <div class="slide-controls">
+      <div class="dot active" onclick="currentSlide(0)"></div>
+      <div class="dot" onclick="currentSlide(1)"></div>
+      <div class="dot" onclick="currentSlide(2)"></div>
+      <div class="dot" onclick="currentSlide(3)"></div>
+      <div class="dot" onclick="currentSlide(4)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item fade-up"><div class="stat-num" data-cms="home-stat-1-num">2</div><div class="stat-lbl" data-cms="home-stat-1-lbl">Studio Album</div></div>
+    <div class="stats-divider"></div>
+    <div class="stat-item fade-up fade-up-delay-1"><div class="stat-num">1000+</div><div class="stat-lbl">Lives Reached country wide</div></div>
+    <div class="stats-divider"></div>
+    <div class="stat-item fade-up fade-up-delay-2"><div class="stat-num">UGX 15M+</div><div class="stat-lbl">Amount Raised</div></div>
+    <div class="stats-divider"></div>
+    <div class="stat-item fade-up fade-up-delay-3"><div class="stat-num">12+</div><div class="stat-lbl">Active Causes</div></div>
+  </div>
+</div>
+
+<!-- FEATURED SONG -->
+<!-- FEATURED SONG -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="eyebrow">Now Playing</div>
+      <h2>Latest <em>Release</em></h2>
+    </div>
+    <div class="song-card fade-up">
+      <div class="song-card-art">🎵</div>
+      <div class="song-card-info">
+        <div class="song-bar">
+          <div class="song-fill" id="song-progress"></div>
+          
+        </div>
+        <h3>Niwewe</h3>
+        <p>Radiant · 2026 · Gospel Worship</p>
+        <div class="song-fill"></div>
+        <div class="song-times">
+          <span id="current-time">0:00</span>
+          <span id="total-time">0:00</span>
+        </div>
+
+        <!-- ADD YOUR AUDIO HERE -->
+        <audio id="audio-niwewe" preload="auto">
+          <source src="/wp-content/uploads/2026/04/Niwewe-RKQxlTZeSQk.mp3" type="audio/mpeg">
+        </audio>
+
+        <button class="play-btn" id="play-btn-niwewe" onclick="togglePlay()">▶</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALBUMS -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="eyebrow center">Discography</div>
+      <h2>Latest <em>Releases</em></h2>
+      <p>Albums crafted with prayer, testimony, and a deep love for God and His people.</p>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="album-card"><div class="album-art album-art-1"> <img decoding="async" class="hero-photo" src="wp-content/uploads/2026/04/Purity-Studio-Shoot-65-scaled.jpg" alt="Purity — Ugandan Gospel Artist"/></div><div class="album-meta"><div class="album-title">Niwewe</div><div class="album-year">2026 · 12 Tracks</div><div class="album-actions"><a class="btn btn-primary btn-sm" href="music.html">Stream</a><a class="btn btn-secondary btn-sm" href="store.html">Buy</a></div></div></div>
+      <div class="album-card"><div class="album-art album-art-2"> <img decoding="async" class="hero-photo" src="wp-content/uploads/2026/04/Purity-Studio-Shoot-31-scaled.jpg" alt="Purity — Ugandan Gospel Artist"/></div><div class="album-meta"><div class="album-title">Ye Mukama</div><div class="album-year">2024 · 10 Tracks</div><div class="album-actions"><a class="btn btn-primary btn-sm" href="music.html">Stream</a><a class="btn btn-secondary btn-sm" href="store.html">Buy</a></div></div></div>
+      <div class="album-card"><div class="album-art album-art-3"> <img decoding="async" class="hero-photo" src="wp-content/uploads/2026/04/Purity-Studio-Shoot-47-scaled.jpg" alt="Purity — Ugandan Gospel Artist"/></div><div class="album-meta"><div class="album-title">Ofuge</div><div class="album-year">2022 · 11 Tracks</div><div class="album-actions"><a class="btn btn-primary btn-sm" href="music.html">Stream</a><a class="btn btn-secondary btn-sm" href="store.html">Buy</a></div></div></div>
+    </div>
+    <div class="text-center mt-40 fade-up"><a class="btn btn-dark" href="music.html">View All Music →</a></div>
+  </div>
+</section>
+
+<!-- ABOUT SPLIT -->
+<section class="about-strip">
+  <div class="grid-2" style="gap:0;">
+    <div class="about-photo-col fade-up">
+      <!-- 📸 IMAGE SLOT: Purity portrait — use Purity_Studio_Shoot64.jpg -->
+      <img decoding="async" src="wp-content/uploads/2026/04/Purity-Studio-Shoot-64-scaled.jpg" alt="Purity — Gospel Artist"/>
+    </div>
+    <div class="about-text-col fade-up">
+      <div class="eyebrow">About Purity</div>
+      <h2 data-cms="home-about-headline">A voice chosen<br/><em>for such a time.</em></h2>
+      <p style="margin-bottom:20px;">Born and raised in Uganda, Purity began her journey in worship through Scripture Union and church choirs as a teenager after giving her life to Christ.</p>
+      <p style="margin-bottom:20px;">What started as a voice surrendered to God has grown into a Spirit-led ministry touching hearts through worship, healing, and intimate encounters with God.</p>
+      <p style="margin-bottom:32px;">Beyond the music, Purity carries a deep passion for transforming lives through the Purity Charity Bag (PCB) — reaching vulnerable communities with hope, compassion, and purpose across Uganda.</p>
+      <p style="font-family:'Cinzel', serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--maroon); margin-bottom:40px; font-weight:700;">More than a sound. A calling.</p>
+      <a class="btn btn-primary" href="ministry.html">Read Her Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHARITY STRIP -->
+<section class="charity-strip">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="grid-2">
+      <div class="fade-up">
+        <div class="eyebrow light">The Purity Charity Bag (PCB)</div>
+        <h2 style="color:#fff;">Music that gives<br/><em style="color:var(--gold-bright);">back to the community.</em></h2>
+        <p style="color:rgba(255,255,255,0.6);max-width:460px;margin-bottom:32px;">Every concert, every stream, every purchase — a portion goes directly to feeding children, building schools, and transforming lives across Uganda.</p>
+        <div class="c-stats">
+          <div><div class="c-stat-num">4,200</div><div class="c-stat-lbl">Children reached</div></div>
+          <div><div class="c-stat-num">UGX 47M</div><div class="c-stat-lbl">Raised to date</div></div>
+          <div><div class="c-stat-num">12</div><div class="c-stat-lbl">Active causes</div></div>
+        </div>
+        <a class="btn btn-white btn-lg" href="charity.html">See Our Impact →</a>
+      </div>
+      <div class="fade-up">
+        <div class="charity-photo-box">
+          <!-- 📸 IMAGE SLOT: Foundation photo — use Purity_Studio_Shoot68.jpg -->
+          <img decoding="async" src="wp-content/uploads/2026/04/PURITYS-VIDEO-SHOOT-161-scaled.jpg" alt="Purity Charity Bag (PCB) — community impact"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="eyebrow center">Community Voices</div>
+      <h2>Lives <em>Touched</em></h2>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="testimonial-card"><div class="t-quote">Purity's music found me at the lowest point of my life. "Still Waters" literally saved me. I haven't been the same since.</div><div class="t-author"><div class="t-avatar">🙏</div><div><div class="t-name">Grace Nakato</div><div class="t-role">Kampala, Uganda</div></div></div></div>
+      <div class="testimonial-card"><div class="t-quote">We had Purity minister at our conference and 200 people gave their lives to Christ. The anointing on her music is undeniable.</div><div class="t-author"><div class="t-avatar">⛪</div><div><div class="t-name">Pastor David Mubiru</div><div class="t-role">Hope Centre Church</div></div></div></div>
+      <div class="testimonial-card"><div class="t-quote">The foundation's feeding programme has kept 300 children in school who would otherwise have dropped out. Real impact, real love.</div><div class="t-author"><div class="t-avatar">📚</div><div><div class="t-name">Sarah Atim</div><div class="t-role">Head Teacher, St. Andrew's P/S</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-bg" style="background-image:url('Purity_Studio_Shoot68.jpg');"></div>
+  <div class="cta-banner-overlay"></div>
+  <div class="cta-banner-content container">
+    <div class="eyebrow light center fade-up">Live Ministry</div>
+    <h2 style="color:#fff;margin-bottom:16px;" class="fade-up">Ready to experience<br/><em style="color:var(--gold-bright);">the music live?</em></h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto;" class="fade-up">Purity is ministering across Uganda and beyond in 2026. Don't miss a concert near you.</p>
+    <a class="btn btn-white btn-xl fade-up" href="events.html">View All Events →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-logo" href="index.html" style="color:#fff;">Pu<span>rity</span></a>
+        <p>Gospel music artist, minister, and founder of the Purity Charity Bag (PCB). Bringing the joy of God's presence to every heart, every nation.</p>
+        <div class="social-row" style="margin-top:24px;">
+          <a class="social-btn" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+</svg></a><a class="social-btn" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-apple-music" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="m10.995 0 .573.001q.241 0 .483.007c.35.01.705.03 1.051.093.352.063.68.166.999.329a3.36 3.36 0 0 1 1.47 1.468c.162.32.265.648.328 1 .063.347.084.7.093 1.051q.007.241.007.483l.001.573v5.99l-.001.573q0 .241-.008.483c-.01.35-.03.704-.092 1.05a3.5 3.5 0 0 1-.33 1 3.36 3.36 0 0 1-1.468 1.468 3.5 3.5 0 0 1-1 .33 7 7 0 0 1-1.05.092q-.241.007-.483.008l-.573.001h-5.99l-.573-.001q-.241 0-.483-.008a7 7 0 0 1-1.052-.092 3.6 3.6 0 0 1-.998-.33 3.36 3.36 0 0 1-1.47-1.468 3.6 3.6 0 0 1-.328-1 7 7 0 0 1-.093-1.05Q.002 11.81 0 11.568V5.005l.001-.573q0-.241.007-.483c.01-.35.03-.704.093-1.05a3.6 3.6 0 0 1 .329-1A3.36 3.36 0 0 1 1.9.431 3.5 3.5 0 0 1 2.896.1 7 7 0 0 1 3.95.008Q4.19.002 4.432 0h.573zm-.107 2.518-4.756.959H6.13a.66.66 0 0 0-.296.133.5.5 0 0 0-.16.31c-.004.027-.01.08-.01.16v5.952c0 .14-.012.275-.106.39-.095.115-.21.15-.347.177l-.31.063c-.393.08-.65.133-.881.223a1.4 1.4 0 0 0-.519.333 1.25 1.25 0 0 0-.332.995c.031.297.166.582.395.792.156.142.35.25.578.296.236.047.49.031.858-.043.196-.04.38-.102.555-.205a1.4 1.4 0 0 0 .438-.405 1.5 1.5 0 0 0 .233-.55c.042-.202.052-.386.052-.588V6.347c0-.276.08-.35.302-.404.024-.005 3.954-.797 4.138-.833.257-.049.378.025.378.294v3.524c0 .14-.001.28-.096.396-.094.115-.211.15-.348.178l-.31.062c-.393.08-.649.133-.88.223a1.4 1.4 0 0 0-.52.334 1.26 1.26 0 0 0-.34.994c.03.297.174.582.404.792a1.2 1.2 0 0 0 .577.294c.237.048.49.03.858-.044.197-.04.381-.098.556-.202a1.4 1.4 0 0 0 .438-.405q.173-.252.233-.549a2.7 2.7 0 0 0 .044-.589V2.865c0-.273-.143-.443-.4-.42-.04.003-.383.064-.424.073"/>
+</svg></a>
+          <a class="social-btn" href="#">📘</a><a class="social-btn" href="#">▶</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Navigate</h5><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li><li><a href="ministry.html">Ministry</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li>
+<li><a href="charity.html">Charity</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="store.html">Store</a></li>
+</ul></div>
+      <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Active Causes</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="contact.html">Media Enquiries</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256700000000" target="_blank">WhatsApp Us</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Purity Ministry. All rights reserved. Designed by <a href="#" style="color:var(--gold-bright);">Charis Creations Ltd</a></div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.18);">A portion of all proceeds supports the Purity Charity Bag (PCB).</div>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-player" id="player">
+  <div class="fp-art">🎵</div>
+  <div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity · Radiant 2026</div></div>
+  <div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn" onclick="toggleFP()">▶</button><button class="fp-btn">⏭</button></div>
+
+<audio id="fp-audio" src="/wp-content/uploads/2026/04/Niwewe-RKQxlTZeSQk.mp3" preload="none"></audio>
+</div>
+<a class="wa-float" href="https://wa.me/256771492492?text=Hi%20Purity!" target="_blank">💬</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>60);
+  if(scrollY>500)document.getElementById('player').classList.add('up');
+});
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+let playing=false;
+function togglePlay() {
+  var audio = document.getElementById('audio-niwewe');
+  var btn = document.getElementById('play-btn-niwewe');
+  var progress = document.getElementById('song-progress');
+  var currentTimeEl = document.getElementById('current-time');
+  var totalTimeEl = document.getElementById('total-time');
+
+  if (!audio) { console.error('Audio element not found!'); return; }
+
+  if (audio.paused) {
+    audio.play().then(function() {
+      btn.innerHTML = '⏸';
+    }).catch(function(e) {
+      console.error('Play failed:', e);
+    });
+  } else {
+    audio.pause();
+    btn.innerHTML = '▶';
+  }
+
+  // Update progress bar and time
+  audio.addEventListener('timeupdate', function() {
+    var pct = (audio.currentTime / audio.duration) * 100;
+    if (progress) progress.style.width = pct + '%';
+    if (currentTimeEl) currentTimeEl.textContent = formatTime(audio.currentTime);
+    if (totalTimeEl) totalTimeEl.textContent = formatTime(audio.duration);
+  });
+}
+
+function formatTime(secs) {
+  if (isNaN(secs)) return '0:00';
+  var m = Math.floor(secs / 60);
+  var s = Math.floor(secs % 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+
+/* Floating Overflow Player */
+function toggleFP(){
+  var a=document.getElementById('fp-audio');
+  var b=document.getElementById('fpBtn');
+  if(!a.src||a.src===window.location.href){alert('MP3 not yet uploaded. Set the src of #fp-audio to your Overflow MP3 URL.');return;}
+  if(a.paused){a.play();b.textContent='\u275A\u275A';}
+  else{a.pause();b.textContent='\u25B6';}
+}
+</script>
+
+<script>
+// Slideshow
+let slideIndex = 0;
+let slides = document.querySelectorAll('.slide');
+let dots = document.querySelectorAll('.dot');
+let slideTimer;
+function showSlides(n) {
+  if(!slides || slides.length === 0) return;
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slideIndex = n;
+  if (slideIndex >= slides.length) slideIndex = 0;
+  if (slideIndex < 0) slideIndex = slides.length - 1;
+  slides[slideIndex].classList.add('active');
+  dots[slideIndex].classList.add('active');
+}
+function nextSlide() { showSlides(slideIndex + 1); }
+function currentSlide(n) { clearInterval(slideTimer); showSlides(n); slideTimer = setInterval(nextSlide, 5000); }
+if(slides.length > 0) {
+  slideTimer = setInterval(nextSlide, 5000);
+}
+</script>
+
+</body>
+</html>

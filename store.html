@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Store — Purity Ministry</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.store-filter { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px; }
+.cart-bar { position:fixed;bottom:80px;right:24px;background:var(--dark);color:var(--cream);padding:12px 22px;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;display:none;gap:10px;align-items:center;box-shadow:var(--shadow-lg);z-index:800;cursor:pointer; }
+.cart-bar.show { display:flex; }
+.whatsapp-order { background:var(--sage-pale);border-radius:var(--radius-lg);padding:44px;text-align:center;border:1px solid var(--sage-light);margin-top:50px; }
+.cart-count { background:var(--terra);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700; }
+.charity-note { background:var(--sage-pale);border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--sage);margin-bottom:40px; }
+</style>
+</head>
+<body>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Purity Mukisa</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li>
+      <li><a href="ministry.html">Ministry</a></li><li><a href="charity.html">Charity</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="store.html" class="active">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="index.html">Home</a><a href="music.html">Music</a><a href="ministry.html">Ministry</a>
+  <a href="charity.html">Charity</a><a href="events.html">Events</a><a href="store.html">Store</a>
+  <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="eyebrow">🛍️ Store</div>
+    <h1>Take the Music Home</h1>
+    <p>Albums, merch, and digital downloads. A portion of every purchase supports the Purity Foundation.</p>
+  </div>
+</div>
+
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+
+    <div class="charity-note fade-up">🌍 <b>Good to know:</b> 15% of every purchase in this store goes directly to the Purity Foundation's school feeding programme.</div>
+
+    <!-- Filters -->
+    <div class="store-filter">
+      <div class="filter-btn active">All Products</div>
+      <div class="filter-btn">Albums</div>
+      <div class="filter-btn">Digital</div>
+      <div class="filter-btn">Clothing</div>
+      <div class="filter-btn">Accessories</div>
+    </div>
+
+    <!-- Products -->
+    <div class="grid-4 fade-up">
+      <div class="product-card">
+        <div class="product-img album-art-1"><div class="prod-badge badge-new">New</div>🌅</div>
+        <div class="product-body"><div class="product-name">Radiant — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Radiant CD')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img album-art-2"><div class="prod-badge badge-best">Bestseller</div>🌿</div>
+        <div class="product-body"><div class="product-name">Still Waters — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Still Waters CD')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--terra),var(--dark));"><div class="prod-badge badge-new">New</div>👕</div>
+        <div class="product-body"><div class="product-name">Radiant Tour Tee</div><div class="product-type">Unisex · S / M / L / XL / XXL</div><div class="product-foot"><div class="product-price">UGX 45K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Radiant Tee')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--dark-mid));"><div class="prod-badge badge-dig">Digital</div>🎵</div>
+        <div class="product-body"><div class="product-name">Radiant — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 20K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Radiant Digital')">Buy</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--sage),var(--dark));"><div class="prod-badge badge-best">Popular</div>🎒</div>
+        <div class="product-body"><div class="product-name">Purity Foundation Tote</div><div class="product-type">Canvas Tote · Branded & Printed</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Foundation Tote')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img album-art-3"><div class="prod-badge badge-new">New</div>🔥</div>
+        <div class="product-body"><div class="product-name">Fire & Grace — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Fire & Grace CD')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--gold),var(--dark));"><div class="prod-badge badge-dig">Digital</div>🎤</div>
+        <div class="product-body"><div class="product-name">Best of Purity — Bundle</div><div class="product-type">Digital Bundle · 30 Top Songs</div><div class="product-foot"><div class="product-price">UGX 50K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Best Of Bundle')">Buy</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--dark-mid),var(--amber));"><div class="prod-badge badge-best">Popular</div>🧢</div>
+        <div class="product-body"><div class="product-name">Radiant Embroidered Cap</div><div class="product-type">Unisex Cap · One Size Fits All</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Radiant Cap')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img album-art-4"><div class="prod-badge badge-dig">Digital</div>🌙</div>
+        <div class="product-body"><div class="product-name">In the Night Season</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 18K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Night Season Digital')">Buy</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--terra-dark),var(--sage));"><div class="prod-badge badge-new">New</div>🧣</div>
+        <div class="product-body"><div class="product-name">Purity Branded Hoodie</div><div class="product-type">Pullover Hoodie · S / M / L / XL</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Branded Hoodie')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img album-art-5"><div class="prod-badge badge-best">Popular</div>🌈</div>
+        <div class="product-body"><div class="product-name">After the Rain — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 28K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'After the Rain CD')">Add</button></div></div>
+      </div>
+      <div class="product-card">
+        <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--sage-light));"><div class="prod-badge badge-new">New</div>📿</div>
+        <div class="product-body"><div class="product-name">Scripture Wristband</div><div class="product-type">Silicone · "Overflow" — John 7:38</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="addToCart(this,'Wristband')">Add</button></div></div>
+      </div>
+    </div>
+
+    <!-- WhatsApp Order -->
+    <div class="whatsapp-order fade-up">
+      <div style="font-size:36px;margin-bottom:14px;">💬</div>
+      <h4 style="color:var(--dark);margin-bottom:8px;">Order via WhatsApp for Fastest Delivery</h4>
+      <p style="max-width:440px;margin:0 auto 24px;font-size:14px;">Send us a message with the items you want. We deliver across Uganda and ship internationally. Payment via MTN MoMo, Airtel, or bank transfer.</p>
+      <a class="btn btn-green btn-lg" href="https://wa.me/256700000000?text=Hi!%20I%20want%20to%20order%20from%20the%20Purity%20Store%20%F0%9F%8C%9F" target="_blank">💬 Order on WhatsApp</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Cart bar -->
+<div class="cart-bar" id="cartBar" onclick="openWhatsApp()">
+  🛒 <span id="cartText">View Cart</span> <span class="cart-count" id="cartCount">0</span>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Foundation.</p><div class="social-row" style="margin-top:22px;"><a class="social-btn" href="#">📸</a><a class="social-btn" href="#">🎵</a><a class="social-btn" href="#">📘</a><a class="social-btn" href="#">🐦</a><a class="social-btn" href="#">▶</a></div></div>
+      <div class="footer-col"><h5>Navigate</h5><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li><li><a href="ministry.html">Ministry</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+      <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
+      <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256700000000" target="_blank">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Ministry. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+  </div>
+</footer>
+<div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Overflow</div><div class="fp-sub">Purity · Radiant</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+<a class="wa-float" href="https://wa.me/256700000000" target="_blank">💬</a>
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+let cart=[],cartTotal=0;
+function addToCart(btn,name){
+  cart.push(name);cartTotal++;
+  btn.textContent='✓ Added';btn.style.background='var(--sage)';
+  setTimeout(()=>{btn.textContent='Add';btn.style.background='';},1500);
+  document.getElementById('cartCount').textContent=cartTotal;
+  document.getElementById('cartBar').classList.add('show');
+  document.getElementById('player').classList.add('up');
+}
+function openWhatsApp(){
+  const items=cart.join(', ');
+  window.open('https://wa.me/256700000000?text=Hi!%20I%20want%20to%20order:%20'+encodeURIComponent(items),'_blank');
+}
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){this.closest('.store-filter').querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');}));
+document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

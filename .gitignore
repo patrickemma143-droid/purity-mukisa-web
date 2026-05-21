@@ -1,0 +1,41 @@
+# ── OS junk ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ── Editor / IDE folders ────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.bak
+
+# ── Environment & secrets ───────────────────────
+.env
+.env.local
+.env.*.local
+secrets.json
+
+# ── Node / build folders (defensive) ────────────
+node_modules/
+dist/
+build/
+.cache/
+
+# ── Logs ────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── Reference template bundle (not part of the live site) ──
+denzel-onepage-personal-html-template-2024-12-25-11-27-28-utc/
+denzel-onepage-personal-html-template-2024-12-25-11-27-28-utc.zip
+
+# ── Empty scaffolding ───────────────────────────
+/purity/
+
+# ── Claude session work-product (keep out of repo) ──
+.claude/
+CLAUDE.md
