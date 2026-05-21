@@ -11,9 +11,6 @@
 .whatsapp-order { background:var(--sage-pale);border-radius:var(--radius-lg);padding:44px;text-align:center;border:1px solid var(--sage-light);margin-top:50px; }
 .cart-count { background:var(--terra);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700; }
 .charity-note { background:var(--sage-pale);border-left:3px solid var(--sage);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 18px;font-size:14px;color:var(--sage);margin-bottom:40px; }
-.product-img { height:240px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:60px; }
-.product-img img { position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease; }
-.product-card:hover .product-img img { transform:scale(1.06); }
 </style>
 </head>
 <body>
@@ -60,116 +57,56 @@
       <div class="filter-btn">Accessories</div>
     </div>
 
-    <!-    <div class="grid-4 fade-up">
-
-      <!-- 1. Yenze Album CD -->
+    <!-- Products -->
+    <div class="grid-4 fade-up">
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-new">New</div>
-          <img src="assets/store/download.jpg" alt="Yenze Album CD"/>
-        </div>
-        <div class="product-body"><div class="product-name">Yenze — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-cd','Yenze CD',35000,'UGX 35K','💿','linear-gradient(135deg,var(--terra),var(--amber))')">Add</button></div></div>
+        <div class="product-img album-art-1"><div class="prod-badge badge-new">New</div>✨</div>
+        <div class="product-body"><div class="product-name">Yenze — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-cd','Yenze CD',35000,'UGX 35K','✨','linear-gradient(135deg,var(--terra),var(--amber))')">Add</button></div></div>
       </div>
-
-      <!-- 2. Extravagant Love Album CD -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-best">Bestseller</div>
-          <img src="assets/store/download%207.jpg" alt="Extravagant Love Album CD"/>
-        </div>
-        <div class="product-body"><div class="product-name">Extravagant Love — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-cd','Extravagant Love CD',30000,'UGX 30K','💿','linear-gradient(135deg,var(--sage),var(--gold))')">Add</button></div></div>
+        <div class="product-img album-art-2"><div class="prod-badge badge-best">Bestseller</div>💛</div>
+        <div class="product-body"><div class="product-name">Extravagant Love — Album</div><div class="product-type">Physical CD · Signed by Purity</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-cd','Extravagant Love CD',30000,'UGX 30K','💛','linear-gradient(135deg,var(--sage),var(--gold))')">Add</button></div></div>
       </div>
-
-      <!-- 3. Yenze Tour Tee -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-new">New</div>
-          <img src="assets/store/BASIC%20T-SHIRT%20GERADER%20SAUM%20T20%20-%203XL%20_%20Off-White2.jpg" alt="Yenze Tour Tee"/>
-        </div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--terra),var(--dark));"><div class="prod-badge badge-new">New</div>👕</div>
         <div class="product-body"><div class="product-name">Yenze Tour Tee</div><div class="product-type">Unisex · S / M / L / XL / XXL</div><div class="product-foot"><div class="product-price">UGX 45K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-tee','Yenze Tour Tee',45000,'UGX 45K','👕','linear-gradient(135deg,var(--terra),var(--dark))')">Add</button></div></div>
       </div>
-
-      <!-- 4. Yenze Digital -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-dig">Digital</div>
-          <img src="assets/store/download%209.jpg" alt="Yenze Digital Album"/>
-        </div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--dark-mid));"><div class="prod-badge badge-dig">Digital</div>🎵</div>
         <div class="product-body"><div class="product-name">Yenze — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 20K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'yenze-digital','Yenze Digital Album',20000,'UGX 20K','🎵','linear-gradient(135deg,var(--amber),var(--dark-mid))')">Buy</button></div></div>
       </div>
-
-      <!-- 5. Purity Foundation Tote -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-best">Popular</div>
-          <img src="assets/store/Shopping%20Canvas%20Tote%20Bag%20Mockup.jpg" alt="Purity Foundation Tote Bag"/>
-        </div>
-        <div class="product-body"><div class="product-name">Purity Foundation Tote</div><div class="product-type">Canvas Tote · Branded &amp; Printed</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'foundation-tote','Purity Foundation Tote',25000,'UGX 25K','🎒','linear-gradient(135deg,var(--sage),var(--dark))')">Add</button></div></div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--sage),var(--dark));"><div class="prod-badge badge-best">Popular</div>🎒</div>
+        <div class="product-body"><div class="product-name">Purity Foundation Tote</div><div class="product-type">Canvas Tote · Branded & Printed</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'foundation-tote','Purity Foundation Tote',25000,'UGX 25K','🎒','linear-gradient(135deg,var(--sage),var(--dark))')">Add</button></div></div>
       </div>
-
-      <!-- 6. Extravagant Love Digital -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-dig">Digital</div>
-          <img src="assets/store/1.jpg" alt="Extravagant Love Digital"/>
-        </div>
-        <div class="product-body"><div class="product-name">Extravagant Love — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-digital','Extravagant Love Digital',25000,'UGX 25K','🎵','linear-gradient(135deg,var(--gold),var(--terra))')">Buy</button></div></div>
+        <div class="product-img album-art-3"><div class="prod-badge badge-dig">Digital</div>💛</div>
+        <div class="product-body"><div class="product-name">Extravagant Love — Digital</div><div class="product-type">MP3 Download · Full Album</div><div class="product-foot"><div class="product-price">UGX 25K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'extravagant-digital','Extravagant Love Digital',25000,'UGX 25K','💛','linear-gradient(135deg,var(--gold),var(--terra))')">Buy</button></div></div>
       </div>
-
-      <!-- 7. Both Albums Bundle -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-best">Best Deal</div>
-          <img src="assets/store/box%20hoodues.webp" alt="Both Albums Bundle"/>
-        </div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--gold),var(--dark));"><div class="prod-badge badge-best">Best Deal</div>🎤</div>
         <div class="product-body"><div class="product-name">Both Albums Bundle</div><div class="product-type">Digital Bundle · Yenze + Extravagant Love</div><div class="product-foot"><div class="product-price">UGX 40K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'both-albums','Both Albums Bundle',40000,'UGX 40K','🎤','linear-gradient(135deg,var(--gold),var(--dark))')">Buy</button></div></div>
       </div>
-
-      <!-- 8. Branded Embroidered Cap -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-best">Popular</div>
-          <img src="assets/store/hat.jpg" alt="Branded Embroidered Cap"/>
-        </div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--dark-mid),var(--amber));"><div class="prod-badge badge-best">Popular</div>🧢</div>
         <div class="product-body"><div class="product-name">Branded Embroidered Cap</div><div class="product-type">Unisex Cap · One Size Fits All</div><div class="product-foot"><div class="product-price">UGX 30K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'branded-cap','Branded Cap',30000,'UGX 30K','🧢','linear-gradient(135deg,var(--dark-mid),var(--amber))')">Add</button></div></div>
       </div>
-
-      <!-- 9. Niwewe Single -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-dig">Single</div>
-          <img src="assets/store/MagSafe%20iPhone%20Cases%20-%20Sienna4.jpg" alt="Niwewe Single"/>
-        </div>
-        <div class="product-body"><div class="product-name">Niwewe — Single</div><div class="product-type">MP3 Download · Featured Track</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'niwewe-single','Niwewe Single',8000,'UGX 8K','🎵','linear-gradient(135deg,var(--dark-mid),var(--terra))')">Buy</button></div></div>
+        <div class="product-img album-art-4"><div class="prod-badge badge-dig">Single</div>🌙</div>
+        <div class="product-body"><div class="product-name">Niwewe — Single</div><div class="product-type">MP3 Download · Featured Track</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'niwewe-single','Niwewe Single',8000,'UGX 8K','🌙','linear-gradient(135deg,var(--dark-mid),var(--terra))')">Buy</button></div></div>
       </div>
-
-      <!-- 10. Purity Mukisa Branded Hoodie -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-new">New</div>
-          <img src="assets/store/Hoddie%20Photos%20-%20Download%20Free%20High-Quality%20Pictures%20_%20Freepik.jpg" alt="Purity Mukisa Branded Hoodie"/>
-        </div>
-        <div class="product-body"><div class="product-name">Purity Mukisa Branded Hoodie</div><div class="product-type">Pullover Hoodie · S / M / L / XL</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'pm-hoodie','Purity Mukisa Hoodie',75000,'UGX 75K','🧥','linear-gradient(135deg,var(--terra-dark),var(--sage))')">Add</button></div></div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--terra-dark),var(--sage));"><div class="prod-badge badge-new">New</div>🧣</div>
+        <div class="product-body"><div class="product-name">Purity Mukisa Branded Hoodie</div><div class="product-type">Pullover Hoodie · S / M / L / XL</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'pm-hoodie','Purity Mukisa Hoodie',75000,'UGX 75K','🧣','linear-gradient(135deg,var(--terra-dark),var(--sage))')">Add</button></div></div>
       </div>
-
-      <!-- 11. CD + Tee Bundle -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-new">New</div>
-          <img src="assets/store/1pc%20500ml%20Aluminum%20Portable%20Sports%20Water%20Bottle2.jpg" alt="Purity Water Bottle"/>
-        </div>
-        <div class="product-body"><div class="product-name">Purity Branded Water Bottle</div><div class="product-type">500ml Aluminium · Portable Sports</div><div class="product-foot"><div class="product-price">UGX 35K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'water-bottle','Purity Water Bottle',35000,'UGX 35K','🍶','linear-gradient(135deg,var(--amber),var(--sage))')">Add</button></div></div>
+        <div class="product-img album-art-5"><div class="prod-badge badge-new">New</div>🎁</div>
+        <div class="product-body"><div class="product-name">CD + Tee Bundle</div><div class="product-type">Yenze CD + Tour Tee · Save UGX 5K</div><div class="product-foot"><div class="product-price">UGX 75K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'cd-tee-bundle','Yenze CD + Tee Bundle',75000,'UGX 75K','🎁','linear-gradient(135deg,var(--amber),var(--sage))')">Add</button></div></div>
       </div>
-
-      <!-- 12. Scripture Wristband -->
       <div class="product-card">
-        <div class="product-img">
-          <div class="prod-badge badge-new">New</div>
-          <img src="assets/store/hand%20knit%20scarf2.jpg" alt="Scripture Wristband / Scarf"/>
-        </div>
-        <div class="product-body"><div class="product-name">Scripture Wristband</div><div class="product-type">Knit Accessory · "Niwewe" — Surrender</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'wristband','Scripture Wristband',8000,'UGX 8K','📿','linear-gradient(135deg,var(--amber),var(--sage-light))')">Add</button></div></div>
+        <div class="product-img" style="background:linear-gradient(135deg,var(--amber),var(--sage-light));"><div class="prod-badge badge-new">New</div>📿</div>
+        <div class="product-body"><div class="product-name">Scripture Wristband</div><div class="product-type">Silicone · "Niwewe" — Surrender</div><div class="product-foot"><div class="product-price">UGX 8K</div><button class="btn btn-primary btn-sm" onclick="quickAdd(this,'wristband','Scripture Wristband',8000,'UGX 8K','📿','linear-gradient(135deg,var(--amber),var(--sage-light))')">Add</button></div></div>
       </div>
-
     </div>
 
     <!-- WhatsApp Order -->
