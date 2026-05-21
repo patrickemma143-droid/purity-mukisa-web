@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Charity — The Purity Foundation</title>
 <link rel="stylesheet" href="styles.css"/>
+<script src="cart.js" defer></script>
 <style>
 .charity-hero { background: var(--sage); padding: 160px 0 80px; text-align: center; position: relative; overflow: hidden; }
 .charity-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.22),transparent 60%); }
@@ -40,7 +41,7 @@
       <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
     </ul>
     <a class="btn btn-green btn-sm" href="#donate">Donate Now</a>
-    <button class="cart-btn" type="button" onclick="if(window.CartUI){CartUI.open()}else{location.href='store.html'}" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
+    <button class="cart-btn" type="button" data-cart-action="open" onclick="if(window.CartUI)CartUI.open();else location.href='store.html';" aria-label="View cart">🛒<span class="cart-count-badge empty">0</span></button>
     <div class="nav-hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
 </nav>
@@ -82,6 +83,171 @@
     </div>
   </div>
 </section>
+
+<!-- SPONSOR A CHILD -->
+<style>
+.sponsor-section { background:var(--cream-dark); }
+.sponsor-grid    { display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+@media(max-width:1100px){ .sponsor-grid{ grid-template-columns:repeat(3,1fr); } }
+@media(max-width:700px) { .sponsor-grid{ grid-template-columns:repeat(2,1fr); gap:12px; } }
+.child-card {
+  background:var(--cream); border-radius:var(--radius-md); overflow:hidden;
+  border:1px solid var(--cream-deep); cursor:pointer; transition:var(--transition);
+  display:flex; flex-direction:column;
+}
+.child-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:var(--sage-light); }
+.child-photo { aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:54px; color:rgba(255,255,255,0.85); position:relative; }
+.child-photo::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.35) 100%);
+}
+.child-badge { position:absolute; top:10px; left:10px; background:rgba(255,255,255,0.95); color:var(--dark); padding:4px 9px; border-radius:100px; font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; z-index:1; }
+.child-body  { padding:14px 16px 16px; }
+.child-name  { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--dark); margin-bottom:2px; }
+.child-meta  { font-size:12px; color:var(--text-light); font-family:'Space Grotesk',sans-serif; letter-spacing:0.5px; margin-bottom:10px; }
+.child-need  { font-size:12px; color:var(--sage); font-family:'Space Grotesk',sans-serif; font-weight:600; }
+
+/* Modal */
+.child-modal-overlay { position:fixed; inset:0; background:rgba(26,10,0,0.6); backdrop-filter:blur(4px); z-index:1300; opacity:0; pointer-events:none; transition:opacity 0.3s; display:flex; align-items:center; justify-content:center; padding:24px; }
+.child-modal-overlay.open { opacity:1; pointer-events:auto; }
+.child-modal { background:var(--cream); border-radius:var(--radius-lg); max-width:920px; width:100%; max-height:90vh; overflow:hidden; display:grid; grid-template-columns:1fr 1.2fr; box-shadow:var(--shadow-lg); transform:scale(0.95); transition:transform 0.3s; }
+.child-modal-overlay.open .child-modal { transform:scale(1); }
+@media(max-width:760px) { .child-modal { grid-template-columns:1fr; max-height:95vh; overflow-y:auto; } }
+.child-modal-photo { aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; font-size:120px; color:rgba(255,255,255,0.9); position:relative; }
+@media(max-width:760px) { .child-modal-photo { aspect-ratio:16/9; font-size:80px; } }
+.child-modal-body  { padding:36px 38px; overflow-y:auto; }
+@media(max-width:760px) { .child-modal-body { padding:24px 22px; } }
+.child-modal-close { position:absolute; top:16px; right:16px; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.95); border:none; cursor:pointer; font-size:18px; color:var(--dark); display:flex; align-items:center; justify-content:center; z-index:1; }
+.child-modal h3 { font-size:28px; margin-bottom:4px; }
+.child-modal-meta { font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:18px; }
+.child-story { font-size:14px; line-height:1.75; color:var(--text-muted); margin-bottom:24px; }
+.sponsor-options { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.sponsor-option {
+  display:flex; align-items:center; gap:14px; padding:14px 16px;
+  border-radius:var(--radius-sm); background:var(--cream-dark);
+  border:1.5px solid var(--cream-deep); cursor:pointer; transition:var(--transition);
+  text-decoration:none; color:inherit;
+}
+.sponsor-option:hover { border-color:var(--sage); background:var(--sage-pale); transform:translateX(3px); }
+.sponsor-option-icon { width:42px; height:42px; border-radius:50%; background:var(--cream); display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.sponsor-option-info { flex:1; min-width:0; }
+.sponsor-option-title { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; color:var(--dark); margin-bottom:2px; }
+.sponsor-option-desc  { font-size:12px; color:var(--text-muted); }
+.sponsor-option-price { font-family:'Space Grotesk',sans-serif; font-weight:700; color:var(--sage); font-size:14px; white-space:nowrap; }
+.sponsor-pay-note { font-size:12px; color:var(--text-light); border-top:1px solid var(--cream-deep); padding-top:14px; line-height:1.7; }
+.sponsor-pay-note b { color:var(--dark); }
+</style>
+
+<section class="section sponsor-section">
+  <div class="container">
+    <div class="section-header center fade-up">
+      <div class="eyebrow center">Sponsor a Child</div>
+      <h2>Choose a Child to Sponsor</h2>
+      <p>These are real children from the Purity Foundation feeding and education programme. Pick one whose story moves you, then choose how you'd like to help.</p>
+    </div>
+
+    <div class="sponsor-grid fade-up" id="sponsorGrid"></div>
+
+    <p style="text-align:center;font-size:13px;color:var(--text-light);margin-top:28px;max-width:520px;margin-left:auto;margin-right:auto;">
+      Names and photos are protected. You'll receive a personal update from your sponsored child every term, plus a yearly impact report from the Foundation.
+    </p>
+  </div>
+</section>
+
+<!-- CHILD DETAIL MODAL -->
+<div class="child-modal-overlay" id="childModal" onclick="if(event.target===this)closeChildModal()">
+  <div class="child-modal">
+    <button class="child-modal-close" type="button" onclick="closeChildModal()" aria-label="Close">✕</button>
+    <div class="child-modal-photo" id="modalPhoto"></div>
+    <div class="child-modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const CHILDREN = [
+  { id:'nakato',     name:'Nakato Joan',         age:8,  grade:'Primary 2', emoji:'🌸', gradient:'linear-gradient(135deg,var(--terra),var(--amber))',     need:'Needs uniform',    story:'Nakato just transferred from a village school where she sat on a dusty floor. She loves drawing and dreams of becoming a teacher one day. Her mother sells tomatoes at the local market to support five children alone. A new uniform would let Nakato fit in confidently with her new classmates.' },
+  { id:'mukasa',     name:'Mukasa David',        age:11, grade:'Primary 5', emoji:'⚽', gradient:'linear-gradient(135deg,var(--sage),var(--gold))',        need:'Needs school fees',story:'David walks 4 kilometres each way to school. He is bright, top of his maths class, and wants to be a pilot. His grandmother is raising him after both parents passed. One term of school fees would keep him learning without interruption.' },
+  { id:'namuli',     name:'Namuli Sarah',        age:6,  grade:'Primary 1', emoji:'🌻', gradient:'linear-gradient(135deg,var(--amber),var(--sage-light))', need:'Needs daily meals',story:'Sarah is the eldest of four and often comes to school without breakfast. She is shy at first but lights up when she sings in the choir. Daily meals through our feeding programme would let her concentrate in class instead of going hungry.' },
+  { id:'ssempa',     name:'Ssempa Daniel',       age:12, grade:'Primary 6', emoji:'📚', gradient:'linear-gradient(135deg,var(--dark-mid),var(--terra))',   need:'Needs full sponsorship',story:'Daniel is at the top of his class and wants to become a doctor. His family lost their small farm to flooding last year. Full sponsorship covering fees, uniform, meals and supplies would keep him on track for secondary school and beyond.' },
+  { id:'akello',     name:'Akello Grace',        age:9,  grade:'Primary 3', emoji:'🌺', gradient:'linear-gradient(135deg,var(--terra-dark),var(--gold))',  need:'Needs uniform',    story:'Grace lost her father two years ago. She is quiet, kind, and loves reading more than playing. Her mother is a casual worker and cannot afford a school uniform — Grace currently wears a hand-me-down two sizes too big.' },
+  { id:'kato',       name:'Kato Brian',          age:7,  grade:'Primary 1', emoji:'🦁', gradient:'linear-gradient(135deg,var(--amber),var(--terra))',     need:'Needs daily meals',story:'Brian is a twin (his sister Mary is also on our list). He loves football and wants every meal to include matooke. His family runs a small charcoal stall but the income is unreliable. Sponsoring his meals frees the family budget for medicine and rent.' },
+  { id:'babirye',    name:'Babirye Mary',        age:10, grade:'Primary 4', emoji:'📖', gradient:'linear-gradient(135deg,var(--gold-light),var(--sage))',  need:'Needs school fees',story:'Mary is Brian\'s twin and the top reader in her grade. She wants to be a nurse so she can help her grandmother who has diabetes. One term of school fees would let her finish the year without being sent home.' },
+  { id:'ssali',      name:'Ssali Joseph',        age:13, grade:'Primary 7', emoji:'✨', gradient:'linear-gradient(135deg,var(--sage),var(--dark-mid))',   need:'Needs full sponsorship',story:'Joseph helps at his local church on weekends and says he wants to be a pastor like Bishop. He is in his final primary year and needs full sponsorship to transition into secondary school — uniform, fees, meals, and books. Without help, he risks dropping out.' },
+  { id:'nansubuga',  name:'Nansubuga Ruth',      age:5,  grade:'Primary 1', emoji:'🌷', gradient:'linear-gradient(135deg,var(--sage-light),var(--amber))', need:'Needs daily meals',story:'Ruth is the youngest in our programme. She just started P1 and is still adjusting to a full school day. Her parents work as boda-boda riders with unstable income. Daily meals would help her grow strong and stay focused during her first year of school.' },
+  { id:'wasswa',     name:'Wasswa Emmanuel',     age:14, grade:'Primary 7', emoji:'🎓', gradient:'linear-gradient(135deg,var(--terra),var(--dark))',      need:'Needs full sponsorship',story:'Emmanuel is finishing primary school this year and dreams of being an engineer. He repairs broken radios for neighbours to earn pocket money. Full sponsorship would cover his transition to a vocational secondary school where he can pursue his passion for fixing things.' },
+];
+
+const SPONSOR_OPTIONS = [
+  { id:'uniform', icon:'👕', title:'School uniform',    desc:'One-time gift: uniform, shoes, bag', price:80000,  priceLabel:'UGX 80K' },
+  { id:'fees',    icon:'📘', title:'School fees',       desc:'One term of school fees',           price:150000, priceLabel:'UGX 150K / term' },
+  { id:'meals',   icon:'🍲', title:'Monthly meals',     desc:'30 days of school meals',           price:60000,  priceLabel:'UGX 60K / month' },
+  { id:'full',    icon:'🌟', title:'Full year sponsor', desc:'Uniform + fees + meals + supplies', price:500000, priceLabel:'UGX 500K / year' },
+];
+
+const WA = '256771492492';
+
+function renderSponsorGrid() {
+  const grid = document.getElementById('sponsorGrid');
+  if (!grid) return;
+  grid.innerHTML = CHILDREN.map(c => `
+    <div class="child-card" onclick="openChildModal('${c.id}')">
+      <div class="child-photo" style="background:${c.gradient};">
+        <span class="child-badge">${c.need.replace('Needs ','')}</span>
+        ${c.emoji}
+      </div>
+      <div class="child-body">
+        <div class="child-name">${c.name}</div>
+        <div class="child-meta">Age ${c.age} · ${c.grade}</div>
+        <div class="child-need">${c.need} →</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openChildModal(id) {
+  const c = CHILDREN.find(x => x.id === id);
+  if (!c) return;
+  const modal  = document.getElementById('childModal');
+  const photo  = document.getElementById('modalPhoto');
+  const body   = document.getElementById('modalBody');
+  photo.style.background = c.gradient;
+  photo.innerHTML = c.emoji;
+  body.innerHTML = `
+    <h3>${c.name}</h3>
+    <div class="child-modal-meta">Age ${c.age} · ${c.grade} · ${c.need}</div>
+    <p class="child-story">${c.story}</p>
+    <div class="sponsor-options">
+      ${SPONSOR_OPTIONS.map(o => {
+        const msg = encodeURIComponent(`Hi Purity Foundation! I would like to sponsor *${c.name}* (age ${c.age}, ${c.grade}).\n\n*Sponsorship type:* ${o.title} — ${o.priceLabel}\n\nPlease send me payment instructions and a receipt confirmation. Thank you!`);
+        return `
+          <a class="sponsor-option" href="https://wa.me/${WA}?text=${msg}" target="_blank" rel="noopener">
+            <div class="sponsor-option-icon">${o.icon}</div>
+            <div class="sponsor-option-info">
+              <div class="sponsor-option-title">${o.title}</div>
+              <div class="sponsor-option-desc">${o.desc}</div>
+            </div>
+            <div class="sponsor-option-price">${o.priceLabel}</div>
+          </a>`;
+      }).join('')}
+    </div>
+    <div class="sponsor-pay-note">
+      <b>Payment options once you choose:</b><br>
+      MTN MoMo merchant <b>060215</b> · Airtel Money <b>1320567</b> · Equity Bank <b>1025203511681</b><br>
+      Click any sponsorship above to message us on WhatsApp — we'll guide you through it.
+    </div>
+  `;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeChildModal() {
+  document.getElementById('childModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChildModal(); });
+renderSponsorGrid();
+</script>
 
 <!-- DONATION FORM -->
 <section class="section-sm" id="donate" style="background:var(--cream-dark);">
@@ -159,40 +325,25 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Foundation.</p><div class="social-row" style="margin-top:22px;"><a class="social-btn" href="https://open.spotify.com/artist/5dY3sCQgFWaGNixuBnQlW9" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.669 11.538a.5.5 0 0 1-.686.165c-1.879-1.147-4.243-1.407-7.028-.77a.499.499 0 0 1-.222-.973c3.048-.696 5.662-.397 7.77.892a.5.5 0 0 1 .166.686m.979-2.178a.624.624 0 0 1-.858.205c-2.15-1.321-5.428-1.704-7.972-.932a.625.625 0 0 1-.362-1.194c2.905-.881 6.517-.454 8.986 1.063a.624.624 0 0 1 .206.858m.084-2.268C10.154 5.56 5.9 5.419 3.438 6.166a.748.748 0 1 1-.434-1.432c2.826-.857 7.523-.692 10.492 1.07a.747.747 0 1 1-.764 1.288"/></svg></a><a class="social-btn" href="https://music.apple.com/ug/artist/purity-mukisa/1762441014" target="_blank" rel="noopener noreferrer" aria-label="Apple Music" title="Apple Music"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="m10.995 0 .573.001q.241 0 .483.007c.35.01.705.03 1.051.093.352.063.68.166.999.329a3.36 3.36 0 0 1 1.47 1.468c.162.32.265.648.328 1 .063.347.084.7.093 1.051q.007.241.007.483l.001.573v5.99l-.001.573q0 .241-.008.483c-.01.35-.03.704-.092 1.05a3.5 3.5 0 0 1-.33 1 3.36 3.36 0 0 1-1.468 1.468 3.5 3.5 0 0 1-1 .33 7 7 0 0 1-1.05.092q-.241.007-.483.008l-.573.001h-5.99l-.573-.001q-.241 0-.483-.008a7 7 0 0 1-1.052-.092 3.6 3.6 0 0 1-.998-.33 3.36 3.36 0 0 1-1.47-1.468 3.6 3.6 0 0 1-.328-1 7 7 0 0 1-.093-1.05Q.002 11.81 0 11.568V5.005l.001-.573q0-.241.007-.483c.01-.35.03-.704.093-1.05a3.6 3.6 0 0 1 .329-1A3.36 3.36 0 0 1 1.9.431 3.5 3.5 0 0 1 2.896.1 7 7 0 0 1 3.95.008Q4.19.002 4.432 0h.573zm-.107 2.518-4.756.959H6.13a.66.66 0 0 0-.296.133.5.5 0 0 0-.16.31c-.004.027-.01.08-.01.16v5.952c0 .14-.012.275-.106.39-.095.115-.21.15-.347.177l-.31.063c-.393.08-.65.133-.881.223a1.4 1.4 0 0 0-.519.333 1.25 1.25 0 0 0-.332.995c.031.297.166.582.395.792.156.142.35.25.578.296.236.047.49.031.858-.043.196-.04.38-.102.555-.205a1.4 1.4 0 0 0 .438-.405 1.5 1.5 0 0 0 .233-.55c.042-.202.052-.386.052-.588V6.347c0-.276.08-.35.302-.404.024-.005 3.954-.797 4.138-.833.257-.049.378.025.378.294v3.524c0 .14-.001.28-.096.396-.094.115-.211.15-.348.178l-.31.062c-.393.08-.649.133-.88.223a1.4 1.4 0 0 0-.52.334 1.26 1.26 0 0 0-.34.994c.03.297.174.582.404.792a1.2 1.2 0 0 0 .577.294c.237.048.49.03.858-.044.197-.04.381-.098.556-.202a1.4 1.4 0 0 0 .438-.405q.173-.252.233-.549a2.7 2.7 0 0 0 .044-.589V2.865c0-.273-.143-.443-.4-.42-.04.003-.383.064-.424.073"/></svg></a><a class="social-btn" href="https://www.youtube.com/@PureMe11" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/></svg></a><a class="social-btn" href="https://www.boomplay.com/share/artist/95971295" target="_blank" rel="noopener noreferrer" aria-label="Boomplay" title="Boomplay"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0M5.5 3.5h3.25a2.25 2.25 0 0 1 1.6 3.84A2.5 2.5 0 0 1 9 12H5.5zm1.5 1.5v2H8.5a1 1 0 1 0 0-2zm0 3.5v2.5H9a1.25 1.25 0 0 0 0-2.5z"/></svg></a><a class="social-btn" href="https://www.tiktok.com/@puritymukisa11" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/></svg></a></div></div>
+      <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Foundation.</p><div class="social-row" style="margin-top:22px;"><a class="social-btn" href="https://open.spotify.com/artist/5dY3sCQgFWaGNixuBnQlW9" target="_blank" rel="noopener noreferrer" aria-label="Spotify" title="Spotify">S</a><a class="social-btn" href="https://music.apple.com/ug/artist/purity-mukisa/1762441014" target="_blank" rel="noopener noreferrer" aria-label="Apple Music" title="Apple Music">A</a><a class="social-btn" href="https://www.youtube.com/@PureMe11" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">Y</a><a class="social-btn" href="https://www.boomplay.com/share/artist/95971295" target="_blank" rel="noopener noreferrer" aria-label="Boomplay" title="Boomplay">B</a><a class="social-btn" href="https://www.tiktok.com/@puritymukisa11" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">T</a></div></div>
       <div class="footer-col"><h5>Navigate</h5><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li><li><a href="ministry.html">Ministry</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
-      <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="charity.html">Active Causes</a></li><li><a href="charity.html">Donate Now</a></li><li><a href="charity.html">Impact Stories</a></li></ul></div>
+      <div class="footer-col"><h5>Foundation</h5><ul class="footer-links"><li><a href="charity.html">About the Charity</a></li><li><a href="#donate">Donate Now</a></li><li><a href="#donate">Sponsor a Child</a></li></ul></div>
       <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="store.html">Online Store</a></li><li><a href="https://wa.me/256771492492" target="_blank">WhatsApp</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Ministry. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
+    <div class="footer-bottom"><div class="footer-copy">&copy; 2026 Purity Mukisa. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
   </div>
 </footer>
-<div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+
 <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
-<script src="cart.js"></script>
+
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function selectAmt(el){document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
-document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
-<!-- Cart Drawer -->
-<div class="cart-overlay" id="cartOverlay" onclick="if(window.CartUI)CartUI.close()"></div>
-<aside class="cart-drawer" id="cartDrawer">
-  <div class="cart-drawer-header">
-    <h3>Your Cart</h3>
-    <button class="cart-drawer-close" type="button" onclick="if(window.CartUI)CartUI.close()" aria-label="Close cart">✕</button>
-  </div>
-  <div class="cart-drawer-body" id="cartDrawerBody"></div>
-  <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
-    <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
-    <p style="font-size:12px;color:var(--text-light);margin:10px 0 16px;">Delivery and any taxes calculated at checkout.</p>
-    <a class="btn btn-primary" href="checkout.html" style="width:100%;justify-content:center;font-size:15px;padding:14px;">Proceed to Checkout →</a>
-    <button type="button" onclick="if(window.CartUI)CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:10px;padding:12px;">Continue Shopping</button>
-  </div>
-</aside>
-
 </body>
 </html>
-                                                                                
+up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
