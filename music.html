@@ -143,4 +143,20 @@ const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 </script>
 <!-- Cart Drawer -->
-<div class="cart-overlay" id="c
+<div class="cart-overlay" id="cartOverlay" onclick="if(window.CartUI)CartUI.close()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Cart</h3>
+    <button class="cart-drawer-close" type="button" onclick="if(window.CartUI)CartUI.close()" aria-label="Close cart">✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-footer" id="cartDrawerFooter" style="display:none;">
+    <div class="cart-summary-total"><span>Subtotal</span><span id="cartDrawerTotal">UGX 0</span></div>
+    <p style="font-size:12px;color:var(--text-light);margin:10px 0 16px;">Delivery and any taxes calculated at checkout.</p>
+    <a class="btn btn-primary" href="checkout.html" style="width:100%;justify-content:center;font-size:15px;padding:14px;">Proceed to Checkout →</a>
+    <button type="button" onclick="if(window.CartUI)CartUI.close()" class="btn btn-secondary" style="width:100%;justify-content:center;margin-top:10px;padding:12px;">Continue Shopping</button>
+  </div>
+</aside>
+
+</body>
+</html>
