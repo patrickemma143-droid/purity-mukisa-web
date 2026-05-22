@@ -245,5 +245,12 @@
   </div>
 </aside>
 
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+
 </body>
 </html>
