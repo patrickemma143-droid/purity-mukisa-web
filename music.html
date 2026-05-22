@@ -12,6 +12,9 @@
 .lyrics-box .sub { color: rgba(251,245,233,0.4); font-size: 13px; margin-bottom: 28px; font-family:'Space Grotesk',sans-serif; letter-spacing:1px; }
 .lyrics-text   { font-family: 'Playfair Display', serif; font-size: 17px; line-height: 2; color: rgba(251,245,233,0.75); }
 .lyrics-chorus { color: var(--amber); font-weight: 700; }
+html { scroll-behavior: smooth; }
+.filter-btn { text-decoration: none; color: inherit; }
+#albums-anchor, #all-songs-anchor { scroll-margin-top: 100px; }
 </style>
 </head>
 <body>
@@ -53,22 +56,22 @@
 
     <!-- Filters -->
     <div class="filter-row">
-      <div class="filter-btn active">All</div>
-      <div class="filter-btn">Albums</div>
-      <div class="filter-btn">Singles</div>
-      <div class="filter-btn">Live</div>
-      <div class="filter-btn">Worship</div>
+      <a class="filter-btn active" href="#all-songs-anchor">All</a>
+      <a class="filter-btn" href="#albums-anchor">Albums</a>
+      <a class="filter-btn" href="#all-songs-anchor">Singles</a>
+      <a class="filter-btn" href="#all-songs-anchor">Live</a>
+      <a class="filter-btn" href="#all-songs-anchor">Worship</a>
     </div>
 
     <!-- Albums -->
-    <div class="section-header fade-up"><div class="eyebrow">Albums</div><h2>Full Projects</h2></div>
+    <div id="albums-anchor" class="section-header fade-up"><div class="eyebrow">Albums</div><h2>Full Projects</h2></div>
     <div class="grid-2 fade-up" style="margin-bottom:70px;max-width:900px;margin-left:auto;margin-right:auto;">
       <div class="album-card"><div class="album-art" style="background:url('assets/web/yenze.jpg') center/cover, linear-gradient(135deg,var(--terra),var(--amber));aspect-ratio:1/1;height:auto;"></div><div class="album-meta"><div class="album-title">Yenze</div><div class="album-year">Latest Album · 5 Tracks</div><div class="album-actions"><a class="btn btn-primary btn-sm" href="https://open.spotify.com/artist/5dY3sCQgFWaGNixuBnQlW9" target="_blank">▶ Stream</a><a class="btn btn-secondary btn-sm" href="store.html">Buy</a></div></div></div>
       <div class="album-card"><div class="album-art" style="background:url('assets/web/extravagant-love.jpg') center/cover, linear-gradient(135deg,var(--sage),var(--gold));aspect-ratio:1/1;height:auto;"></div><div class="album-meta"><div class="album-title">Extravagant Love</div><div class="album-year">Album · 8 Tracks</div><div class="album-actions"><a class="btn btn-primary btn-sm" href="https://open.spotify.com/artist/5dY3sCQgFWaGNixuBnQlW9" target="_blank">▶ Stream</a><a class="btn btn-secondary btn-sm" href="store.html">Buy</a></div></div></div>
     </div>
 
     <!-- Song List -->
-    <div class="section-header fade-up"><div class="eyebrow">All Songs</div><h2>The Music</h2></div>
+    <div id="all-songs-anchor" class="section-header fade-up"><div class="eyebrow">All Songs</div><h2>The Music</h2></div>
     <div class="fade-up">
       <div class="song-list-item"><div class="song-num">1</div><div class="song-art" style="background:url(&apos;assets/web/yenze.jpg&apos;) center/cover,linear-gradient(135deg,var(--terra),var(--amber));"></div><div class="song-info"><div class="song-name">Niwewe</div><div class="song-album">Yenze</div></div><div class="song-dur">—</div><button class="song-play" onclick="activatePlayer()">▶</button></div>
       <div class="song-list-item"><div class="song-num">2</div><div class="song-art" style="background:url(&apos;assets/web/yenze.jpg&apos;) center/cover,linear-gradient(135deg,var(--terra),var(--amber));"></div><div class="song-info"><div class="song-name">Yenze</div><div class="song-album">Yenze</div></div><div class="song-dur">—</div><button class="song-play" onclick="activatePlayer()">▶</button></div>
