@@ -25,7 +25,9 @@
 .donate-form { background:var(--cream-dark);border-radius:var(--radius-lg);padding:50px; }
 .pay-method { background:var(--cream);border-radius:var(--radius-sm);padding:14px 18px;border:1px solid var(--cream-deep);font-size:14px;color:var(--dark);margin-bottom:10px; }
 .impact-story { background:var(--cream);border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--cream-deep);display:grid;grid-template-columns:1fr 1fr;margin-bottom:24px; }
-.story-img { background:linear-gradient(135deg,var(--sage),var(--amber));display:flex;align-items:center;justify-content:center;font-size:80px;min-height:280px; }
+.story-img { background:linear-gradient(135deg,var(--sage),var(--amber));display:flex;align-items:center;justify-content:center;font-size:80px;min-height:280px;background-size:cover;background-position:center; }
+.story-img.has-photo { font-size:0; }
+.story-img-miriam { background-image:url('assets/web/story-miriam.jpg'); background-position:center 35%; }
 .story-body { padding:44px; }
 .story-body h3 { margin-bottom:14px; }
 .story-body p  { margin-bottom:20px; }
@@ -294,7 +296,7 @@ renderSponsorGrid();
   <div class="container">
     <div class="section-header fade-up"><div class="eyebrow">Impact Stories</div><h2>Real Lives. Real Change.</h2></div>
     <div class="impact-story fade-up">
-      <div class="story-img">👧</div>
+      <div class="story-img has-photo story-img-miriam" role="img" aria-label="Mariam holding a basket of grain"></div>
       <div class="story-body">
         <div class="eyebrow">Story from Mukono District</div>
         <h3>Miriam's New Beginning</h3>
