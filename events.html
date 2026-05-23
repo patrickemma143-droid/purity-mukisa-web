@@ -7,7 +7,12 @@
 <style>
 .past-event-card { background:var(--cream);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--cream-deep);transition:var(--transition); }
 .past-event-card:hover { box-shadow:var(--shadow-md); }
-.past-img { height:180px;display:flex;align-items:center;justify-content:center;font-size:50px; }
+.past-img { height:180px;display:flex;align-items:center;justify-content:center;font-size:50px;background-size:cover;background-position:center top; }
+.past-img.has-photo { font-size:0; }
+.past-img-yenze       { background-image:url('assets/web/event-yenze.jpg'); }
+.past-img-london      { background-image:url('assets/web/event-london.jpg'); }
+.past-img-nairobi     { background-image:url('assets/web/event-nairobi.jpg'); }
+.past-img-extravagant { background-image:url('assets/web/event-extravagant.jpg'); }
 .past-meta { padding:20px; }
 .past-title { font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:6px; }
 .past-date  { font-size:12px;color:var(--text-light);font-family:'Space Grotesk',sans-serif;letter-spacing:1px; }
@@ -158,10 +163,10 @@
   <div class="container">
     <div class="section-header fade-up"><div class="eyebrow">History</div><h2>Past Events</h2></div>
     <div class="grid-4 fade-up">
-      <div class="past-event-card"><div class="past-img album-art-1">🎤</div><div class="past-meta"><div class="past-title">Yenze Launch Concert</div><div class="past-date">March 2026 · Kampala</div></div></div>
-      <div class="past-event-card"><div class="past-img album-art-2">🌍</div><div class="past-meta"><div class="past-title">London Gospel Night</div><div class="past-date">Dec 2025 · London, UK</div></div></div>
-      <div class="past-event-card"><div class="past-img album-art-3">🎶</div><div class="past-meta"><div class="past-title">Nairobi City Crusade</div><div class="past-date">Oct 2025 · Nairobi</div></div></div>
-      <div class="past-event-card"><div class="past-img album-art-5">🙏</div><div class="past-meta"><div class="past-title">Extravagant Love Live</div><div class="past-date">Jun 2024 · Kampala</div></div></div>
+      <div class="past-event-card"><div class="past-img has-photo past-img-yenze" role="img" aria-label="Yenze Launch Concert"></div><div class="past-meta"><div class="past-title">Yenze Launch Concert</div><div class="past-date">March 2026 · Kampala</div></div></div>
+      <div class="past-event-card"><div class="past-img has-photo past-img-london" role="img" aria-label="London Gospel Night"></div><div class="past-meta"><div class="past-title">London Gospel Night</div><div class="past-date">Dec 2025 · London, UK</div></div></div>
+      <div class="past-event-card"><div class="past-img has-photo past-img-nairobi" role="img" aria-label="Nairobi City Crusade"></div><div class="past-meta"><div class="past-title">Nairobi City Crusade</div><div class="past-date">Oct 2025 · Nairobi</div></div></div>
+      <div class="past-event-card"><div class="past-img has-photo past-img-extravagant" role="img" aria-label="Extravagant Love Live"></div><div class="past-meta"><div class="past-title">Extravagant Love Live</div><div class="past-date">Jun 2024 · Kampala</div></div></div>
     </div>
     <div class="text-center mt-40 fade-up"><a class="btn btn-dark" href="gallery.html">View Photo Gallery →</a></div>
   </div>
