@@ -180,13 +180,13 @@
     <div class="footer-grid">
       <div class="footer-brand"><a class="nav-logo" href="index.html" style="color:var(--cream);">Purity Mukisa</a><p>Gospel music artist, minister, and founder of the Purity Charity.</p></div>
       <div class="footer-col"><h5>Shop</h5><ul class="footer-links"><li><a href="store.html">All Products</a></li><li><a href="store.html">Albums</a></li><li><a href="store.html">Digital Downloads</a></li><li><a href="store.html">Merch</a></li></ul></div>
-      <div class="footer-col"><h5>Help</h5><ul class="footer-links"><li><a href="contact.html">Contact Us</a></li><li><a href="https://wa.me/256771492492" target="_blank">WhatsApp Support</a></li><li><a href="contact.html">FAQs</a></li></ul></div>
+      <div class="footer-col"><h5>Help</h5><ul class="footer-links"><li><a href="contact.html">Contact Us</a></li><li><a href="https://wa.me/256771492493" target="_blank">WhatsApp Support</a></li><li><a href="contact.html">FAQs</a></li></ul></div>
       <div class="footer-col"><h5>Connect</h5><ul class="footer-links"><li><a href="contact.html">Book Purity</a></li><li><a href="charity.html">The Charity</a></li></ul></div>
     </div>
     <div class="footer-bottom"><div class="footer-copy">© 2026 Purity Mukisa. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div>
   </div>
 </footer>
-<a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+<a class="wa-float" href="https://wa.me/256771492493" target="_blank">💬</a>
 
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
@@ -232,7 +232,7 @@ function selectPayment(method) {
       b: `<ol>
         <li>On your phone dial <code>*165*3#</code></li>
         <li>Select <b>Pay Bill</b> → <b>Merchant Code</b></li>
-        <li>Enter merchant code <code>060215</code></li>
+        <li>Enter merchant code <code>574334</code></li>
         <li>Enter amount: <code>${total}</code></li>
         <li>Enter your MoMo PIN to confirm</li>
         <li>Click <b>Complete Order</b> below — we'll WhatsApp you to confirm.</li>
@@ -243,7 +243,7 @@ function selectPayment(method) {
       b: `<ol>
         <li>On your phone dial <code>*185*9#</code></li>
         <li>Select <b>Pay Merchant</b></li>
-        <li>Enter merchant code <code>1320567</code></li>
+        <li>Enter merchant code <code>646509</code></li>
         <li>Enter amount: <code>${total}</code></li>
         <li>Enter your Airtel Money PIN to confirm</li>
         <li>Click <b>Complete Order</b> below — we'll WhatsApp you to confirm.</li>
@@ -254,7 +254,7 @@ function selectPayment(method) {
       b: `<ol>
         <li>Bank: <code>Equity Bank Uganda</code></li>
         <li>Account name: <code>Purity Mukisa Ministry</code></li>
-        <li>Account number: <code>1025203511681</code></li>
+        <li>Account number: <code>1035101089815</code></li>
         <li>Amount: <code>${total}</code></li>
         <li>Use your phone number as the reference</li>
         <li>Click <b>Complete Order</b> below and we'll match your payment.</li>
@@ -294,9 +294,9 @@ function submitOrder() {
   if (Cart.items().length === 0) { alert('Your cart is empty.'); return; }
 
   const methodLabels = {
-    mtn: 'MTN Mobile Money (code 060215)',
-    airtel: 'Airtel Money (code 1320567)',
-    bank: 'Bank Transfer · Equity 1025203511681',
+    mtn: 'MTN Mobile Money (code 574334)',
+    airtel: 'Airtel Money (code 646509)',
+    bank: 'Bank Transfer · Equity 1035101089815',
     whatsapp: 'WhatsApp confirm (no payment chosen yet)',
   };
 
@@ -312,9 +312,9 @@ function submitOrder() {
   document.getElementById('confirmWhatsapp').href = url;
 
   const confirmHtml = {
-    mtn:    `<b>Next step:</b> Dial <code>*165*3#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>060215</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
-    airtel: `<b>Next step:</b> Dial <code>*185*9#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>1320567</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
-    bank:   `<b>Next step:</b> Transfer <code>${Cart.formatUGX(Cart.total())}</code> to Equity Bank account <code>1025203511681</code> using your phone as reference. Then click the WhatsApp button below to send us your order details and the bank slip.`,
+    mtn:    `<b>Next step:</b> Dial <code>*165*3#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>574334</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
+    airtel: `<b>Next step:</b> Dial <code>*185*9#</code> on your phone, pay <code>${Cart.formatUGX(Cart.total())}</code> to merchant code <code>646509</code>. Then click the WhatsApp button below to send us your order details and proof of payment.`,
+    bank:   `<b>Next step:</b> Transfer <code>${Cart.formatUGX(Cart.total())}</code> to Equity Bank account <code>1035101089815</code> using your phone as reference. Then click the WhatsApp button below to send us your order details and the bank slip.`,
     whatsapp: `<b>Next step:</b> Click the WhatsApp button below. Your full cart and contact details will be sent automatically. We'll reply with the best way to pay.`,
   };
   document.getElementById('confirmInstructions').innerHTML = confirmHtml[selectedMethod];

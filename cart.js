@@ -1,5 +1,5 @@
 /* ============================================================
-   PURITY MUKISA — Shared Cart Logic (v2)
+   PURITY MUKISA — Shared Cart Logic (v2.1)
    Persists across pages via localStorage.
    Loaded with `defer` in <head> on every page.
 ============================================================ */
@@ -7,7 +7,7 @@
   'use strict';
 
   const STORAGE_KEY     = 'purity_mukisa_cart_v1';
-  const WHATSAPP_NUMBER = '256771492492';
+  const WHATSAPP_NUMBER = '256771492493';
 
   /* ---------------- Cart state ---------------- */
   function loadCart() {
@@ -85,7 +85,6 @@
 
   /* ---------------- Drawer render ---------------- */
   function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-  function escapeJs(s)   { return String(s).replace(/'/g, "\\'"); }
 
   function renderDrawer() {
     const body   = document.getElementById('cartDrawerBody');
@@ -123,7 +122,6 @@
     const o = document.getElementById('cartOverlay');
     if (!d) { console.warn('[Cart] cartDrawer element missing on this page'); return; }
     renderDrawer();
-    // Force browser to apply current state before transitioning
     void d.offsetWidth;
     d.classList.add('open');
     if (o) o.classList.add('open');
@@ -189,63 +187,7 @@
     remove: removeItem,
   };
 
-  /* ---------------- Global event delegation ----------------
-     Works even if cart.js loads AFTER the cart button was rendered.
-     Any element with [data-cart-action] is auto-wired.
-  -------------------------------------------------------- */
-  function onClick(e) {
-    const target = e.target.closest('[data-cart-action]');
-    if (!target) return;
-    const action = target.getAttribute('data-cart-action');
-    const id     = target.getAttribute('data-id');
-    if (action === 'open')   { e.preventDefault(); openDrawer(); return; }
-    if (action === 'close')  { e.preventDefault(); closeDrawer(); return; }
-    if (action === 'inc' && id)    { window.CartUI.inc(id); return; }
-    if (action === 'dec' && id)    { window.CartUI.dec(id); return; }
-    if (action === 'remove' && id) { window.CartUI.remove(id); return; }
-  }
-
-  function onKey(e) {
-    if (e.key === 'Escape') closeDrawer();
-  }
-
-  function init() {
-    updateBadges();
-    document.addEventListener('click', onClick);
-    document.addEventListener('keydown', onKey);
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  /* Cross-tab sync */
-  window.addEventListener('storage', e => {
-    if (e.key === STORAGE_KEY) { updateBadges(); renderDrawer(); }
-  });
-})();
-yr}-${code}`;
-  }
-
-  /* ---------------- Public API ---------------- */
-  window.Cart = {
-    add: addItem, remove: removeItem, updateQty: updateQty, clear: clearCart,
-    items: getCart, count: getCount, total: getTotal,
-    formatUGX: formatUGX, whatsappNumber: WHATSAPP_NUMBER,
-    buildOrderMessage: buildOrderMessage, generateOrderId: generateOrderId,
-  };
-  window.CartUI = {
-    open: openDrawer, close: closeDrawer, toggle: toggleDrawer, render: renderDrawer,
-    inc: function(id){ const it = loadCart().find(i => i.id === id); if (it) updateQty(id, it.qty + 1); },
-    dec: function(id){ const it = loadCart().find(i => i.id === id); if (it && it.qty > 1) updateQty(id, it.qty - 1); else if (it) removeItem(id); },
-    remove: removeItem,
-  };
-
-  /* ---------------- Global event delegation ----------------
-     Works even if cart.js loads AFTER the cart button was rendered.
-     Any element with [data-cart-action] is auto-wired.
-  -------------------------------------------------------- */
+  /* ---------------- Global event delegation ---------------- */
   function onClick(e) {
     const target = e.target.closest('[data-cart-action]');
     if (!target) return;
