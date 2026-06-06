@@ -201,6 +201,13 @@ p  { color: var(--text-muted); line-height: 1.8; }
   font-size: 13px; opacity: 0; transition: var(--transition);
 }
 .song-list-item:hover .song-play { opacity: 1; }
+.song-dl {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--amber); color: #fff; border: none; cursor: pointer;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; text-decoration: none; transition: var(--transition);
+}
+.song-dl:hover { background: var(--terra); transform: translateY(-1px); }
 
 /* ---- Filter Buttons ---- */
 .filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
