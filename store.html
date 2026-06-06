@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Store — Purity Ministry</title>
 <link rel="stylesheet" href="styles.css"/>
-<script src="cart.js" defer></script>
+<script src="cart.js?v=2.2" defer></script>
 <style>
 .store-filter { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px; }
 .cart-bar { position:fixed;bottom:80px;right:24px;background:var(--dark);color:var(--cream);padding:12px 22px;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;display:none;gap:10px;align-items:center;box-shadow:var(--shadow-lg);z-index:800;cursor:pointer; }
@@ -179,12 +179,15 @@
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function quickAdd(btn, id, name, price, priceLabel, emoji, gradient) {
-  if (!window.Cart) { console.warn('Cart not ready'); return; }
+  if (!window.Cart) { // cart.js not loaded yet (slow connection) — retry instead of failing
+    return setTimeout(function(){ quickAdd(btn, id, name, price, priceLabel, emoji, gradient); }, 120);
+  }
   Cart.add({ id, name, price, priceLabel, emoji, gradient, qty: 1 });
-  const orig = btn.textContent;
+  const orig = btn.getAttribute('data-orig') || btn.textContent;
+  btn.setAttribute('data-orig', orig);
   btn.textContent = '✓ Added';
   btn.style.background = 'var(--sage)';
-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1400);
+  setTimeout(() => { btn.textContent = btn.getAttribute('data-orig'); btn.style.background = ''; }, 1400);
 }
 document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){this.closest('.store-filter').querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');}));
 const fpBtn = document.getElementById('fpBtn');

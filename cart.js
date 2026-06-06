@@ -1,5 +1,5 @@
 /* ============================================================
-   PURITY MUKISA — Shared Cart Logic (v2.1)
+   PURITY MUKISA — Shared Cart Logic (v2.2)
    Persists across pages via localStorage.
    Loaded with `defer` in <head> on every page.
 ============================================================ */
@@ -194,6 +194,23 @@
     const action = target.getAttribute('data-cart-action');
     const id     = target.getAttribute('data-id');
     if (action === 'open')   { e.preventDefault(); openDrawer(); return; }
+    if (action === 'add') {
+      e.preventDefault();
+      addItem({
+        id:    target.getAttribute('data-id'),
+        name:  target.getAttribute('data-name'),
+        price: parseInt(target.getAttribute('data-price'), 10) || 0,
+        priceLabel: target.getAttribute('data-price-label') || '',
+        emoji: target.getAttribute('data-emoji') || '\u{1F3B5}',
+        gradient: target.getAttribute('data-gradient') || undefined,
+        qty: 1
+      });
+      var lbl = target.getAttribute('data-orig') || target.textContent;
+      target.setAttribute('data-orig', lbl);
+      target.textContent = '\u2713 Added';
+      setTimeout(function(){ target.textContent = target.getAttribute('data-orig'); }, 1400);
+      return;
+    }
     if (action === 'close')  { e.preventDefault(); closeDrawer(); return; }
     if (action === 'inc' && id)    { window.CartUI.inc(id); return; }
     if (action === 'dec' && id)    { window.CartUI.dec(id); return; }
@@ -204,16 +221,22 @@
     if (e.key === 'Escape') closeDrawer();
   }
 
+  var _inited = false;
   function init() {
+    if (_inited) return;        // never attach handlers twice
+    _inited = true;
     updateBadges();
     document.addEventListener('click', onClick);
     document.addEventListener('keydown', onKey);
   }
+  // Run as soon as the DOM is ready, regardless of how/when this script loads.
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+  // Belt-and-suspenders: also run on full load in case the above was missed.
+  window.addEventListener('load', init);
 
   /* Cross-tab sync */
   window.addEventListener('storage', e => {
