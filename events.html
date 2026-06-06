@@ -16,6 +16,15 @@
 .past-meta { padding:20px; }
 .past-title { font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:6px; }
 .past-date  { font-size:12px;color:var(--text-light);font-family:'Space Grotesk',sans-serif;letter-spacing:1px; }
+.press-feature { display:grid; grid-template-columns:1fr 1.3fr; background:var(--cream); border:1px solid var(--cream-deep); border-radius:var(--radius-lg); overflow:hidden; text-decoration:none; color:inherit; transition:var(--transition); }
+.press-feature:hover { box-shadow:var(--shadow-md); border-color:var(--amber); transform:translateY(-3px); }
+.press-feature-img { min-height:280px; background-size:cover; background-position:center; background-color:var(--cream-dark); }
+.press-feature-body { padding:38px 40px; display:flex; flex-direction:column; justify-content:center; }
+.press-source { font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--terra); margin-bottom:12px; }
+.press-headline { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--dark); line-height:1.3; margin-bottom:14px; }
+.press-excerpt { font-size:14px; line-height:1.7; color:var(--text-muted); margin-bottom:20px; }
+.press-read { font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:700; color:var(--amber); letter-spacing:0.5px; }
+@media(max-width:760px){ .press-feature{ grid-template-columns:1fr; } .press-feature-img{ min-height:200px; } .press-feature-body{ padding:28px 24px; } }
 .booking-banner { background:var(--dark);border-radius:var(--radius-lg);padding:60px;text-align:center;margin-top:60px; }
 .event-badge { display:inline-block;padding:4px 12px;border-radius:100px;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-family:'Space Grotesk',sans-serif;font-weight:600;margin-bottom:8px; }
 .badge-free { background:var(--sage-pale);color:var(--sage); }
@@ -169,6 +178,22 @@
       <div class="past-event-card"><div class="past-img has-photo past-img-extravagant" role="img" aria-label="Extravagant Love Live"></div><div class="past-meta"><div class="past-title">Extravagant Love Live</div><div class="past-date">Jun 2024 · Kampala</div></div></div>
     </div>
     <div class="text-center mt-40 fade-up"><a class="btn btn-dark" href="gallery.html">View Photo Gallery →</a></div>
+  </div>
+</section>
+
+<!-- Blog & Press -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header fade-up"><div class="eyebrow">Blog &amp; Press</div><h2>In the News</h2></div>
+    <a class="press-feature fade-up" href="https://www.bukedde.co.ug/kasalabecca/BUK_159587/purity-mukisa-omwaka-agutandikidde-mu-ggiya" target="_blank" rel="noopener noreferrer">
+      <div class="press-feature-img" style="background-image:url('https://newvision-media.s3.amazonaws.com/cms/21246ddd-ba04-4097-805f-1ed5121860ca.jpg');" role="img" aria-label="Purity Mukisa featured in Bukedde"></div>
+      <div class="press-feature-body">
+        <div class="press-source">📰 Bukedde (Vision Group) &middot; Feb 2026</div>
+        <h3 class="press-headline">Purity Mukisa omwaka agutandikidde mu ggiya</h3>
+        <p class="press-excerpt">Bukedde celebrates Purity Mukisa starting 2026 in style with the release of her new song and music video, &ldquo;Niwewe&rdquo; &mdash; Swahili for &ldquo;It is You.&rdquo; She shares that the song first came to her in a dream, carrying comfort for the weary and hope for those who feel they have run out of it. Produced by Sam Bisaso, with video by Creation Charis.</p>
+        <span class="press-read">Read the full article on Bukedde &rarr;</span>
+      </div>
+    </a>
   </div>
 </section>
 
