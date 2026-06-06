@@ -19,6 +19,7 @@ h1{ color:var(--cream); text-align:center; font-family:'Playfair Display',serif;
 .result.bad{ background:#b23b3b; color:#fff; }
 .result.warn{ background:#c9882c; color:#fff; }
 .result .big{ font-size:30px; font-weight:800; font-family:'Playfair Display',serif; }
+.result .ico{ font-size:46px; line-height:1; font-weight:800; }
 .result .who{ font-size:20px; margin-top:6px; }
 .result .sub{ opacity:.9; font-size:14px; margin-top:6px; }
 .muted{ color:var(--text-light); font-size:12px; font-family:'Space Grotesk',sans-serif; text-align:center; margin-top:10px; }
@@ -59,9 +60,11 @@ staffEl.addEventListener('change',()=>sessionStorage.setItem('gateStaff',staffEl
 
 let busy=false, qr=null, running=false;
 function show(kind,big,who,sub){
+  const icons={ok:'\u2713',warn:'\u26A0',bad:'\u2715'};
   resultEl.className='result show '+kind;
-  resultEl.innerHTML='<div class="big">'+big+'</div>'+(who?'<div class="who">'+who+'</div>':'')+(sub?'<div class="sub">'+sub+'</div>':'');
+  resultEl.innerHTML='<div class="ico">'+(icons[kind]||'')+'</div><div class="big">'+big+'</div>'+(who?'<div class="who">'+who+'</div>':'')+(sub?'<div class="sub">'+sub+'</div>':'');
   nextBtn.style.display='inline-flex';
+  if(navigator.vibrate){ navigator.vibrate(kind==='ok'?80:[60,40,60]); }
 }
 async function check(code){
   if(busy) return; busy=true; hint.textContent='Checking…';

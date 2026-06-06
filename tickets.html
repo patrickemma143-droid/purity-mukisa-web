@@ -31,13 +31,16 @@
 .tk-msg.err { background:#fbeaea; color:#a13232; }
 .tk-msg.ok  { background:var(--sage-pale); color:var(--sage); }
 /* ticket view */
-.ticket { background:var(--cream); border:1px solid var(--cream-deep); border-radius:var(--radius-lg); padding:24px; margin:16px 0; display:flex; gap:22px; align-items:center; }
-.ticket img { width:160px; height:160px; flex-shrink:0; background:#fff; border-radius:10px; }
+.ticket { background:var(--cream); border:1px solid var(--cream-deep); border-radius:16px; margin:16px 0; overflow:hidden; }
+.ticket-top { background:var(--dark); color:var(--cream); padding:11px 22px; font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center; }
+.ticket-row { display:flex; gap:22px; align-items:center; padding:22px; }
+.ticket-row img { width:150px; height:150px; flex-shrink:0; background:#fff; border-radius:10px; border:1px solid var(--cream-deep); }
 .ticket-type { font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--terra); }
-.ticket-holder { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--dark); margin:4px 0; }
-.ticket-code { font-family:monospace; font-size:11px; color:var(--text-light); word-break:break-all; }
-.ticket-used { color:#b23b3b; font-weight:700; font-size:12px; }
-@media(max-width:560px){ .ticket{ flex-direction:column; text-align:center; } }
+.ticket-holder { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--dark); margin:3px 0 6px; }
+.ticket-ev { font-size:12.5px; color:var(--text-muted); line-height:1.5; }
+.ticket-code { font-family:monospace; font-size:10.5px; color:var(--text-light); word-break:break-all; margin-top:8px; }
+.ticket-used { color:#b23b3b; font-weight:700; font-size:12px; margin-top:6px; }
+@media(max-width:560px){ .ticket-row{ flex-direction:column; text-align:center; } }
 </style>
 </head>
 <body>
@@ -193,13 +196,18 @@ function renderOrder(o){
     app.innerHTML = msg('We haven’t received confirmation for this order yet (ref '+esc(o.reference)+'). If you completed payment, your tickets will appear here and in your email shortly — refresh this page in a minute.','err')
       + '<div style="text-align:center;"><button class="btn btn-primary" onclick="location.reload()">Refresh</button></div>'; return;
   }
+  const evline = `${esc(ev.title||'')}${when?' · '+esc(when):''}${ev.venue?' · '+esc(ev.venue):''}`;
   const tix=(o.tickets||[]).map(t=>`<div class="ticket">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&qzone=2&data=${encodeURIComponent(t.code)}" alt="QR"/>
-      <div>
-        <div class="ticket-type">${esc(t.type)}</div>
-        <div class="ticket-holder">${esc(t.holder||o.buyer_name)}</div>
-        <div class="ticket-code">${esc(t.code)}</div>
-        ${t.status==='used'?'<div class="ticket-used">Already checked in</div>':''}
+      <div class="ticket-top"><span>Purity Mukisa</span><span>Admit One</span></div>
+      <div class="ticket-row">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&qzone=2&data=${encodeURIComponent(t.code)}" alt="Ticket QR"/>
+        <div>
+          <div class="ticket-type">${esc(t.type)}</div>
+          <div class="ticket-holder">${esc(t.holder||o.buyer_name)}</div>
+          <div class="ticket-ev">${evline}</div>
+          <div class="ticket-code">${esc(t.code)}</div>
+          ${t.status==='used'?'<div class="ticket-used">Already checked in</div>':''}
+        </div>
       </div></div>`).join('');
   app.innerHTML = `<div style="text-align:center;margin-bottom:10px;">
       <h2 style="font-family:'Playfair Display',serif;color:var(--dark);">You’re in! 🎉</h2>
