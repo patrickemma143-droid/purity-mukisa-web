@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Buy Tickets — Purity Mukisa</title>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+.tk-wrap { max-width:860px; margin:0 auto; }
+.tk-event { background:var(--cream); border:1px solid var(--cream-deep); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:28px; }
+.tk-event-head { padding:26px 28px 8px; }
+.tk-event-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:800; color:var(--dark); }
+.tk-event-meta { font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--text-light); margin-top:6px; letter-spacing:.3px; }
+.tk-event-desc { font-size:14px; color:var(--text-muted); line-height:1.6; margin-top:12px; }
+.tk-tiers { padding:8px 28px 8px; }
+.tk-tier { display:flex; align-items:center; gap:16px; padding:16px 0; border-top:1px solid var(--cream-deep); }
+.tk-tier-info { flex:1; }
+.tk-tier-name { font-weight:700; color:var(--dark); }
+.tk-tier-price { font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--terra); margin-top:2px; }
+.tk-tier-rem { font-size:11px; color:var(--text-light); font-family:'Space Grotesk',sans-serif; }
+.tk-soldout { color:#b23b3b; font-weight:700; font-size:12px; font-family:'Space Grotesk',sans-serif; }
+.tk-step { display:flex; align-items:center; gap:10px; }
+.tk-step button { width:34px; height:34px; border-radius:50%; border:1px solid var(--cream-deep); background:var(--cream-dark); font-size:18px; cursor:pointer; color:var(--dark); }
+.tk-step input { width:44px; text-align:center; border:1px solid var(--cream-deep); border-radius:8px; padding:7px 0; font-family:'Space Grotesk',sans-serif; }
+.tk-summary { padding:18px 28px; background:var(--cream-dark); border-top:1px solid var(--cream-deep); }
+.tk-form { padding:6px 28px 26px; display:grid; gap:12px; }
+.tk-form input { padding:12px 14px; border:1px solid var(--cream-deep); border-radius:10px; font-size:14px; font-family:'Space Grotesk',sans-serif; background:#fff; }
+.tk-total { display:flex; justify-content:space-between; align-items:center; font-family:'Space Grotesk',sans-serif; }
+.tk-total b { font-size:20px; color:var(--dark); }
+.tk-note { font-size:12px; color:var(--text-light); margin-top:8px; }
+.tk-msg { padding:14px 16px; border-radius:10px; font-size:14px; margin:14px 0; }
+.tk-msg.err { background:#fbeaea; color:#a13232; }
+.tk-msg.ok  { background:var(--sage-pale); color:var(--sage); }
+/* ticket view */
+.ticket { background:var(--cream); border:1px solid var(--cream-deep); border-radius:var(--radius-lg); padding:24px; margin:16px 0; display:flex; gap:22px; align-items:center; }
+.ticket img { width:160px; height:160px; flex-shrink:0; background:#fff; border-radius:10px; }
+.ticket-type { font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--terra); }
+.ticket-holder { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--dark); margin:4px 0; }
+.ticket-code { font-family:monospace; font-size:11px; color:var(--text-light); word-break:break-all; }
+.ticket-used { color:#b23b3b; font-weight:700; font-size:12px; }
+@media(max-width:560px){ .ticket{ flex-direction:column; text-align:center; } }
+</style>
+</head>
+<body>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Purity Mukisa</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li>
+      <li><a href="ministry.html">Ministry</a></li><li><a href="charity.html">Charity</a></li>
+      <li><a href="events.html">Events</a></li><li><a href="store.html">Store</a></li>
+      <li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="charity.html">Donate Now</a>
+    <div class="nav-hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+  <a href="index.html">Home</a><a href="music.html">Music</a><a href="ministry.html">Ministry</a>
+  <a href="charity.html">Charity</a><a href="events.html">Events</a><a href="store.html">Store</a>
+  <a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero" style="background:linear-gradient(rgba(15,15,15,0.6),rgba(15,15,15,0.85)),url('assets/web/events-hero.jpg') center/cover;">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow">🎟️ Tickets</div>
+    <h1>Buy Tickets</h1>
+    <p style="max-width:520px;margin:10px auto 0;">Secure your seat. Pay by Mobile Money or card — your digital ticket with a scannable QR code is emailed to you instantly.</p>
+  </div>
+</div>
+
+<section class="section" style="background:var(--cream-dark);">
+  <div class="container tk-wrap">
+    <div id="tkApp"><p style="text-align:center;color:var(--text-light);">Loading events…</p></div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-bottom" style="border:none;"><div class="footer-copy">© 2026 Purity Mukisa. Designed by <a href="https://chariscreationsltd.com" style="color:var(--amber);">Charis Creations Ltd</a></div></div></div></footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL = 'https://facffdxpdzydudjaujpj.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_uwJ8zN20MVQSsVWyQRQ3Mw_YUsFDoLO';
+const FN = SUPABASE_URL + '/functions/v1';
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+const app = document.getElementById('tkApp');
+const fmt = n => 'UGX ' + (Number(n)||0).toLocaleString('en-US');
+const esc = s => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const params = new URLSearchParams(location.search);
+const ref = params.get('ref');
+if (ref) { showOrder(ref); } else { loadCatalog(); }
+
+async function loadCatalog(){
+  const { data, error } = await sb.rpc('tk_catalog');
+  if (error){ app.innerHTML = msg('Could not load events: '+error.message,'err'); return; }
+  const events = data || [];
+  if (!events.length){ app.innerHTML = '<p style="text-align:center;color:var(--text-light);">No events on sale right now. Check back soon.</p>'; return; }
+  app.innerHTML = events.map(renderEvent).join('');
+  events.forEach(wireEvent);
+}
+function renderEvent(ev){
+  const when = ev.starts_at ? new Date(ev.starts_at).toLocaleString('en-GB',{dateStyle:'full',timeStyle:'short'}) : '';
+  const tiers = (ev.ticket_types||[]).map(t=>{
+    const rem = t.remaining;
+    const sold = t.soldout || (rem!==null && rem<=0);
+    return `<div class="tk-tier">
+      <div class="tk-tier-info">
+        <div class="tk-tier-name">${esc(t.name)}</div>
+        <div class="tk-tier-price">${fmt(t.price_ugx)}</div>
+        ${rem!==null && !sold ? `<div class="tk-tier-rem">${rem} left</div>`:''}
+      </div>
+      ${ sold ? '<div class="tk-soldout">Sold out</div>'
+        : `<div class="tk-step">
+            <button type="button" data-act="dec" data-tt="${t.id}">−</button>
+            <input type="text" readonly value="0" id="qty-${t.id}" data-price="${t.price_ugx}"/>
+            <button type="button" data-act="inc" data-tt="${t.id}" data-max="${rem===null?9999:rem}">+</button>
+          </div>` }
+    </div>`;
+  }).join('');
+  return `<div class="tk-event" data-ev="${ev.id}">
+    <div class="tk-event-head">
+      <div class="tk-event-title">${esc(ev.title)}</div>
+      <div class="tk-event-meta">${esc(when)}${ev.venue?' · '+esc(ev.venue):''}${ev.doors_info?' · '+esc(ev.doors_info):''}</div>
+      ${ev.description?`<div class="tk-event-desc">${esc(ev.description)}</div>`:''}
+    </div>
+    <div class="tk-tiers">${tiers}</div>
+    <div class="tk-summary">
+      <div class="tk-total"><span>Total</span><b id="total-${ev.id}">UGX 0</b></div>
+      <div class="tk-form">
+        <input id="nm-${ev.id}" placeholder="Full name *"/>
+        <input id="em-${ev.id}" type="email" placeholder="Email (your tickets are sent here) *"/>
+        <input id="ph-${ev.id}" placeholder="Phone (Mobile Money) *"/>
+        <button class="btn btn-primary" id="pay-${ev.id}" style="justify-content:center;padding:14px;">Pay & Get Tickets →</button>
+        <div class="tk-note">Secure payment via Flutterwave (MTN MoMo, Airtel Money, Visa/Mastercard).</div>
+        <div id="evmsg-${ev.id}"></div>
+      </div>
+    </div>
+  </div>`;
+}
+function wireEvent(ev){
+  const root = document.querySelector(`.tk-event[data-ev="${ev.id}"]`);
+  const recompute = ()=>{
+    let total=0;
+    (ev.ticket_types||[]).forEach(t=>{ const el=root.querySelector(`#qty-${t.id}`); if(el) total += (parseInt(el.value)||0)*t.price_ugx; });
+    root.querySelector(`#total-${ev.id}`).textContent = fmt(total);
+  };
+  root.querySelectorAll('[data-act]').forEach(btn=>btn.addEventListener('click',()=>{
+    const el = root.querySelector(`#qty-${btn.dataset.tt}`); let v=parseInt(el.value)||0;
+    if(btn.dataset.act==='inc'){ const max=parseInt(btn.dataset.max); if(v<max) v++; } else if(v>0){ v--; }
+    el.value=v; recompute();
+  }));
+  root.querySelector(`#pay-${ev.id}`).addEventListener('click',()=>pay(ev,root));
+}
+async function pay(ev,root){
+  const items=(ev.ticket_types||[]).map(t=>({ticket_type_id:t.id,quantity:parseInt(root.querySelector(`#qty-${t.id}`)?.value)||0})).filter(i=>i.quantity>0);
+  const name=root.querySelector(`#nm-${ev.id}`).value.trim();
+  const email=root.querySelector(`#em-${ev.id}`).value.trim();
+  const phone=root.querySelector(`#ph-${ev.id}`).value.trim();
+  const box=root.querySelector(`#evmsg-${ev.id}`);
+  if(!items.length){ box.innerHTML=msg('Please select at least one ticket.','err'); return; }
+  if(!name||!email||!phone){ box.innerHTML=msg('Please fill in your name, email and phone.','err'); return; }
+  const btn=root.querySelector(`#pay-${ev.id}`); btn.disabled=true; btn.textContent='Starting payment…';
+  try{
+    const r=await fetch(FN+'/create-order',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},body:JSON.stringify({event_id:ev.id,items,name,email,phone})});
+    const d=await r.json();
+    if(r.ok && d.payment_link){ location.href=d.payment_link; return; }
+    if(r.status===503){ box.innerHTML=msg('Ticket sales open very soon — online payment is being finalised. Your selection ('+fmt(d.amount_ugx)+', ref '+esc(d.reference)+') was reserved.','ok'); }
+    else { box.innerHTML=msg(d.error||'Could not start payment.','err'); }
+  }catch(e){ box.innerHTML=msg('Network error: '+e,'err'); }
+  btn.disabled=false; btn.textContent='Pay & Get Tickets →';
+}
+
+async function showOrder(reference){
+  app.innerHTML='<p style="text-align:center;color:var(--text-light);">Loading your tickets…</p>';
+  let tries=0;
+  const poll=async()=>{
+    const { data, error } = await sb.rpc('tk_get_order',{p_reference:reference});
+    if(error||!data){ app.innerHTML=msg('Order not found. Check your link or email.','err'); return; }
+    if(data.status!=='paid' && tries<6){ tries++; app.innerHTML='<p style="text-align:center;color:var(--text-light);">Confirming your payment… (this can take a few seconds)</p>'; setTimeout(poll,2500); return; }
+    renderOrder(data);
+  };
+  poll();
+}
+function renderOrder(o){
+  const ev=o.event||{};
+  const when=ev.starts_at?new Date(ev.starts_at).toLocaleString('en-GB',{dateStyle:'full',timeStyle:'short'}):'';
+  if(o.status!=='paid'){
+    app.innerHTML = msg('We haven’t received confirmation for this order yet (ref '+esc(o.reference)+'). If you completed payment, your tickets will appear here and in your email shortly — refresh this page in a minute.','err')
+      + '<div style="text-align:center;"><button class="btn btn-primary" onclick="location.reload()">Refresh</button></div>'; return;
+  }
+  const tix=(o.tickets||[]).map(t=>`<div class="ticket">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&qzone=2&data=${encodeURIComponent(t.code)}" alt="QR"/>
+      <div>
+        <div class="ticket-type">${esc(t.type)}</div>
+        <div class="ticket-holder">${esc(t.holder||o.buyer_name)}</div>
+        <div class="ticket-code">${esc(t.code)}</div>
+        ${t.status==='used'?'<div class="ticket-used">Already checked in</div>':''}
+      </div></div>`).join('');
+  app.innerHTML = `<div style="text-align:center;margin-bottom:10px;">
+      <h2 style="font-family:'Playfair Display',serif;color:var(--dark);">You’re in! 🎉</h2>
+      <p style="color:var(--text-muted);">${esc(ev.title||'')}<br/>${esc(when)}${ev.venue?' · '+esc(ev.venue):''}</p>
+      <p class="tk-note">Order ${esc(o.reference)} · ${fmt(o.amount_ugx)} · also emailed to you. Show each QR at the gate.</p>
+    </div>${tix}
+    <div style="text-align:center;margin-top:18px;"><button class="btn btn-secondary" onclick="window.print()">Print / Save as PDF</button> <a class="btn btn-dark" href="tickets.html">Buy more</a></div>`;
+}
+function msg(t,kind){ return `<div class="tk-msg ${kind}">${t}</div>`; }
+</script>
+</body>
+</html>

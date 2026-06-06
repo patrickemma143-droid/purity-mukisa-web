@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gate Scanner — Purity Mukisa Tickets</title>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<style>
+body{ background:var(--dark); }
+.scan-wrap{ max-width:480px; margin:0 auto; padding:24px 18px 60px; }
+.scan-card{ background:var(--cream); border-radius:var(--radius-lg); padding:22px; }
+h1{ color:var(--cream); text-align:center; font-family:'Playfair Display',serif; margin:18px 0; font-size:24px; }
+#reader{ width:100%; border-radius:12px; overflow:hidden; }
+.pin-row{ display:flex; gap:10px; margin-bottom:14px; }
+.pin-row input{ flex:1; padding:13px 14px; border:1px solid var(--cream-deep); border-radius:10px; font-size:16px; font-family:'Space Grotesk',sans-serif; }
+.result{ border-radius:14px; padding:26px 20px; text-align:center; margin-top:16px; display:none; }
+.result.show{ display:block; }
+.result.ok{ background:#127a3e; color:#fff; }
+.result.bad{ background:#b23b3b; color:#fff; }
+.result.warn{ background:#c9882c; color:#fff; }
+.result .big{ font-size:30px; font-weight:800; font-family:'Playfair Display',serif; }
+.result .who{ font-size:20px; margin-top:6px; }
+.result .sub{ opacity:.9; font-size:14px; margin-top:6px; }
+.muted{ color:var(--text-light); font-size:12px; font-family:'Space Grotesk',sans-serif; text-align:center; margin-top:10px; }
+.manual{ display:flex; gap:8px; margin-top:14px; }
+.manual input{ flex:1; padding:11px 12px; border:1px solid var(--cream-deep); border-radius:10px; font-family:monospace; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="scan-wrap">
+  <h1>🎟️ Gate Scanner</h1>
+  <div class="scan-card">
+    <div class="pin-row">
+      <input id="pin" type="password" placeholder="Staff gate PIN" autocomplete="off"/>
+      <input id="staff" placeholder="Your name" style="max-width:120px;"/>
+    </div>
+    <div id="reader"></div>
+    <div class="manual">
+      <input id="manualCode" placeholder="…or type ticket code"/>
+      <button class="btn btn-dark btn-sm" id="manualBtn" type="button">Check</button>
+    </div>
+    <div id="result" class="result"></div>
+    <div class="muted" id="hint">Enter the PIN, allow the camera, and point at a ticket QR.</div>
+    <div style="text-align:center;margin-top:14px;"><button class="btn btn-secondary btn-sm" id="nextBtn" type="button" style="display:none;">Scan next →</button></div>
+  </div>
+</div>
+<script>
+const SUPABASE_URL='https://facffdxpdzydudjaujpj.supabase.co';
+const SUPABASE_KEY='sb_publishable_uwJ8zN20MVQSsVWyQRQ3Mw_YUsFDoLO';
+const FN=SUPABASE_URL+'/functions/v1';
+const resultEl=document.getElementById('result');
+const hint=document.getElementById('hint');
+const nextBtn=document.getElementById('nextBtn');
+const pinEl=document.getElementById('pin');
+const staffEl=document.getElementById('staff');
+pinEl.value=sessionStorage.getItem('gatePin')||''; staffEl.value=sessionStorage.getItem('gateStaff')||'';
+pinEl.addEventListener('change',()=>sessionStorage.setItem('gatePin',pinEl.value));
+staffEl.addEventListener('change',()=>sessionStorage.setItem('gateStaff',staffEl.value));
+
+let busy=false, qr=null, running=false;
+function show(kind,big,who,sub){
+  resultEl.className='result show '+kind;
+  resultEl.innerHTML='<div class="big">'+big+'</div>'+(who?'<div class="who">'+who+'</div>':'')+(sub?'<div class="sub">'+sub+'</div>':'');
+  nextBtn.style.display='inline-flex';
+}
+async function check(code){
+  if(busy) return; busy=true; hint.textContent='Checking…';
+  const pin=pinEl.value.trim();
+  if(!pin){ show('bad','Enter PIN','','Type the staff gate PIN first'); busy=false; return; }
+  try{
+    const r=await fetch(FN+'/verify-ticket',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},body:JSON.stringify({code,pin,staff:staffEl.value.trim()||'gate'})});
+    const d=await r.json();
+    if(r.status===401){ show('bad','Wrong PIN','','Check the staff PIN'); }
+    else if(d.ok){ show('ok','✓ VALID', (d.holder||'')+' · '+(d.type||''), d.event||''); }
+    else if(d.reason==='already_used'){ show('warn','ALREADY USED',(d.holder||'')+' · '+(d.type||''),'Checked in '+(d.checked_in_at?new Date(d.checked_in_at).toLocaleTimeString():'')); }
+    else if(d.reason==='void'){ show('bad','VOID TICKET',(d.holder||'')); }
+    else { show('bad','NOT FOUND','','This QR is not a valid ticket'); }
+  }catch(e){ show('bad','Error',''," "+e); }
+  busy=false;
+}
+function onScan(text){ if(busy) return; if(qr&&running){ qr.pause(true);} check(text); }
+nextBtn.addEventListener('click',()=>{ resultEl.className='result'; nextBtn.style.display='none'; hint.textContent='Point at a ticket QR.'; if(qr&&running){ try{qr.resume();}catch(e){} } });
+document.getElementById('manualBtn').addEventListener('click',()=>{ const c=document.getElementById('manualCode').value.trim(); if(c) check(c); });
+
+window.addEventListener('load',()=>{
+  qr=new Html5Qrcode('reader');
+  Html5Qrcode.getCameras().then(cams=>{
+    if(!cams||!cams.length){ hint.textContent='No camera found — use manual code entry.'; return; }
+    const back=cams.find(c=>/back|rear|environment/i.test(c.label))||cams[cams.length-1];
+    qr.start(back.id,{fps:10,qrbox:{width:240,height:240}},onScan,()=>{}).then(()=>{running=true;}).catch(e=>{ hint.textContent='Camera blocked — allow camera access or use manual entry.'; });
+  }).catch(()=>{ hint.textContent='Camera unavailable — use manual entry.'; });
+});
+</script>
+</body>
+</html>
