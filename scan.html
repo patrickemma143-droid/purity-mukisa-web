@@ -74,7 +74,7 @@ async function check(code){
     const r=await fetch(FN+'/verify-ticket',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},body:JSON.stringify({code,pin,staff:staffEl.value.trim()||'gate'})});
     const d=await r.json();
     if(r.status===401){ show('bad','Wrong PIN','','Check the staff PIN'); }
-    else if(d.ok){ show('ok','✓ VALID', (d.holder||'')+' · '+(d.type||''), d.event||''); }
+    else if(d.ok){ const st=staffEl.value.trim(); show('ok','✓ VALID', (d.holder||'')+' · '+(d.type||''), (d.event||'')+(st?(' · by '+st):'')); }
     else if(d.reason==='already_used'){ show('warn','ALREADY USED',(d.holder||'')+' · '+(d.type||''),'Checked in '+(d.checked_in_at?new Date(d.checked_in_at).toLocaleTimeString():'')); }
     else if(d.reason==='void'){ show('bad','VOID TICKET',(d.holder||'')); }
     else { show('bad','NOT FOUND','','This QR is not a valid ticket'); }
