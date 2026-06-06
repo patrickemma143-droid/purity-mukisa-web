@@ -144,6 +144,8 @@ function wireEvent(ev){
     let total=0;
     (ev.ticket_types||[]).forEach(t=>{ const el=root.querySelector(`#qty-${t.id}`); if(el) total += (parseInt(el.value)||0)*t.price_ugx; });
     root.querySelector(`#total-${ev.id}`).textContent = fmt(total);
+    const pb=root.querySelector(`#pay-${ev.id}`);
+    if(pb) pb.textContent = (total===0 ? 'Get Free Ticket →' : 'Pay & Get Tickets →');
   };
   root.querySelectorAll('[data-act]').forEach(btn=>btn.addEventListener('click',()=>{
     const el = root.querySelector(`#qty-${btn.dataset.tt}`); let v=parseInt(el.value)||0;
@@ -151,6 +153,7 @@ function wireEvent(ev){
     el.value=v; recompute();
   }));
   root.querySelector(`#pay-${ev.id}`).addEventListener('click',()=>pay(ev,root));
+  recompute();
 }
 async function pay(ev,root){
   const items=(ev.ticket_types||[]).map(t=>({ticket_type_id:t.id,quantity:parseInt(root.querySelector(`#qty-${t.id}`)?.value)||0})).filter(i=>i.quantity>0);
@@ -164,6 +167,7 @@ async function pay(ev,root){
   try{
     const r=await fetch(FN+'/create-order',{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},body:JSON.stringify({event_id:ev.id,items,name,email,phone})});
     const d=await r.json();
+    if(r.ok && d.free){ location.href='tickets.html?ref='+encodeURIComponent(d.reference); return; }
     if(r.ok && d.payment_link){ location.href=d.payment_link; return; }
     if(r.status===503){ box.innerHTML=msg('Ticket sales open very soon — online payment is being finalised. Your selection ('+fmt(d.amount_ugx)+', ref '+esc(d.reference)+') was reserved.','ok'); }
     else { box.innerHTML=msg(d.error||'Could not start payment.','err'); }
