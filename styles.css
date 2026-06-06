@@ -198,9 +198,9 @@ p  { color: var(--text-muted); line-height: 1.8; }
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--terra); color: #fff; border: none; cursor: pointer;
   flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  font-size: 13px; opacity: 0; transition: var(--transition);
+  font-size: 13px; opacity: 1; transition: var(--transition);
 }
-.song-list-item:hover .song-play { opacity: 1; }
+.song-play:hover { transform: translateY(-1px); }
 .song-dl {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--amber); color: #fff; border: none; cursor: pointer;
