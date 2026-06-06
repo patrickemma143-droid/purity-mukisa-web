@@ -1,0 +1,216 @@
+From 3a565e4f1bffbf7ee51d54682896a5ef3412ac6f Mon Sep 17 00:00:00 2001
+From: Hudson Tumusiime <hudson.tim.uk@gmail.com>
+Date: Sat, 6 Jun 2026 11:05:10 +0000
+Subject: [PATCH] Fix cart reliability: cache-bust cart.js (v2.2), harden init,
+ resilient add-to-cart
+
+---
+ cart.js       | 25 ++++++++++++++++++++++++-
+ charity.html  |  2 +-
+ checkout.html |  2 +-
+ contact.html  |  2 +-
+ events.html   |  2 +-
+ gallery.html  |  2 +-
+ index.html    |  2 +-
+ ministry.html |  2 +-
+ music.html    |  2 +-
+ store.html    | 11 +++++++----
+ 10 files changed, 39 insertions(+), 13 deletions(-)
+
+diff --git a/cart.js b/cart.js
+index 6daa44c..279459d 100644
+--- a/cart.js
++++ b/cart.js
+@@ -1,5 +1,5 @@
+ /* ============================================================
+-   PURITY MUKISA — Shared Cart Logic (v2.1)
++   PURITY MUKISA — Shared Cart Logic (v2.2)
+    Persists across pages via localStorage.
+    Loaded with `defer` in <head> on every page.
+ ============================================================ */
+@@ -194,6 +194,23 @@
+     const action = target.getAttribute('data-cart-action');
+     const id     = target.getAttribute('data-id');
+     if (action === 'open')   { e.preventDefault(); openDrawer(); return; }
++    if (action === 'add') {
++      e.preventDefault();
++      addItem({
++        id:    target.getAttribute('data-id'),
++        name:  target.getAttribute('data-name'),
++        price: parseInt(target.getAttribute('data-price'), 10) || 0,
++        priceLabel: target.getAttribute('data-price-label') || '',
++        emoji: target.getAttribute('data-emoji') || '\u{1F3B5}',
++        gradient: target.getAttribute('data-gradient') || undefined,
++        qty: 1
++      });
++      var lbl = target.getAttribute('data-orig') || target.textContent;
++      target.setAttribute('data-orig', lbl);
++      target.textContent = '\u2713 Added';
++      setTimeout(function(){ target.textContent = target.getAttribute('data-orig'); }, 1400);
++      return;
++    }
+     if (action === 'close')  { e.preventDefault(); closeDrawer(); return; }
+     if (action === 'inc' && id)    { window.CartUI.inc(id); return; }
+     if (action === 'dec' && id)    { window.CartUI.dec(id); return; }
+@@ -204,16 +221,22 @@
+     if (e.key === 'Escape') closeDrawer();
+   }
+ 
++  var _inited = false;
+   function init() {
++    if (_inited) return;        // never attach handlers twice
++    _inited = true;
+     updateBadges();
+     document.addEventListener('click', onClick);
+     document.addEventListener('keydown', onKey);
+   }
++  // Run as soon as the DOM is ready, regardless of how/when this script loads.
+   if (document.readyState === 'loading') {
+     document.addEventListener('DOMContentLoaded', init);
+   } else {
+     init();
+   }
++  // Belt-and-suspenders: also run on full load in case the above was missed.
++  window.addEventListener('load', init);
+ 
+   /* Cross-tab sync */
+   window.addEventListener('storage', e => {
+diff --git a/charity.html b/charity.html
+index 9d5cee6..60f1204 100644
+--- a/charity.html
++++ b/charity.html
+@@ -4,7 +4,7 @@
+ <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Charity — The Purity Charity</title>
+ <link rel="stylesheet" href="styles.css"/>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <style>
+ .charity-hero { background: linear-gradient(rgba(15,15,15,0.55), rgba(15,15,15,0.78)), url('assets/web/charity-hero.jpg') center/cover; padding: 180px 0 110px; text-align: center; position: relative; overflow: hidden; }
+ .cause-card .cause-img { height: 220px; font-size: 0; background-size: cover; background-position: center; }
+diff --git a/checkout.html b/checkout.html
+index 305b015..d3cb525 100644
+--- a/checkout.html
++++ b/checkout.html
+@@ -4,7 +4,7 @@
+ <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Checkout — Purity Mukisa</title>
+ <link rel="stylesheet" href="styles.css"/>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ </head>
+ <body>
+ 
+diff --git a/contact.html b/contact.html
+index 0631eea..2ba521d 100644
+--- a/contact.html
++++ b/contact.html
+@@ -160,7 +160,7 @@
+ </footer>
+ <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+ <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <script>
+ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+ function submitForm(){document.getElementById('successMsg').style.display='block';window.scrollTo({top:document.getElementById('successMsg').offsetTop-100,behavior:'smooth'});}
+diff --git a/events.html b/events.html
+index e76c6a0..2f365b0 100644
+--- a/events.html
++++ b/events.html
+@@ -185,7 +185,7 @@
+ </footer>
+ <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+ <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <script>
+ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+ document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
+diff --git a/gallery.html b/gallery.html
+index 1956757..0f0c0c6 100644
+--- a/gallery.html
++++ b/gallery.html
+@@ -112,7 +112,7 @@
+ </footer>
+ <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+ <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <script>
+ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+ // Filter
+diff --git a/index.html b/index.html
+index 0962bea..b16a998 100644
+--- a/index.html
++++ b/index.html
+@@ -6,7 +6,7 @@
+ <title>Purity Mukisa — Ugandan Gospel Artist & Minister</title>
+ <meta name="description" content="Purity Mukisa is Uganda's celebrated gospel music artist, minister and founder of the Purity Charity."/>
+ <link rel="stylesheet" href="styles.css"/>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <style>
+ /* ============================================================
+    HOME-PAGE-ONLY OVERRIDES — uses shared styles.css tokens
+diff --git a/ministry.html b/ministry.html
+index 389ba8a..26a1b47 100644
+--- a/ministry.html
++++ b/ministry.html
+@@ -23,7 +23,7 @@
+ .video-sub   { font-size:12px;color:rgba(251,245,233,0.4);font-family:'Space Grotesk',sans-serif; }
+ @media(max-width:700px){.prayer-section{padding:36px 24px;}}
+ </style>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ </head>
+ <body>
+ <nav class="nav scrolled" id="nav">
+diff --git a/music.html b/music.html
+index 0941a20..fcc3738 100644
+--- a/music.html
++++ b/music.html
+@@ -133,7 +133,7 @@ html { scroll-behavior: smooth; }
+ <div class="floating-player" id="player"><div class="fp-art">🎵</div><div class="fp-info"><div class="fp-title">Niwewe</div><div class="fp-sub">Purity Mukisa · Yenze</div></div><div class="fp-ctrl"><button class="fp-btn">⏮</button><button class="fp-play" id="fpBtn">▶</button><button class="fp-btn">⏭</button></div></div>
+ <a class="wa-float" href="https://wa.me/256771492492" target="_blank">💬</a>
+ 
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <script>
+ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+ function activatePlayer(){document.getElementById('player').classList.add('up');document.getElementById('fpBtn').textContent='⏸';}
+diff --git a/store.html b/store.html
+index e5cb212..f4cdd5d 100644
+--- a/store.html
++++ b/store.html
+@@ -4,7 +4,7 @@
+ <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <title>Store — Purity Ministry</title>
+ <link rel="stylesheet" href="styles.css"/>
+-<script src="cart.js" defer></script>
++<script src="cart.js?v=2.2" defer></script>
+ <style>
+ .store-filter { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px; }
+ .cart-bar { position:fixed;bottom:80px;right:24px;background:var(--dark);color:var(--cream);padding:12px 22px;border-radius:100px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;display:none;gap:10px;align-items:center;box-shadow:var(--shadow-lg);z-index:800;cursor:pointer; }
+@@ -179,12 +179,15 @@
+ <script>
+ function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+ function quickAdd(btn, id, name, price, priceLabel, emoji, gradient) {
+-  if (!window.Cart) { console.warn('Cart not ready'); return; }
++  if (!window.Cart) { // cart.js not loaded yet (slow connection) — retry instead of failing
++    return setTimeout(function(){ quickAdd(btn, id, name, price, priceLabel, emoji, gradient); }, 120);
++  }
+   Cart.add({ id, name, price, priceLabel, emoji, gradient, qty: 1 });
+-  const orig = btn.textContent;
++  const orig = btn.getAttribute('data-orig') || btn.textContent;
++  btn.setAttribute('data-orig', orig);
+   btn.textContent = '✓ Added';
+   btn.style.background = 'var(--sage)';
+-  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1400);
++  setTimeout(() => { btn.textContent = btn.getAttribute('data-orig'); btn.style.background = ''; }, 1400);
+ }
+ document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',function(){this.closest('.store-filter').querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');}));
+ const fpBtn = document.getElementById('fpBtn');
+-- 
+2.34.1
+
