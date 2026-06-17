@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="/favicon.ico" sizes="any"/>
+<link rel="icon" type="image/png" href="/assets/web/purity-favicon.png"/>
+<link rel="apple-touch-icon" href="/assets/web/apple-touch-icon.png"/>
+<meta property="og:image" content="https://puritymukisa.com/assets/web/og-purity.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://puritymukisa.com/assets/web/og-purity.jpg"/>
+
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ministry — Purity</title>
 <link rel="stylesheet" href="styles.css?v=3"/>
@@ -252,19 +259,4 @@ function submitPrayer(){
   var name=g('pr-name'), country=g('pr-country'), msg=g('pr-msg');
   if(!msg){ alert('Please share your prayer request before submitting.'); return; }
   var lines=['🙏 Prayer request from puritymukisa.com',''];
-  if(name) lines.push('Name: '+name);
-  if(country) lines.push('Country: '+country);
-  lines.push('','Request:',msg);
-  var url='https://wa.me/256771492493?text='+encodeURIComponent(lines.join('\n'));
-  var win=window.open(url,'_blank');
-  if(!win){ window.location.href=url; }
-}
-document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
-document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
-</script>
-
-</body>
-</html>
-
-
+  if(name) lines.pu
