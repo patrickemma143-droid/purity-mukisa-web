@@ -174,8 +174,9 @@ function submitForm(){
   if(date) lines.push('Event date: '+date);
   lines.push('','Message:',msg);
   var url='https://wa.me/256771492493?text='+encodeURIComponent(lines.join('\n'));
-  window.open(url,'_blank');
   var s=document.getElementById('successMsg'); if(s){ s.style.display='block'; window.scrollTo({top:s.offsetTop-100,behavior:'smooth'}); }
+  var win=window.open(url,'_blank');
+  if(!win){ window.location.href=url; }  // popup blocked -> open in same tab (always works)
 }
 function toggleFaq(el){const a=el.nextElementSibling;const open=a.style.display==='block';document.querySelectorAll('.faq-a').forEach(x=>{x.style.display='none';});document.querySelectorAll('.faq-q span').forEach(x=>{x.textContent='+';});if(!open){a.style.display='block';el.querySelector('span').textContent='−';}}
 document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});

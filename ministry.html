@@ -204,11 +204,11 @@
         <h3 style="color:var(--cream);margin-bottom:6px;">We Read Every Message</h3>
         <p style="color:rgba(251,245,233,0.45);margin-bottom:30px;">You are not alone. Submit your request below.</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
-          <div class="form-group" style="margin:0;"><label class="label-light">Your Name</label><input class="input-dark" placeholder="e.g. Sarah"/></div>
-          <div class="form-group" style="margin:0;"><label class="label-light">Country</label><input class="input-dark" placeholder="Uganda"/></div>
+          <div class="form-group" style="margin:0;"><label class="label-light">Your Name</label><input id="pr-name" class="input-dark" placeholder="e.g. Sarah"/></div>
+          <div class="form-group" style="margin:0;"><label class="label-light">Country</label><input id="pr-country" class="input-dark" placeholder="Uganda"/></div>
         </div>
-        <div class="form-group"><label class="label-light">Prayer Request</label><textarea class="input-dark" placeholder="Share what is on your heart..."></textarea></div>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;">🙏 Submit Request</button>
+        <div class="form-group"><label class="label-light">Prayer Request</label><textarea id="pr-msg" class="input-dark" placeholder="Share what is on your heart..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="submitPrayer()">🙏 Submit Request</button>
       </div>
     </div>
   </div>
@@ -247,6 +247,18 @@
 
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function submitPrayer(){
+  var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+  var name=g('pr-name'), country=g('pr-country'), msg=g('pr-msg');
+  if(!msg){ alert('Please share your prayer request before submitting.'); return; }
+  var lines=['🙏 Prayer request from puritymukisa.com',''];
+  if(name) lines.push('Name: '+name);
+  if(country) lines.push('Country: '+country);
+  lines.push('','Request:',msg);
+  var url='https://wa.me/256771492493?text='+encodeURIComponent(lines.join('\n'));
+  var win=window.open(url,'_blank');
+  if(!win){ window.location.href=url; }
+}
 document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
