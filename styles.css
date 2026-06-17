@@ -490,3 +490,101 @@ textarea.input-light, textarea.input-dark { resize: vertical; min-height: 130px;
   .order-summary { position:static; }
   .checkout-section { padding:28px 22px; }
 }
+/* ============================================================
+   PURITY MUKISA — RESPONSIVE ENHANCEMENTS
+   Designed by Charis Creations Ltd
+   ------------------------------------------------------------
+   HOW TO APPLY (either works):
+   A) RECOMMENDED — paste everything below to the very END of
+      styles.css, then push. One file, every page improves.
+   B) Or save this file in the repo and add, on EVERY page,
+      right AFTER the styles.css link:
+        <link rel="stylesheet" href="responsive-enhance.css"/>
+      (It must load AFTER styles.css and after any page <style>.)
+   A few rules use !important only where needed to override the
+   home page's inline About-strip layout.
+============================================================ */
+
+/* Kill any sideways scroll on phones, keep media fluid */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, iframe { max-width: 100%; height: auto; }
+
+/* ── TABLET & DOWN (≤ 900px) ───────────────────────────── */
+@media (max-width: 900px) {
+
+  /* FIX: the home "About" strip was locked to 2 columns and
+     never restacked — photo on top, text below, full width. */
+  .about-strip { padding: 48px 0; }
+  .about-strip .grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 26px !important;
+    padding: 0 24px;
+  }
+  .about-strip .about-photo-col {
+    order: -1;                 /* photo first on mobile */
+    aspect-ratio: 4 / 3;
+    min-height: 0 !important;
+    max-height: 60vh;
+  }
+  .about-strip .about-photo-col::after { display: none !important; }
+  .about-strip .about-text-col { padding: 4px 0 0 !important; text-align: left; }
+
+  /* Stats bar: drop the vertical dividers, let stats wrap evenly */
+  .stats-bar-inner { gap: 20px; }
+  .stats-divider { display: none; }
+  .stat-num { font-size: 40px; }
+
+  /* Charity photo a touch shorter so the text isn't pushed away */
+  .charity-photo-box { height: 320px; }
+}
+
+/* ── LARGE PHONES (≤ 600px) ────────────────────────────── */
+@media (max-width: 600px) {
+  .container { padding: 0 18px; }
+  .section { padding: 56px 0; }
+
+  .hero-split-content { padding: 116px 22px 48px; }
+  .hero-sub { font-size: 16px; }
+
+  /* Stats: two per row, clean */
+  .stats-bar { padding: 32px 0; }
+  .stat-item { flex: 1 1 40%; }
+  .c-stats { gap: 26px; }
+  .c-stat-num, .stat-num { font-size: 34px; }
+
+  .charity-strip { padding: 80px 0; }
+  .cta-banner { padding: 88px 0; }
+  .testimonial-card { padding: 28px; }
+
+  /* Comfortable tap targets (accessibility on touch) */
+  .nav-links a, .btn, .cart-btn, .filter-btn { min-height: 44px; }
+
+  /* Footer stacks its bottom row */
+  .footer { padding: 60px 0 32px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ── SMALL PHONES (≤ 400px) ────────────────────────────── */
+@media (max-width: 400px) {
+  .container { padding: 0 14px; }
+  .nav-logo { font-size: 22px; }
+
+  .hero-split-content { padding: 104px 16px 40px; }
+  .hero-split-content h1 { font-size: clamp(34px, 11vw, 50px); }
+  .hero-ctas { width: 100%; }
+  .hero-ctas .btn { flex: 1 1 auto; justify-content: center; }
+  .btn-lg, .btn-xl { padding: 14px 24px; font-size: 14px; }
+
+  /* Featured-song card: stack art, info, play vertically + centred */
+  .song-card { grid-template-columns: 1fr !important; text-align: center; gap: 16px; padding: 22px; }
+  .song-card .song-card-art { margin: 0 auto; }
+  .song-card .play-btn { margin: 0 auto; }
+  .song-times { justify-content: center; gap: 16px; }
+
+  /* Stats one per row on the tiniest screens */
+  .stat-item { flex: 1 1 100%; }
+
+  /* Keep the two floating buttons from crowding */
+  .floating-player { min-width: 0; left: 16px; right: 16px; }
+  .wa-float { width: 48px; height: 48px; font-size: 22px; }
+}
