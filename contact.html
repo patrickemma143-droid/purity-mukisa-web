@@ -85,15 +85,15 @@
         <div class="eyebrow">Send a Message</div>
         <h3 style="margin-bottom:28px;">How Can We Help?</h3>
         <div class="form-row-2" style="margin-bottom:18px;">
-          <div class="form-group" style="margin:0;"><label class="label-dark">First Name *</label><input class="input-light" placeholder="e.g. Sarah"/></div>
-          <div class="form-group" style="margin:0;"><label class="label-dark">Last Name *</label><input class="input-light" placeholder="e.g. Nakato"/></div>
+          <div class="form-group" style="margin:0;"><label class="label-dark">First Name *</label><input id="cf-first" class="input-light" placeholder="e.g. Sarah"/></div>
+          <div class="form-group" style="margin:0;"><label class="label-dark">Last Name *</label><input id="cf-last" class="input-light" placeholder="e.g. Nakato"/></div>
         </div>
-        <div class="form-group"><label class="label-dark">Email Address *</label><input class="input-light" type="email" placeholder="you@example.com"/></div>
-        <div class="form-group"><label class="label-dark">Phone / WhatsApp</label><input class="input-light" placeholder="e.g. +256 7XX XXX XXX"/></div>
-        <div class="form-group"><label class="label-dark">Organisation / Church (optional)</label><input class="input-light" placeholder="e.g. Hope Centre Church"/></div>
+        <div class="form-group"><label class="label-dark">Email Address *</label><input id="cf-email" class="input-light" type="email" placeholder="you@example.com"/></div>
+        <div class="form-group"><label class="label-dark">Phone / WhatsApp</label><input id="cf-phone" class="input-light" placeholder="e.g. +256 7XX XXX XXX"/></div>
+        <div class="form-group"><label class="label-dark">Organisation / Church (optional)</label><input id="cf-org" class="input-light" placeholder="e.g. Hope Centre Church"/></div>
         <div class="form-group">
           <label class="label-dark">Enquiry Type *</label>
-          <select class="input-light">
+          <select id="cf-type" class="input-light">
             <option value="">— Select an enquiry type —</option>
             <option>Concert / Show Booking</option>
             <option>Church / Ministry Booking</option>
@@ -109,11 +109,11 @@
         </div>
         <div class="form-group">
           <label class="label-dark">Event Date (if applicable)</label>
-          <input class="input-light" type="date"/>
+          <input id="cf-date" class="input-light" type="date"/>
         </div>
         <div class="form-group" style="margin-bottom:28px;">
           <label class="label-dark">Your Message *</label>
-          <textarea class="input-light" style="min-height:140px;" placeholder="Tell us about your event, enquiry, or how we can help. The more detail you give, the better we can assist you."></textarea>
+          <textarea id="cf-msg" class="input-light" style="min-height:140px;" placeholder="Tell us about your event, enquiry, or how we can help. The more detail you give, the better we can assist you."></textarea>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
           <button class="btn btn-primary btn-lg" style="flex:1;justify-content:center;" onclick="submitForm()">Send Message</button>
@@ -163,7 +163,20 @@
 <script src="cart.js?v=2.2" defer></script>
 <script>
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function submitForm(){document.getElementById('successMsg').style.display='block';window.scrollTo({top:document.getElementById('successMsg').offsetTop-100,behavior:'smooth'});}
+function submitForm(){
+  var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+  var first=g('cf-first'), last=g('cf-last'), email=g('cf-email'), phone=g('cf-phone'), org=g('cf-org'), type=g('cf-type'), date=g('cf-date'), msg=g('cf-msg');
+  if(!first||!email||!msg){ alert('Please add your name, email and a short message so we can help you.'); return; }
+  var lines=['New enquiry from puritymukisa.com','','Name: '+first+(last?(' '+last):''),'Email: '+email];
+  if(phone) lines.push('Phone: '+phone);
+  if(org) lines.push('Organisation: '+org);
+  if(type) lines.push('Enquiry type: '+type);
+  if(date) lines.push('Event date: '+date);
+  lines.push('','Message:',msg);
+  var url='https://wa.me/256771492493?text='+encodeURIComponent(lines.join('\n'));
+  window.open(url,'_blank');
+  var s=document.getElementById('successMsg'); if(s){ s.style.display='block'; window.scrollTo({top:s.offsetTop-100,behavior:'smooth'}); }
+}
 function toggleFaq(el){const a=el.nextElementSibling;const open=a.style.display==='block';document.querySelectorAll('.faq-a').forEach(x=>{x.style.display='none';});document.querySelectorAll('.faq-q span').forEach(x=>{x.textContent='+';});if(!open){a.style.display='block';el.querySelector('span').textContent='−';}}
 document.getElementById('fpBtn').addEventListener('click',function(){this.textContent=this.textContent==='▶'?'⏸':'▶';document.getElementById('player').classList.add('up');});
 const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1});
