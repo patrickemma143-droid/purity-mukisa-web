@@ -588,3 +588,21 @@ img, video, iframe { max-width: 100%; height: auto; }
   .floating-player { min-width: 0; left: 16px; right: 16px; }
   .wa-float { width: 48px; height: 48px; font-size: 22px; }
 }
+
+/* ===== HERO — mobile refinement ===== */
+@media (max-width: 900px){
+  .hero-split-content h1 { font-size: clamp(40px, 8vw, 60px) !important; }
+}
+@media (max-width: 600px){
+  .hero-split-content { padding: 104px 22px 44px !important; }
+  .hero-split-content h1 { font-size: clamp(34px, 9vw, 46px) !important; letter-spacing: -0.5px; }
+  .hero-sub { font-size: 15px !important; margin-bottom: 30px; }
+  .hero-split-slides { height: 44vh !important; min-height: 300px; }
+  .hero-ctas { gap: 10px; width: 100%; }
+  .hero-ctas .btn { flex: 1 1 auto; justify-content: center; }
+}
+@media (max-width: 400px){
+  .hero-split-content { padding: 92px 16px 34px !important; }
+  .hero-split-content h1 { font-size: clamp(28px, 9vw, 38px) !important; }
+  .hero-sub { font-size: 14px !important; }
+}
